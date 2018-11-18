@@ -2,18 +2,23 @@ package com.forum.entities;
 
 import javax.persistence.*;
 
-@Entity
-public class Post {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-
     private String content;
 
-    public Post() {
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    public Comment() {
+    }
+
+    public Comment(String content) {
+        this.content = content;
     }
 
     public Long getId() {
@@ -22,15 +27,6 @@ public class Post {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Basic
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     @Basic
