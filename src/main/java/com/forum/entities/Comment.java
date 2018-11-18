@@ -2,6 +2,7 @@ package com.forum.entities;
 
 import javax.persistence.*;
 
+@Entity
 public class Comment {
 
     @Id
