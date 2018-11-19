@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<title th:text="${title}"></title>-->
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <script src="/javascript/jquery.min.js"></script>
     <script src="/javascript/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css"/>
 </head>
 <body>
 <header>
     <!--<th:block th:if="${session.username == null}">-->
-        <!--<th:block th:include="~{fragments/navbar-guest}"/>-->
+    <th:block th:include="~{fragments/navbar-guest}"/>
     <!--</th:block>-->
     <!--<th:block th:unless="${session.username == null}">-->
         <!--<th:block th:include="~{fragments/navbar-user}"/>-->
     <!--</th:block>-->
 </header>
 <main class="mt-5">
-    <!--<th:block th:include="~{${viewName}}"/>-->
+    <th:block th:include="~{${viewName}}"/>
 </main>
 </body>
 </html>

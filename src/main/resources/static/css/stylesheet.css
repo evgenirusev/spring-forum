@@ -1,0 +1,21 @@
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #b1dfbb;
+}
+
+.navbar {
+    background-color: #71dd8a;
+    border-color: #E7E7E7;
+}
+
+.navbar-light .navbar-brand {
+    color: #FFFFFF;
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link {
+    color: #FFFFFF;
+}
