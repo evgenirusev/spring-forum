@@ -17,9 +17,14 @@
     <!--<th:block th:unless="${session.username == null}">-->
         <!--<th:block th:include="~{fragments/navbar-user}"/>-->
     <!--</th:block>-->
+
+    <img src="/img/forest.png" height="245" width="100%"/>
 </header>
 <main class="mt-5">
     <th:block th:include="~{${viewName}}"/>
 </main>
 </body>
+<footer>
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
 </html>
