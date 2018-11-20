@@ -1,6 +1,7 @@
 package com.forum.controllers;
 
 import com.forum.dtos.posts.CreatePostDto;
+import com.forum.entities.Post;
 import com.forum.services.PostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/posts")
 public class PostController {
@@ -20,6 +23,14 @@ public class PostController {
     @Autowired
     public PostController(PostService postService) {
         this.postService = postService;
+    }
+
+    @GetMapping("/all")
+    public String allPosts(Model model) {
+        List<Post> posts = this.postService.findAllPosts();
+        model.addAttribute("posts", posts);
+        model.addAttribute("viewName", "views/posts/all");
+        return "layout";
     }
 
     @GetMapping("/create")

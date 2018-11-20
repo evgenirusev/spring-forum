@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -24,5 +26,10 @@ public class PostServiceImpl implements PostService {
     public void create(CreatePostDto createPostDto) {
         Post post = this.modelMapper.map(createPostDto, Post.class);
         this.postReposotory.save(post);
+    }
+
+    @Override
+    public List<Post> findAllPosts() {
+        return this.postReposotory.findAll();
     }
 }
