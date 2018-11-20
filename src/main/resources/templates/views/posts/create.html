@@ -1,17 +1,15 @@
 <div class="container view-content" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="view-content">
-        <h1>Create New Post</h1>
-        <form th:method="post" th:action="@{/posts/create}">
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Post Title</label>
-                <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="Title">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Post Content</label>
-                <textarea class="form-control" name="content" id="exampleFormControlTextarea1"
-                          placeholder="Please be specific" rows="5"></textarea>
-            </div>
-            <button type="submit" class="btn btn-info ">Create</button>
-        </form>
-    </div>
+    <h1>Create New Post</h1>
+    <form th:method="post" th:action="@{/posts/create}">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Post Title</label>
+            <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Post Content</label>
+            <textarea class="form-control" name="content" id="exampleFormControlTextarea1"
+                      placeholder="Please be specific" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-info ">Create</button>
+    </form>
 </div>

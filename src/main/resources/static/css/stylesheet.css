@@ -19,6 +19,7 @@ body {
     margin-bottom: 30px;
     padding: 30px;
     border-radius: 15px;
+    margin-top: 20px;
 }
 
 .navbar-light .navbar-brand {
@@ -43,10 +44,11 @@ footer {
     padding: 10px;
     min-height: 70px;
     border-bottom: 1px solid #b9bbbe;
+    margin-bottom: 20px;
 }
 
 .header-button {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .header-img {
@@ -86,4 +88,60 @@ form {
     height: 30px;
     width: 30px;
     margin-top: 20px;
+}
+
+.sidebarblock {
+    background-color: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px #c9cccd;
+    margin-bottom: 20px;
+}
+.sidebarblock h3 {
+    color: #363838;
+    font-size: 14px;
+    font-family: 'Open Sans Bold', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.sidebarblock .divline {
+    height: 1px;
+    line-height: 1px;
+    border-bottom: solid 1px #f1f1f1;
+}
+
+.sidebarblock .blocktxt {
+    padding:20px;
+}
+
+ul.cats li {
+    list-style: none;
+    display: block;
+    margin:0;
+    padding:0;
+    line-height: 30px;
+}
+
+ul.cats {
+    margin: 0;
+    padding: 0;
+}
+
+ul.cats li a {
+    font-size: 14px;
+    color: #363838;
+    font-family: 'Open Sans Light', sans-serif;
+    line-height: 30px;
+}
+
+ul.cats .badge {
+    background-color: #bdc3c7;
+    font-size: 12px;
+    color: #ffffff;
+    font-family: 'Open Sans Bold', sans-serif;
+    margin-top: 7px;
+}
+
+.mt-5, .my-5 {
+    margin-top: 0px!important;
 }

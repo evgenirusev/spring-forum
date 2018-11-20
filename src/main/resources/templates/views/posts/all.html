@@ -1,17 +1,59 @@
+<th:block th:include="~{fragments/header-nav}"/>
 <div xmlns:th="http://www.w3.org/1999/xhtml" class="container">
     <div class="row">
-        <th:block th:each="post : ${posts}">
-            <div class="post col-sm-8">
-                <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-8">
+            <th:block th:each="post : ${posts}">
+                <div class="post">
                     <div class="avatar col-sm-1 col-md-1">
                         <img src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
-                    <div class="col-sm-11 col-md-11">
+                    <div class="col-xs-12 col-sm-12 col-md-10">
                         <h2 class="post-title" th:text="${post.title}"></h2>
                         <p class="post-content" th:text="${post.content}"></p>
                     </div>
                 </div>
+            </th:block>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <!-- -->
+            <div class="sidebarblock">
+                <h3>Categories</h3>
+                <div class="divline"></div>
+                <div class="blocktxt">
+                    <ul class="cats">
+                        <li><a href="#">Trading for Money <span class="badge pull-right">20</span></a></li>
+                        <li><a href="#">Vault Keys Giveway <span class="badge pull-right">10</span></a></li>
+                        <li><a href="#">Misc Guns Locations <span class="badge pull-right">50</span></a></li>
+                        <li><a href="#">Looking for Players <span class="badge pull-right">36</span></a></li>
+                        <li><a href="#">Stupid Bugs &amp; Solves <span class="badge pull-right">41</span></a></li>
+                        <li><a href="#">Video &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
+                        <li><a href="#">2K Official Forums <span class="badge pull-right">5</span></a></li>
+                    </ul>
+                </div>
             </div>
-        </th:block>
 
+            <div class="sidebarblock">
+                <h3>My Active Threads</h3>
+                <div class="divline"></div>
+                <div class="blocktxt">
+                    <a href="#">This Dock Turns Your iPhone Into a Bedside Lamp</a>
+                </div>
+                <div class="divline"></div>
+                <div class="blocktxt">
+                    <a href="#">Who Wins in the Battle for Power on the Internet?</a>
+                </div>
+                <div class="divline"></div>
+                <div class="blocktxt">
+                    <a href="#">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
+                </div>
+                <div class="divline"></div>
+                <div class="blocktxt">
+                    <a href="#">FedEx Simplifies Shipping for Small Businesses</a>
+                </div>
+                <div class="divline"></div>
+                <div class="blocktxt">
+                    <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
