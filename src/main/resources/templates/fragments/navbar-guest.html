@@ -1,22 +1,25 @@
-<div class="container-fluid">
+<div class="container-fluid" xmlns:th="http://www.w3.org/1999/html">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">Spring Answers</a>
+        <a class="navbar-brand" th:href="@{/}">Spring Answers</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Posts</a>
+                    <a class="nav-link" th:href="@{/posts/create}">Create Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" th:href="@{/posts/all}">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" th:href="@{/contact}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">About</a>
                 </li>
             </ul>
               <a class="nav-link" id="login-nav" href="#">Log In</a>

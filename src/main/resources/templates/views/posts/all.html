@@ -1,7 +1,17 @@
-<div class="container view-content" xmlns:th="http://www.w3.org/1999/xhtml">
-    <th:block th:each="post : ${posts}">
-        <h2 th:text="${post.title}"></h2>
-        <p th:text="${post.content}"></p>
-        <hr>
-    </th:block>
+<div xmlns:th="http://www.w3.org/1999/xhtml" class="container">
+    <div class="row">
+        <th:block th:each="post : ${posts}">
+            <div class="post col-sm-8">
+                <div class="row">
+                    <div class="avatar col-sm-1 col-md-1">
+                        <img src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
+                    <div class="col-sm-11 col-md-11">
+                        <h2 class="post-title" th:text="${post.title}"></h2>
+                        <p class="post-content" th:text="${post.content}"></p>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+
+    </div>
 </div>

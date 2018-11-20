@@ -1,5 +1,6 @@
 body {
     background-color: #E4E2DD;
+    margin: 0; height: 100%; overflow-x: hidden
 }
 
 .container-fluid {
@@ -48,12 +49,7 @@ footer {
     margin-top: 10px;
 }
 
-.row {
-    margin: 0 auto;
-    color: #FFFFFF;
-}
-
-img {
+.header-img {
     height: 285px;
     width: 100%;
 }
@@ -69,4 +65,25 @@ img {
 
 form {
     padding: 10px;
+}
+
+.post {
+    min-height: 150px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+}
+
+.post-title {
+    color: #363838;
+}
+
+.post-content {
+    word-wrap: break-word;
+    color: #989c9e;
+}
+
+.avatar img {
+    height: 30px;
+    width: 30px;
+    margin-top: 20px;
 }
