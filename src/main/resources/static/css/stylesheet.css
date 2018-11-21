@@ -15,7 +15,6 @@ body {
 
 .view-content {
     min-height: 400px;
-    background-color: #FFFFFF;
     margin-bottom: 30px;
     padding: 30px;
     border-radius: 15px;
@@ -144,4 +143,8 @@ ul.cats .badge {
 
 .mt-5, .my-5 {
     margin-top: 0px!important;
+}
+
+.create-content, .home-content {
+    background-color: #FFFFFF;
 }

@@ -45,6 +45,8 @@ public class PostController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String findPostById(@PathVariable String id, Model model) {
+        Post post = this.postService.findById(Long.parseLong(id));
+        model.addAttribute("post", post);
         model.addAttribute("viewName", "views/posts/post-by-id");
         return "layout";
     }
