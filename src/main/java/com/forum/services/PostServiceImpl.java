@@ -32,4 +32,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> findAllPosts() {
         return this.postReposotory.findAll();
     }
+
+    @Override
+    public Post findById(Long id) {
+        return this.postReposotory.getOne(id);
+    }
 }
