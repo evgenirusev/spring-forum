@@ -3,7 +3,6 @@ package com.forum.controllers;
 import com.forum.dtos.posts.CreatePostDto;
 import com.forum.entities.Post;
 import com.forum.services.PostService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -9,7 +9,7 @@ body {
 }
 
 .navbar {
-    background-color: #009688;
+    background-color: #1abc9c;
     border-color: #E7E7E7;
 }
 
@@ -147,4 +147,43 @@ ul.cats .badge {
 
 .create-content, .home-content {
     background-color: #FFFFFF;
+}
+
+.textwraper textarea {
+    border: none;
+    box-shadow: none;
+    background-color: #f1f1f1;
+    width: 100%;
+}
+
+.textwraper {
+    background-color: #f1f1f1;
+    border-radius: 2px;
+    padding:18px;
+    margin: 20px 5px 0px 0;
+}
+
+#post-reply-btn {
+    margin: 10px 5px 10px 0px;
+}
+
+.btn-primary, .btn-info {
+    background-color: #1abc9c;
+    box-shadow: none;
+    border-radius: 2px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: 'Open Sans Bold', sans-serif;
+    border: none;
+}
+
+.contact-us-page {
+    background-color: #FFFFFF;
+}
+
+#contact-us-title {
+    font-weight: 400;
+    font-size: 50px;
+    text-align: center;
 }
