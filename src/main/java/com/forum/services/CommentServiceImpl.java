@@ -1,6 +1,7 @@
 package com.forum.services;
 
 import com.forum.dtos.comments.CommentDto;
+import com.forum.dtos.comments.CreateCommentDto;
 import com.forum.dtos.posts.PostDto;
 import com.forum.entities.Comment;
 import com.forum.entities.Post;
@@ -38,5 +39,12 @@ public class CommentServiceImpl implements CommentService {
         Type targetListType = new TypeToken<Set<CommentDto>>() {}.getType();
         Set<CommentDto> commentDtos = this.modelMapper.map(comments, targetListType);
         return commentDtos;
+    }
+
+    @Override
+    public void save(CreateCommentDto commentDto) {
+
+        Comment comment = this.modelMapper.map(commentDto, Comment.class);
+        this.commentRepository.save(comment);
     }
 }

@@ -1,6 +1,7 @@
 package com.forum.controllers;
 
 import com.forum.dtos.comments.CommentDto;
+import com.forum.dtos.comments.CreateCommentDto;
 import com.forum.dtos.posts.CreatePostDto;
 import com.forum.dtos.posts.PostDto;
 import com.forum.services.CommentService;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Set;
 
@@ -56,6 +57,18 @@ public class PostController {
         model.addAttribute("post", postDto);
         model.addAttribute("comments", commentSet);
         model.addAttribute("viewName", "views/posts/post-by-id");
+        return "layout";
+    }
+
+    @PostMapping("/{id}")
+    public String storeComment(Model model, @ModelAttribute CreateCommentDto createCommentDto,
+                               HttpServletRequest request) {
+        // TODO: implement storing comments with foreight key to the post
+//        Long postId = Long.parseLong(request.getServletPath().split("/")[2]);
+//        PostDto commentPostDto = this.postService.findById(postId);
+//        createCommentDto.setPostId(postId);
+//        this.commentService.save(createCommentDto);
+        model.addAttribute("viewName", "views/posts/all");
         return "layout";
     }
 }

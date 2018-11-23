@@ -24,13 +24,15 @@
                 <div class="avatar col-sm-1 col-md-1">
                     <img src="/img/reply-img.png" height="512" width="512"/></div>
                 <div class="col-xs-11 col-sm-11 col-md-11">
-                    <div class="textwraper">
-                        <div class="postreply">Post a Reply</div>
-                        <textarea name="reply" id="reply" placeholder="Type your message here"></textarea>
-                    </div>
-                    <div class="float-right">
-                        <button type="submit" id="post-reply-btn" class="btn btn-primary">Post Reply</button>
-                    </div>
+                    <form th:method="post" th:action="@{/posts/} + ${id}">
+                        <div class="textwraper">
+                            <div class="postreply">Post a Reply</div>
+                            <textarea name="content" id="reply" placeholder="Type your message here"></textarea>
+                        </div>
+                        <div class="float-right">
+                            <button type="submit" id="post-reply-btn" class="btn btn-primary">Post Reply</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
