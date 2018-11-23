@@ -1,6 +1,8 @@
 package com.forum.controllers;
 
 import com.forum.dtos.posts.CreatePostDto;
+import com.forum.dtos.posts.PostDto;
+import com.forum.entities.Comment;
 import com.forum.entities.Post;
 import com.forum.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class PostController {
 
     @GetMapping("/all")
     public String allPosts(Model model) {
-        List<Post> posts = this.postService.findAllPosts();
+        List<PostDto> posts = this.postService.findAllPosts();
         model.addAttribute("posts", posts);
         model.addAttribute("viewName", "views/posts/all");
         return "layout";
@@ -44,7 +46,7 @@ public class PostController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String findPostById(@PathVariable String id, Model model) {
-        Post post = this.postService.findById(Long.parseLong(id));
+        PostDto post = this.postService.findById(Long.parseLong(id));
         model.addAttribute("post", post);
         model.addAttribute("viewName", "views/posts/post-by-id");
         return "layout";

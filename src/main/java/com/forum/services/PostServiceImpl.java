@@ -1,12 +1,14 @@
 package com.forum.services;
 
 import com.forum.dtos.posts.CreatePostDto;
+import com.forum.dtos.posts.PostDto;
 import com.forum.entities.Post;
 import com.forum.repositories.PostReposotory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,12 +31,20 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findAllPosts() {
-        return this.postReposotory.findAll();
+    public List<PostDto> findAllPosts() {
+        List<PostDto> postDtos = new ArrayList<>();
+
+        this.postReposotory.findAll().forEach(post -> {
+            postDtos.add(this.modelMapper.map(post, PostDto.class));
+        });
+
+        return postDtos;
     }
 
     @Override
-    public Post findById(Long id) {
-        return this.postReposotory.getOne(id);
+    public PostDto findById(Long id) {
+        Post post = this.postReposotory.getOne(id);
+        PostDto postDto = this.modelMapper.map(post, PostDto.class);
+        return null;
     }
 }
