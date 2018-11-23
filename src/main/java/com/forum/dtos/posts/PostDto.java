@@ -1,6 +1,8 @@
 package com.forum.dtos.posts;
 
 public class PostDto {
+    private Long id;
+
     private String title;
 
     private String content;
@@ -28,4 +30,13 @@ public class PostDto {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }
