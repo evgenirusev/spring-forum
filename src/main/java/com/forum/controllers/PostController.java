@@ -1,5 +1,6 @@
 package com.forum.controllers;
 
+import com.forum.dtos.comments.CommentDto;
 import com.forum.dtos.posts.CreatePostDto;
 import com.forum.dtos.posts.PostDto;
 import com.forum.entities.Comment;
@@ -46,8 +47,9 @@ public class PostController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String findPostById(@PathVariable String id, Model model) {
-        PostDto post = this.postService.findById(Long.parseLong(id));
-        model.addAttribute("post", post);
+        PostDto postDto = this.postService.findById(Long.parseLong(id));
+        // List<CommentDto> =
+        model.addAttribute("post", postDto);
         model.addAttribute("viewName", "views/posts/post-by-id");
         return "layout";
     }
