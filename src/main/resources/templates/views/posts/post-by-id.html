@@ -10,23 +10,14 @@
                 </div>
             </div>
             <hr>
-            <div class="post row">
-                <div class="avatar col-sm-1 col-md-1">
-                    <img src="/img/img_avatar2.png" height="512" width="512"/></div>
-                <div class="col-xs-11 col-sm-11 col-md-10">
-                    <h2 class="post-title" th:text="${post.title}"></h2>
-                    <p class="post-content" th:text="${post.content}"></p>
+            <th:block th:each="comment : ${comments}">
+                <div class="post row">
+                    <div class="avatar col-sm-1 col-md-1"><img src="/img/img_avatar2.png" height="512" width="512"/></div>
+                    <div class="col-xs-11 col-sm-11 col-md-10">
+                        <p class="post-title" th:text="${comment.content}"></p>
+                    </div>
                 </div>
-            </div>
-            <div class="post row">
-                <div class="avatar col-sm-1 col-md-1">
-                    <img src="/img/img_avatar2.png" height="512" width="512"/></div>
-                <div class="col-xs-11 col-sm-11 col-md-11">
-                    <h2 class="post-title" th:text="${post.title}"></h2>
-                    <p class="post-content" th:text="${post.content}"></p>
-                </div>
-            </div>
-
+            </th:block>
             <hr>
 
             <div class="post row">
@@ -37,12 +28,11 @@
                         <div class="postreply">Post a Reply</div>
                         <textarea name="reply" id="reply" placeholder="Type your message here"></textarea>
                     </div>
-                    <div class="float-right"><button type="submit" id="post-reply-btn" class="btn btn-primary">Post Reply</button></div>
+                    <div class="float-right">
+                        <button type="submit" id="post-reply-btn" class="btn btn-primary">Post Reply</button>
+                    </div>
                 </div>
             </div>
-
-
-
 
         </div>
         <div class="col-sm-12 col-md-12 col-lg-4">
@@ -62,7 +52,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="sidebarblock">
                 <h3>My Active Threads</h3>
                 <div class="divline"></div>
