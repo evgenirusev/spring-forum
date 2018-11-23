@@ -1,6 +1,6 @@
 body {
     background-color: #E4E2DD;
-    margin: 0; height: 100%; overflow-x: hidden
+    margin: 0; height: 100%; overflow-x: hidden;
 }
 
 .container-fluid {
@@ -186,4 +186,8 @@ ul.cats .badge {
     font-weight: 400;
     font-size: 50px;
     text-align: center;
+}
+
+.comment-text{
+    word-wrap: break-word
 }
