@@ -45,6 +45,6 @@ public class PostServiceImpl implements PostService {
     public PostDto findById(Long id) {
         Post post = this.postReposotory.getOne(id);
         PostDto postDto = this.modelMapper.map(post, PostDto.class);
-        return null;
+        return postDto;
     }
 }
