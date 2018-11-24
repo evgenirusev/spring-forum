@@ -6,6 +6,7 @@ import com.forum.dtos.posts.PostDto;
 import com.forum.entities.Comment;
 import com.forum.entities.Post;
 import com.forum.repositories.CommentRepository;
+import com.forum.repositories.PostReposotory;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,14 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
 
+    private final PostReposotory postReposotory;
+
     private final ModelMapper modelMapper;
 
     @Autowired
-    public CommentServiceImpl(CommentRepository commentRepository, ModelMapper modelMapper) {
+    public CommentServiceImpl(CommentRepository commentRepository, PostReposotory postReposotory, ModelMapper modelMapper) {
         this.commentRepository = commentRepository;
+        this.postReposotory = postReposotory;
         this.modelMapper = modelMapper;
     }
 
@@ -43,8 +47,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void save(CreateCommentDto commentDto) {
-
-        Comment comment = this.modelMapper.map(commentDto, Comment.class);
+        Post post = this.postReposotory.getOne(commentDto.getPostId());
+        Comment comment = new Comment();
+        comment.setContent(commentDto.getContent());
+        comment.setPost(post);
         this.commentRepository.save(comment);
     }
 }

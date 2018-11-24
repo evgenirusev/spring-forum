@@ -1,20 +1,17 @@
 package com.forum.dtos.comments;
 
-import com.forum.dtos.posts.PostDto;
-import com.forum.entities.Post;
-
 public class CreateCommentDto {
 
     private String content;
 
-//    TODO: DETERMINE DTO OR POST
-//    private PostDto post;
+    private Long postId;
 
     public CreateCommentDto() {
     }
 
-    public CreateCommentDto(String content) {
+    public CreateCommentDto(String content, Long postId) {
         this.content = content;
+        this.postId = postId;
     }
 
     public String getContent() {
@@ -25,4 +22,11 @@ public class CreateCommentDto {
         this.content = content;
     }
 
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
 }

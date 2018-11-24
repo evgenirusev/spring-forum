@@ -61,13 +61,10 @@ public class PostController {
     }
 
     @PostMapping("/{id}")
-    public String storeComment(Model model, @ModelAttribute CreateCommentDto createCommentDto,
-                               HttpServletRequest request) {
-        // TODO: implement storing comments with foreight key to the post
-//        Long postId = Long.parseLong(request.getServletPath().split("/")[2]);
-//        PostDto commentPostDto = this.postService.findById(postId);
-//        createCommentDto.setPostId(postId);
-//        this.commentService.save(createCommentDto);
+    public String storeComment(Model model, @ModelAttribute CreateCommentDto createCommentDto, HttpServletRequest request) {
+        Long postId = Long.parseLong(request.getServletPath().split("/")[2]);
+        createCommentDto.setPostId(postId);
+        this.commentService.save(createCommentDto);
         model.addAttribute("viewName", "views/posts/all");
         return "layout";
     }
