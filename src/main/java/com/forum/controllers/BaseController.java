@@ -31,6 +31,8 @@ abstract class BaseController {
     }
 
     ModelAndView redirect(String route) {
-        return this.view(this.DEFAULT_SPRING_REDIRECT_KW + route);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:" + route);
+        return modelAndView;
     }
 }
