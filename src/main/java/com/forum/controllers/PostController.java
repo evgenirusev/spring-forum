@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/posts")
-public class PostController {
+public class PostController extends BaseController {
 
     private final PostService postService;
 
@@ -30,24 +31,22 @@ public class PostController {
     }
 
     @GetMapping("/all")
-    public String allPosts(Model model) {
+    public ModelAndView allPosts(ModelAndView modelAndView) {
         List<PostDto> posts = this.postService.findAllPosts();
-        model.addAttribute("posts", posts);
-        model.addAttribute("viewName", "views/posts/all");
-        return "layout";
+        modelAndView.addObject("posts", posts);
+        modelAndView.addObject("viewName", "views/posts/all");
+        return super.view("views/posts/all", "Posts", modelAndView);
     }
 
     @GetMapping("/create")
-    public String createPost(Model model) {
-        model.addAttribute("viewName", "views/posts/create");
-        return "layout";
+    public ModelAndView createPost() {
+        return super.view("views/posts/create", "Create New Post");
     }
 
     @PostMapping("/create")
-    public String storePost(@ModelAttribute CreatePostDto createPostDto, Model model) {
+    public ModelAndView storePost(@ModelAttribute CreatePostDto createPostDto) {
         this.postService.create(createPostDto);
-        model.addAttribute("viewName", "views/posts/all");
-        return "layout";
+        return super.view("views/posts/all");
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -61,11 +60,10 @@ public class PostController {
     }
 
     @PostMapping("/{id}")
-    public String storeComment(Model model, @ModelAttribute CreateCommentDto createCommentDto, HttpServletRequest request) {
+    public ModelAndView storeComment(ModelAndView modelAndView, @ModelAttribute CreateCommentDto createCommentDto, HttpServletRequest request) {
         Long postId = Long.parseLong(request.getServletPath().split("/")[2]);
         createCommentDto.setPostId(postId);
         this.commentService.save(createCommentDto);
-        model.addAttribute("viewName", "views/posts/all");
-        return "layout";
+        return super.view("views/posts/all");
     }
 }
