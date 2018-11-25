@@ -1,28 +1,25 @@
 package com.forum.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class PagesController {
+public class PagesController extends BaseController {
 
     @RequestMapping(value = {"", "/", "/home"})
-    public String index(Model model) {
-        model.addAttribute("viewName", "views/index");
-        return "layout";
+    public ModelAndView index() {
+        return super.view("views/index", "Home");
     }
 
     @GetMapping("/contact")
-    public String contactPage(Model model) {
-        model.addAttribute("viewName", "views/contact");
-        return "layout";
+    public ModelAndView contactPage() {
+        return super.view("views/contact", "Contact");
     }
 
     @GetMapping("/about")
-    public String aboutPage(Model model) {
-        model.addAttribute("viewName", "views/about");
-        return "layout";
+    public ModelAndView aboutPage() {
+        return super.view("views/about", "About");
     }
 }

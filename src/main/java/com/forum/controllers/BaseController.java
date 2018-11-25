@@ -14,15 +14,18 @@ abstract class BaseController {
     }
 
     ModelAndView view(String view, String title){
-        return this.view(view, title);
+        return this.view(view, title, null);
     }
 
     ModelAndView view(String view, String title, ModelAndView modelAndView) {
-        modelAndView.addObject(DEFAULT_THYMELEAF_VIEW_NAME_KEY, view);
-        modelAndView.setViewName(LAYOUT_VIEW_NAME);
 
         title = title == null ? DEFAULT_TITLE_NAME : title;
+        modelAndView = modelAndView == null ? new ModelAndView() : modelAndView;
+
         modelAndView.addObject(DEFAULT_THYMELEAF_TITLE_KEY, title);
+
+        modelAndView.addObject(DEFAULT_THYMELEAF_VIEW_NAME_KEY, view);
+        modelAndView.setViewName(LAYOUT_VIEW_NAME);
 
         return modelAndView;
     }
