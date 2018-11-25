@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-8">
             <th:block th:each="post : ${posts}">
-                <div class="post">
+                <div class="mpost bg-white">
                     <div class="avatar col-sm-1 col-md-1">
                         <img src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
                     <hr>
                     <div class="col-xs-12 col-sm-12 col-md-10">
                         <h2 class="post-title" th:text="${post.title}"></h2>
-                        <p class="post-content" th:text="${post.content}"></p>
+                        <p class="text-wrap" th:text="${post.content}"></p>
                     </div>
                 </div>
             </th:block>
@@ -19,7 +19,7 @@
                 <h3>Categories</h3>
                 <div class="divline"></div>
                 <div class="blocktxt">
-                    <ul class="cats">
+                    <ul class="m-0 p-0 list-unstyled cats">
                         <li><a href="#">Trading for Money <span class="badge pull-right">20</span></a></li>
                         <li><a href="#">Vault Keys Giveway <span class="badge pull-right">10</span></a></li>
                         <li><a href="#">Misc Guns Locations <span class="badge pull-right">50</span></a></li>

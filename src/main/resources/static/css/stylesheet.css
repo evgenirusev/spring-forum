@@ -1,39 +1,34 @@
 body {
     background-color: #E4E2DD;
-    margin: 0; height: 100%; overflow-x: hidden;
+    overflow-x: hidden;
 }
 
-.container-fluid {
-    margin: 0;
-    padding: 0;
+.bg-green {
+    background-color: #009688;
 }
 
-.navbar {
+.bg-light-green {
     background-color: #1abc9c;
-    border-color: #E7E7E7;
 }
 
-.view-content {
+.bg-dark-green {
+    background-color: #00786D;;
+}
+
+.hr-2 {
+    height: 2px;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.view {
     min-height: 400px;
     margin-bottom: 30px;
     padding: 30px;
     border-radius: 15px;
     margin-top: 20px;
-}
-
-.navbar-light .navbar-brand {
-    color: #FFFFFF;
-}
-
-.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link, #login-nav, #register-nav {
-    color: #FFFFFF;
-}
-footer {
-    background-color: #009688;
-}
-
-.footer-copyright {
-    background-color: #00786D;
 }
 
 .header-nav {
@@ -45,41 +40,8 @@ footer {
     margin-bottom: 20px;
 }
 
-.header-button {
-    margin-top: 5px;
-}
-
-.header-img {
-    height: 285px;
-    width: 100%;
-}
-
-.footer-copyright {
-    color: #FFFFFF;
-}
-
-.footer-copyright a {
-    text-decoration: none;
-    color: #FFFFFF;
-}
-
-form {
-    padding: 10px;
-}
-
 .post {
     min-height: 150px;
-    margin-bottom: 10px;
-    background-color: #FFFFFF;
-}
-
-.post-title {
-    color: #363838;
-}
-
-.post-content {
-    word-wrap: break-word;
-    color: #989c9e;
 }
 
 .avatar img {
@@ -112,19 +74,6 @@ form {
     padding:20px;
 }
 
-ul.cats li {
-    list-style: none;
-    display: block;
-    margin:0;
-    padding:0;
-    line-height: 30px;
-}
-
-ul.cats {
-    margin: 0;
-    padding: 0;
-}
-
 ul.cats li a {
     font-size: 14px;
     color: #363838;
@@ -138,14 +87,6 @@ ul.cats .badge {
     color: #ffffff;
     font-family: 'Open Sans Bold', sans-serif;
     margin-top: 7px;
-}
-
-.mt-5, .my-5 {
-    margin-top: 0px!important;
-}
-
-.create-content, .home-content {
-    background-color: #FFFFFF;
 }
 
 .textwraper textarea {
@@ -162,12 +103,8 @@ ul.cats .badge {
     margin: 20px 5px 0px 0;
 }
 
-#post-reply-btn {
-    margin: 10px 5px 10px 0px;
-}
 
-.btn-primary, .btn-info {
-    background-color: #1abc9c;
+.btn-info {
     box-shadow: none;
     border-radius: 2px;
     padding: 10px 15px;
@@ -175,18 +112,4 @@ ul.cats .badge {
     font-size: 14px;
     font-family: 'Open Sans Bold', sans-serif;
     border: none;
-}
-
-.contact-us-page {
-    background-color: #FFFFFF;
-}
-
-#contact-us-title {
-    font-weight: 400;
-    font-size: 50px;
-    text-align: center;
-}
-
-.comment-text{
-    word-wrap: break-word
 }

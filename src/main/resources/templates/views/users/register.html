@@ -1,6 +1,7 @@
-<div xmlns:th="http://www.w3.org/1999/xhtml" class="container">
-    hr class="bg-resev hr-2"/>
-    <form class="w-40 mx-auto" th:method="post" th:action="@{/register}">
+<div xmlns:th="http://www.w3.org/1999/xhtml" class="container bg-white view w-40">
+    <h1 class="text-center">Register</h1>
+    <hr class="bg-resev hr-2 bg-light-green"/>
+    <form class="mx-auto" th:method="post" th:action="@{/register}">
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" placeholder="Username..." name="username"
@@ -21,7 +22,7 @@
             <input type="email" class="form-control" id="email" placeholder="Email..." name="email">
         </div>
         <div class="button-holder d-flex justify-content-around">
-            <button type="submit" class="btn btn-primary bg-resev">Register</button>
+            <button type="submit" class="btn bg-light-green btn-info bg-resev">Register</button>
         </div>
     </form>
 </div>
