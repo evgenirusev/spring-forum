@@ -1,5 +1,6 @@
 package com.forum.services;
 
+import com.forum.dtos.users.UserDto;
 import com.forum.dtos.users.UserRegisterDto;
 import com.forum.entities.User;
 import com.forum.repositories.UserRepository;
@@ -24,5 +25,15 @@ public class UserServiceImpl implements UserService {
     public void createUser(UserRegisterDto userBindingModel) {
         User userEntity = this.modelMapper.map(userBindingModel, User.class);
         this.userRepository.save(userEntity);
+    }
+
+    @Override
+    public UserDto getUserByUsername(String username) {
+        User userEntity = this.userRepository.getUserByUsername(username);
+        if (userEntity == null) {
+            return null;
+        }
+        UserDto userDto = this.modelMapper.map(userEntity, UserDto.class);
+        return userDto;
     }
 }

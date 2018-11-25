@@ -1,5 +1,7 @@
 package com.forum.controllers;
 
+import com.forum.dtos.users.UserDto;
+import com.forum.dtos.users.UserLoginDto;
 import com.forum.dtos.users.UserRegisterDto;
 import com.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,4 +43,18 @@ public class UserController extends BaseController {
         return super.view("views/users/login", "Login");
     }
 
+
+    @PostMapping("/login")
+    public ModelAndView loginConfirm(@ModelAttribute UserLoginDto userLoginDto) {
+        UserDto userDto = this.userService.getUserByUsername(userLoginDto.getUsername());
+
+        if (userDto == null || !userLoginDto.getPassword().equals(userDto.getPassword())) {
+            // TODO: implement appropriate validation message
+            return super.redirect("/login");
+        }
+
+        // TODO: JavaEE Session user authentication
+        
+        return null;
+    }
 }
