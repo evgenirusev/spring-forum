@@ -1,11 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="~{fragments/head}"></th:block>
 </head>
 <body>
 <header>
-    <th:block th:include="~{fragments/navbar-guest}"/>
+    <th:block th:if="${session.username == null}">
+        <th:block th:include="~{fragments/navbar-guest}"/>
+    </th:block>
+    <th:block th:unless="${session.username == null}">
+        <th:block th:include="~{fragments/navbar-user}"/>
+    </th:block>
 </header>
 <main>
     <th:block th:include="~{fragments/body-header}"/>

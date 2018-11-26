@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UserController extends BaseController {
 
@@ -45,7 +47,7 @@ public class UserController extends BaseController {
 
 
     @PostMapping("/login")
-    public ModelAndView loginConfirm(@ModelAttribute UserLoginDto userLoginDto) {
+    public ModelAndView loginConfirm(@ModelAttribute UserLoginDto userLoginDto, HttpSession httpSession) {
         UserDto userDto = this.userService.getUserByUsername(userLoginDto.getUsername());
 
         if (userDto == null || !userLoginDto.getPassword().equals(userDto.getPassword())) {
@@ -53,8 +55,10 @@ public class UserController extends BaseController {
             return super.redirect("/login");
         }
 
-        // TODO: JavaEE Session user authentication
-        
-        return null;
+        httpSession.setAttribute("user-id", userDto.getId());
+        httpSession.setAttribute("username", userDto.getUsername());
+        httpSession.setAttribute("email", userDto.getEmail());
+
+        return super.redirect("/home");
     }
 }
