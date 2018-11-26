@@ -66,7 +66,7 @@ public class UserController extends BaseController {
     @GetMapping("/logout")
     public ModelAndView logout(HttpSession session) {
         session.invalidate();
-        
+
         return this.redirect("/");
     }
 }
