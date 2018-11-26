@@ -26,7 +26,6 @@ body {
 .view {
     min-height: 400px;
     margin-bottom: 30px;
-    padding: 30px;
     border-radius: 15px;
     margin-top: 20px;
 }
@@ -47,7 +46,6 @@ body {
 .avatar img {
     height: 30px;
     width: 30px;
-    margin-top: 20px;
 }
 
 .sidebarblock {
