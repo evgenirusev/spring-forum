@@ -3,15 +3,22 @@ package com.forum.entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "posts")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "title", nullable = false)
     private String title;
 
+    @Column(name = "content", nullable = false)
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Post() {
     }
@@ -24,7 +31,6 @@ public class Post {
         this.id = id;
     }
 
-    @Basic
     public String getTitle() {
         return title;
     }
@@ -33,12 +39,19 @@ public class Post {
         this.title = title;
     }
 
-    @Basic
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
