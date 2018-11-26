@@ -3,6 +3,7 @@ package com.forum.services;
 import com.forum.dtos.users.UserDto;
 import com.forum.dtos.users.UserRegisterDto;
 import com.forum.entities.User;
+import com.forum.entities.enums.UserRole;
 import com.forum.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(UserRegisterDto userBindingModel) {
         User userEntity = this.modelMapper.map(userBindingModel, User.class);
+        userEntity.setUserRole(UserRole.USER);
         this.userRepository.save(userEntity);
     }
 

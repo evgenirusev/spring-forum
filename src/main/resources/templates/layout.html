@@ -5,11 +5,16 @@
 </head>
 <body>
 <header>
-    <th:block th:if="${session.username == null}">
-        <th:block th:include="~{fragments/navbar-guest}"/>
-    </th:block>
-    <th:block th:unless="${session.username == null}">
-        <th:block th:include="~{fragments/navbar-user}"/>
+    <th:block th:switch="__${session.userRole}__">
+        <div th:case="'ADMIN'">
+            <th:block th:include="~{fragments/navbar-admin}"/>
+        </div>
+        <div th:case="'USER'">
+            <th:block th:include="~{fragments/navbar-user}"/>
+        </div>
+        <div th:case="*">
+            <th:block th:include="~{fragments/navbar-guest}"/>
+        </div>
     </th:block>
 </header>
 <main>

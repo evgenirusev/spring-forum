@@ -1,5 +1,7 @@
 package com.forum.dtos.users;
 
+import com.forum.entities.enums.UserRole;
+
 public class UserDto {
     private String id;
 
@@ -8,6 +10,8 @@ public class UserDto {
     private String password;
 
     private String email;
+
+    private UserRole userRole;
 
     public UserDto() {
     }
@@ -42,5 +46,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

@@ -3,6 +3,7 @@ package com.forum.controllers;
 import com.forum.dtos.users.UserDto;
 import com.forum.dtos.users.UserLoginDto;
 import com.forum.dtos.users.UserRegisterDto;
+import com.forum.entities.enums.UserRole;
 import com.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,10 +56,17 @@ public class UserController extends BaseController {
             return super.redirect("/login");
         }
 
-        httpSession.setAttribute("user-id", userDto.getId());
+        httpSession.setAttribute("userId", userDto.getId());
         httpSession.setAttribute("username", userDto.getUsername());
-        httpSession.setAttribute("email", userDto.getEmail());
+        httpSession.setAttribute("userRole", userDto.getUserRole());
 
         return super.redirect("/home");
+    }
+
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession session) {
+        session.invalidate();
+        
+        return this.redirect("/");
     }
 }
