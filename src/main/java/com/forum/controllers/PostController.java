@@ -1,5 +1,6 @@
 package com.forum.controllers;
 
+import com.forum.common.annotations.PreAuthenticate;
 import com.forum.dtos.comments.CommentDto;
 import com.forum.dtos.comments.CreateCommentDto;
 import com.forum.dtos.posts.CreatePostDto;
@@ -39,6 +40,7 @@ public class PostController extends BaseController {
     }
 
     @GetMapping("/create")
+    @PreAuthenticate(loggedIn = true)
     public ModelAndView createPost() {
         return super.view("views/posts/create", "Create New Post");
     }

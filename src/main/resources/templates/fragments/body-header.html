@@ -1,21 +1,10 @@
-<div class="header-nav">
+<div class="header-nav" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container">
-        <!--<div class="col-md-6">-->
-        <!--<div class="dropdown header-button">-->
-        <!--<button class="btn btn-info dropdown-toggle" type="button" id="about-us" data-toggle="dropdown">-->
-        <!--Sort-->
-        <!--</button>-->
-        <!--<div class="dropdown-menu" aria-labelledby="about-us">-->
-        <!--<a class="dropdown-item" href="#">Recent</a>-->
-        <!--<a class="dropdown-item" href="#">Last</a>-->
-        <!--<a class="dropdown-item" href="#">Views</a>-->
-        <!--<a class="dropdown-item" href="#">Replies</a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <button class="btn btn-info bg-light-green header-button m-1" type="button">
-            Create A Question
-        </button>
+        <a class="nav-link text-white" th:href="@{/posts/create}">
+            <button class="btn btn-info bg-light-green header-button " type="button">
+                Create A Question
+            </button>
+        </a>
     </div>
 </div>
 </div>

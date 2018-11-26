@@ -19,12 +19,12 @@ public class PreAuthenticationInterceptor extends HandlerInterceptorAdapter {
     }
 
     private boolean isLoggedIn(HttpSession session) {
-        return session.getAttribute("user-id") != null;
+        return session.getAttribute("userId") != null;
     }
 
     private boolean isInRole(UserRole role, HttpSession session) {
         return isLoggedIn(session) &&
-                ((UserRole) session.getAttribute("user-role")).ordinal()
+                ((UserRole) session.getAttribute("userRole")).ordinal()
                         >= role.ordinal();
     }
 
@@ -55,7 +55,7 @@ public class PreAuthenticationInterceptor extends HandlerInterceptorAdapter {
                             if (request.getSession().getAttribute("userRole") == UserRole.USER) {
                                 response.sendRedirect("/home");
                             } else {
-                                response.sendRedirect("/admin/home");
+                                response.sendRedirect("/about");
                             }
                         } else {
                             response.sendRedirect("/login");
