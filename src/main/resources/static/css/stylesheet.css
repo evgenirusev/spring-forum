@@ -111,3 +111,7 @@ ul.cats .badge {
     font-family: 'Open Sans Bold', sans-serif;
     border: none;
 }
+
+textarea.form-control {
+    height: 100%;
+}

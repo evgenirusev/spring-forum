@@ -19,7 +19,7 @@
                     <a class="nav-link text-white" th:href="@{/about}">About</a>
                 </li>
             </ul>
-            <a class="nav-link text-white" th:href="@{/users/{user-id}}" th:text="|Admin ${session.username}|"></a>
+            <a class="nav-link text-white" th:href="@{/users/{username}(username=${session.username})}" th:text="|Admin ${session.username}|"></a>
             <a class="nav-link text-white" th:href="@{/logout}">Log Out</a>
         </div>
     </nav>

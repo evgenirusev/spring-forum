@@ -8,9 +8,7 @@ import com.forum.entities.enums.UserRole;
 import com.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -23,6 +21,12 @@ public class UserController extends BaseController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
+    public ModelAndView user(@PathVariable("username") String username, ModelAndView modelAndView) {
+        modelAndView.addObject("username", username);
+        return super.view("views/users/profile", "User " + username, modelAndView);
     }
 
     @GetMapping("/register")
