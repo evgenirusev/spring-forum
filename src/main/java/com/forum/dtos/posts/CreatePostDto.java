@@ -5,6 +5,8 @@ public class CreatePostDto {
 
     private String content;
 
+    private Long userId;
+
     public CreatePostDto() {
     }
 
@@ -22,5 +24,13 @@ public class CreatePostDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
