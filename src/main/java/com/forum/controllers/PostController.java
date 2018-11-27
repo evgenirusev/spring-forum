@@ -62,9 +62,7 @@ public class PostController extends BaseController {
     }
 
     @PostMapping("/{id}")
-    public ModelAndView storeComment(ModelAndView modelAndView, @ModelAttribute CreateCommentDto createCommentDto, HttpServletRequest request) {
-        Long postId = Long.parseLong(request.getServletPath().split("/")[2]);
-        createCommentDto.setPostId(postId);
+    public ModelAndView storeAnswer(@ModelAttribute CreateCommentDto createCommentDto) {
         this.commentService.save(createCommentDto);
         return super.view("views/posts/all");
     }

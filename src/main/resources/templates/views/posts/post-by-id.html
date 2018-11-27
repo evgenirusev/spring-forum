@@ -38,6 +38,8 @@
                             <div class="d-flex flex-row-reverse pt-2">
                                 <button type="submit" id="post-reply-btn" class="btn bg-light-green btn-info">Post Reply</button>
                             </div>
+                            <input type="hidden" name="postId" th:value="${post.id}"/>
+                            <input type="hidden" name="userId" th:value="${session.userId}"/>
                         </form>
                     </div>
                 </div>

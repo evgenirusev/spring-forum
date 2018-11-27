@@ -6,12 +6,9 @@ public class CreateCommentDto {
 
     private Long postId;
 
-    public CreateCommentDto() {
-    }
+    private Long userId;
 
-    public CreateCommentDto(String content, Long postId) {
-        this.content = content;
-        this.postId = postId;
+    public CreateCommentDto() {
     }
 
     public String getContent() {
@@ -28,5 +25,13 @@ public class CreateCommentDto {
 
     public void setPostId(Long postId) {
         this.postId = postId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

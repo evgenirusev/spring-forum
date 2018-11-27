@@ -5,8 +5,10 @@ import com.forum.dtos.comments.CreateCommentDto;
 import com.forum.dtos.posts.PostDto;
 import com.forum.entities.Comment;
 import com.forum.entities.Post;
+import com.forum.entities.User;
 import com.forum.repositories.CommentRepository;
 import com.forum.repositories.PostReposotory;
+import com.forum.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,15 @@ public class CommentServiceImpl implements CommentService {
 
     private final PostReposotory postReposotory;
 
+    private final UserRepository userRepository;
+
     private final ModelMapper modelMapper;
 
     @Autowired
-    public CommentServiceImpl(CommentRepository commentRepository, PostReposotory postReposotory, ModelMapper modelMapper) {
+    public CommentServiceImpl(CommentRepository commentRepository, PostReposotory postReposotory, UserRepository userRepository, ModelMapper modelMapper) {
         this.commentRepository = commentRepository;
         this.postReposotory = postReposotory;
+        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -46,11 +51,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void save(CreateCommentDto commentDto) {
-        Post post = this.postReposotory.getOne(commentDto.getPostId());
+    public void save(CreateCommentDto createCommentDto) {
+        Post post = this.postReposotory.getOne(createCommentDto.getPostId());
+        User user = this.userRepository.getOne(createCommentDto.getUserId());
         Comment comment = new Comment();
-        comment.setContent(commentDto.getContent());
+        comment.setContent(createCommentDto.getContent());
         comment.setPost(post);
+        comment.setUser(user);
         this.commentRepository.save(comment);
     }
 }
