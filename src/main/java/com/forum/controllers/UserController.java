@@ -4,6 +4,7 @@ import com.forum.dtos.users.UserRegisterDto;
 import com.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,5 +41,10 @@ public class UserController extends BaseController {
         this.userService.createUser(userRegisterDto);
 
         return super.redirect("/login");
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login() {
+        return super.view("views/users/login", "Login");
     }
 }

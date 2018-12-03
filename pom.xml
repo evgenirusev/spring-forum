@@ -17,13 +17,11 @@
         <version>2.1.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>10</java.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,7 +67,6 @@
             <version>3.0.2.RELEASE</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -78,6 +75,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
