@@ -32,7 +32,7 @@ abstract class BaseController {
 
     ModelAndView redirect(String route) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:" + route);
+        modelAndView.setViewName(DEFAULT_SPRING_REDIRECT_KW + route);
         return modelAndView;
     }
 }

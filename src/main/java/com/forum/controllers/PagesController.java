@@ -1,6 +1,5 @@
 package com.forum.controllers;
 
-import com.forum.common.annotations.PreAuthenticate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +23,6 @@ public class PagesController extends BaseController {
     }
 
     @GetMapping("/home")
-    @PreAuthenticate(loggedIn = true)
     public ModelAndView home() {
         return super.view("views/index", "Home");
     }

@@ -1,35 +1,26 @@
 package com.forum.entities;
 
-import com.forum.entities.enums.UserRole;
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
+    private Long id;
+    private Set<Role> authorities;
+    private String password;
+    private String username;
+    private String email;
+    private boolean isAccountNonExpired;
+    private boolean isAccountNonLocked;
+    private boolean isEnabled;
+    private boolean isCredentialsNonExpired;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
-    private Long id;
-
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "role")
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
-
-    public User() {
-    }
-
     public Long getId() {
         return id;
     }
@@ -38,20 +29,36 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"))
+    @Override
+    public Set<Role> getAuthorities() {
+        return this.authorities;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAuthorities(Set<Role> authorities) {
+        this.authorities = authorities;
     }
 
+    @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Column(unique = true)
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -62,11 +69,46 @@ public class User {
         this.email = email;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    @Override
+    public boolean isAccountNonExpired() {
+        return this.isAccountNonExpired;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        isAccountNonExpired = accountNonExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.isAccountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        isAccountNonLocked = accountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return this.isCredentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        isCredentialsNonExpired = credentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public void addRole(Role role){
+        if (this.authorities == null){
+            this.authorities = new HashSet<>();
+        }
+        this.authorities.add(role);
     }
 }
