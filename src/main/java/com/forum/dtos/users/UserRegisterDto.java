@@ -2,12 +2,14 @@ package com.forum.dtos.users;
 
 import com.forum.constants.Constants;
 import com.forum.dtos.validations.IsEmailRegistered;
+import com.forum.dtos.validations.IsPasswordMatching;
 import com.forum.dtos.validations.IsUsernameTaken;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@IsPasswordMatching
 public class UserRegisterDto {
     @Size(min = 4,max = 20,message = Constants.USERNAME_LENGTH)
     @IsUsernameTaken
