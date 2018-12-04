@@ -4,6 +4,7 @@ import com.forum.dtos.posts.CreatePostDto;
 import com.forum.dtos.posts.PostDto;
 import com.forum.entities.Post;
 import com.forum.repositories.PostReposotory;
+import com.forum.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +17,23 @@ public class PostServiceImpl implements PostService {
 
     private final PostReposotory postReposotory;
 
+    private final UserRepository userRepository;
+
     private final ModelMapper modelMapper;
 
     @Autowired
-    public PostServiceImpl(PostReposotory postReposotory, ModelMapper modelMapper) {
+    public PostServiceImpl(PostReposotory postReposotory, UserRepository userRepository, ModelMapper modelMapper) {
         this.postReposotory = postReposotory;
+        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
     @Override
     public void create(CreatePostDto createPostDto) {
-        Post post = this.modelMapper.map(createPostDto, Post.class);
+        Post post = new Post();
+        post.setTitle(createPostDto.getTitle());
+        post.setContent(createPostDto.getContent());
+        post.setUser(this.userRepository.findOneByUsername(createPostDto.getUsername()));
         this.postReposotory.save(post);
     }
 

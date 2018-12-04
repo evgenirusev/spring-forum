@@ -1,11 +1,15 @@
 package com.forum.dtos.posts;
 
+import com.forum.entities.User;
+
 public class PostDto {
     private Long id;
 
     private String title;
 
     private String content;
+
+    private User user;
 
     public PostDto() {
     }
@@ -39,4 +43,11 @@ public class PostDto {
         this.id = id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

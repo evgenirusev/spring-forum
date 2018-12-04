@@ -7,6 +7,7 @@ import com.forum.dtos.posts.PostDto;
 import com.forum.services.CommentService;
 import com.forum.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,6 @@ public class PostController extends BaseController {
     public ModelAndView allPosts(ModelAndView modelAndView) {
         List<PostDto> posts = this.postService.findAllPosts();
         modelAndView.addObject("posts", posts);
-        modelAndView.addObject("viewName", "views/posts/all");
         return super.view("views/posts/all", "Posts", modelAndView);
     }
 
@@ -44,7 +44,8 @@ public class PostController extends BaseController {
     }
 
     @PostMapping("/create")
-    public ModelAndView storePost(@ModelAttribute CreatePostDto createPostDto) {
+    public ModelAndView storePost(@ModelAttribute CreatePostDto createPostDto, Authentication authentication) {
+        createPostDto.setUsername(authentication.getName());
         this.postService.create(createPostDto);
         return super.view("views/posts/all");
     }
