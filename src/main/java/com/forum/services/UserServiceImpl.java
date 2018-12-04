@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(UserRegisterDto bindingModel) {
         User userEntity = this.modelMapper.map(bindingModel, User.class);
+        userEntity.setPassword(this.bCryptPasswordEncoder.encode(userEntity.getPassword()));
         userEntity.setAccountNonExpired(true);
         userEntity.setAccountNonLocked(true);
         userEntity.setCredentialsNonExpired(true);
@@ -52,6 +53,5 @@ public class UserServiceImpl implements UserService {
         userEntity.addRole(role);
 
         this.userRepository.save(userEntity);
-
     }
 }

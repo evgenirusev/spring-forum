@@ -4,11 +4,11 @@ import com.forum.dtos.users.UserRegisterDto;
 import com.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class UserController extends BaseController {
@@ -27,19 +27,18 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/register")
-    public ModelAndView register() {
+    public ModelAndView register(@ModelAttribute UserRegisterDto userRegisterDto) {
         return super.view("views/users/register", "Register");
     }
 
     @PostMapping("/register")
-    public ModelAndView registerConfirm(@ModelAttribute UserRegisterDto userRegisterDto, ModelAndView modelAndView) {
-        if (!userRegisterDto.getPassword().equals(userRegisterDto.getConfirmPassword())) {
-            // TODO: implement appropriate validation message
-            return super.redirect("/register");
+    public ModelAndView registerConfirm(@Valid @ModelAttribute UserRegisterDto userRegisterDto, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return super.view("views/users/register", "Register");
         }
 
         this.userService.createUser(userRegisterDto);
-
         return super.redirect("/login");
     }
 

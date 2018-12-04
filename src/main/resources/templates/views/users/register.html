@@ -1,28 +1,29 @@
 <div xmlns:th="http://www.w3.org/1999/xhtml" class="container bg-white view w-40">
     <h1 class="text-center">Register</h1>
-    <hr class="bg-resev hr-2 bg-light-green"/>
-    <form class="mx-auto" th:method="post" th:action="@{/register}">
-        <div class="form-group">
+    <hr class="hr-2 bg-light-green"/>
+    <form th:object="${userRegisterDto}" class="mx-auto" th:method="post" th:action="@{/register}">
+        <div class="form-group" th:classappend="${#fields.hasErrors('username')} ? 'has-error'">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Username..." name="username"
-                   required>
+            <input type="text" class="form-control" id="username" placeholder="Username..." name="username" required th:field="*{username}"/>
+            <div class="text-danger" id="usernameHelp"  th:each="error : ${#fields.errors('username')}" th:text="${error}">Error Message</div>
         </div>
-        <div class="form-group">
+        <div class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password..." name="password"
-                   required>
+            <input type="password" class="form-control" id="password" placeholder="Password..." name="password" required>
+            <div class="text-danger" id="passwordHelp"  th:each="error : ${#fields.errors('password')}" th:text="${error}">Error Message</div>
         </div>
-        <div class="form-group">
+        <div class="form-group" th:classappend="*{password} != *{confirmPassword} ? 'has-error'" >
             <label for="confirmPassword">Confirm Password</label>
-            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password..."
-                   name="confirmPassword" required>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password..." name="confirmPassword" required>
+            <div  class="text-danger" th:if="*{password} != *{confirmPassword}">Passwords Not Matching</div>
         </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Email..." name="email">
+        <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+            <label class="form-control-label" for="email">Email</label>
+            <input type="email" class="form-control" id="email"  th:field="*{email}" placeholder="Your Email..."/>
+            <div class="text-danger" id="emailHelp"  th:each="error : ${#fields.errors('email')}" th:text="${error}">Error Message</div>
         </div>
         <div class="button-holder d-flex justify-content-around pb-2">
-            <button type="submit" class="btn bg-light-green btn-info bg-resev">Register</button>
+            <button type="submit" class="btn bg-light-green btn-info">Register</button>
         </div>
     </form>
 </div>

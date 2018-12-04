@@ -1,16 +1,23 @@
 package com.forum.dtos.users;
 
+import com.forum.constants.Constants;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class UserRegisterDto {
+    @Size(min = 4,max = 20,message = Constants.USERNAME_LENGTH)
     private String username;
 
+    @Size(min = 4,max = 30,message = Constants.PASSWORD_LENGTH)
     private String password;
 
     private String confirmPassword;
 
+    @NotEmpty(message = Constants.ENTER_VALID_EMAIL)
+    @Email(message = Constants.ENTER_VALID_EMAIL)
     private String email;
-
-    public UserRegisterDto() {
-    }
 
     public String getUsername() {
         return username;
