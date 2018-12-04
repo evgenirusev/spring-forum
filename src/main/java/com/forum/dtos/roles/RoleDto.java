@@ -1,6 +1,6 @@
 package com.forum.dtos.roles;
 
-public class RoleModel {
+public class RoleDto {
     private Long id;
     private String authority;
 

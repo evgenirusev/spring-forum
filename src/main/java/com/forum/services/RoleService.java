@@ -1,7 +1,11 @@
 package com.forum.services;
 
-import com.forum.dtos.roles.RoleModel;
+import com.forum.dtos.roles.RoleDto;
 
 public interface RoleService {
-    RoleModel findByAuthority(String authority);
+
+    RoleDto findByAuthority(String authority);
+
+    void addRole(RoleDto roleDto);
+
 }

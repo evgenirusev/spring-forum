@@ -1,6 +1,6 @@
 package com.forum.services;
 
-import com.forum.dtos.roles.RoleModel;
+import com.forum.dtos.roles.RoleDto;
 import com.forum.entities.Role;
 import com.forum.repositories.RoleRepository;
 import org.modelmapper.ModelMapper;
@@ -20,12 +20,18 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleModel findByAuthority(String authority) {
+    public RoleDto findByAuthority(String authority) {
         Role role = this.roleRepository.findByAuthority(authority);
-        RoleModel roleModel = null;
+        RoleDto roleModel = null;
         if (role != null){
-            roleModel = this.modelMapper.map(role,RoleModel.class);
+            roleModel = this.modelMapper.map(role, RoleDto.class);
         }
         return roleModel;
+    }
+
+    @Override
+    public void addRole(RoleDto roleDto) {
+        Role role = this.modelMapper.map(roleDto, Role.class);
+        this.roleRepository.save(role);
     }
 }

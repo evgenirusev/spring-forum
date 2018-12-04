@@ -1,6 +1,6 @@
 package com.forum.services;
 
-import com.forum.dtos.roles.RoleModel;
+import com.forum.dtos.roles.RoleDto;
 import com.forum.dtos.users.UserRegisterDto;
 import com.forum.entities.Role;
 import com.forum.entities.User;
@@ -48,8 +48,13 @@ public class UserServiceImpl implements UserService {
         userEntity.setCredentialsNonExpired(true);
         userEntity.setEnabled(true);
 
-        RoleModel roleModel = this.roleService.findByAuthority("USER");
-        Role role  = this.modelMapper.map(roleModel, Role.class);
+        RoleDto roleDto = this.roleService.findByAuthority("USER");
+
+        if (roleDto == null) {
+
+        }
+
+        Role role  = this.modelMapper.map(roleDto, Role.class);
         userEntity.addRole(role);
 
         this.userRepository.save(userEntity);
