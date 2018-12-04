@@ -47,16 +47,20 @@ public class UserServiceImpl implements UserService {
         userEntity.setAccountNonLocked(true);
         userEntity.setCredentialsNonExpired(true);
         userEntity.setEnabled(true);
-
         RoleDto roleDto = this.roleService.findByAuthority("USER");
-
-        if (roleDto == null) {
-
-        }
-
         Role role  = this.modelMapper.map(roleDto, Role.class);
         userEntity.addRole(role);
 
         this.userRepository.save(userEntity);
+    }
+
+    @Override
+    public boolean isUsernameTaken(String username) {
+        return this.userRepository.findOneByUsername(username) != null;
+    }
+
+    @Override
+    public boolean isEmailTaken(String email) {
+        return this.userRepository.findByEmail(email) != null;
     }
 }
