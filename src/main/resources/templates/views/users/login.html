@@ -2,6 +2,12 @@
     <h1 class="text-center">Login</h1>
     <hr class="bg-light-green hr-2"/>
     <form class="mx-auto" th:method="post" th:action="@{/login}">
+        <th:block th:if="${error != null}">
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p th:text="${error}"></p>
+            </div>
+        </th:block>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" placeholder="Username..." name="username"

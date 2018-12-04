@@ -47,8 +47,10 @@ public class UserServiceImpl implements UserService {
         userEntity.setAccountNonLocked(true);
         userEntity.setCredentialsNonExpired(true);
         userEntity.setEnabled(true);
+
         RoleDto roleDto = this.roleService.findByAuthority("USER");
         Role role  = this.modelMapper.map(roleDto, Role.class);
+
         userEntity.addRole(role);
 
         this.userRepository.save(userEntity);

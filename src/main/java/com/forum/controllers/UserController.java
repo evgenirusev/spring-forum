@@ -43,7 +43,11 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/login")
-    public ModelAndView login() {
-        return super.view("views/users/login", "Login");
+    public ModelAndView login(String error, ModelAndView modelAndView) {
+        if (error != null) {
+            modelAndView.addObject("error", "Wrong username or password");
+        }
+
+        return super.view("views/users/login", "Login", modelAndView);
     }
 }
