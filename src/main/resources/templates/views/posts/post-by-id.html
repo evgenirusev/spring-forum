@@ -21,29 +21,9 @@
                     </div>
                 </div>
             </th:block>
-            <th:block th:if="${session.username != null}">
-                <hr class="hr-2 bg-light-green">
-                <div class="post bg-white">
-                    <div class="avatar d-flex">
-                        <img class="d-inline-block ml-3" src="/img/avatar__181424 (2).png" height="512" width="512"/>
-                        <p class="d-inline-block mt-4 ml-3" th:text="${session.username}"></p>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 pb-2">
-                        <hr class="bg-light-green">
-                        <form th:method="post" th:action="@{/posts/} + ${id}">
-                            <div class="textwraper">
-                                <div class="postreply">Post a Reply</div>
-                                <textarea name="content" id="reply" placeholder="Type your message here"></textarea>
-                            </div>
-                            <div class="d-flex flex-row-reverse pt-2">
-                                <button type="submit" id="post-reply-btn" class="btn bg-light-green btn-info">Post Reply</button>
-                            </div>
-                            <input type="hidden" name="postId" th:value="${post.id}"/>
-                            <input type="hidden" name="userId" th:value="${session.userId}"/>
-                        </form>
-                    </div>
-                </div>
-            </th:block>
+            <div sec:authorize="hasAuthority('USER')">
+                <th:block th:include="~{fragments/comment-form}"></th:block>
+            </div>
         </div>
         <th:block th:include="~{fragments/sidebar}"/>
     </div>

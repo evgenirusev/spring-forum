@@ -9,5 +9,5 @@ import java.util.Set;
 public interface CommentService {
     public Set<CommentDto> findById(PostDto postDto);
 
-    public void save(CreateCommentDto commentDto);
+    public void save(CreateCommentDto createCommentDto, Long postId, String usernameWhichPostedTheComment);
 }

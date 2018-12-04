@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
         this.roleService = roleService;
     }
 
-    @Transactional
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = this.userRepository.findOneByUsername(username);

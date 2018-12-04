@@ -51,13 +51,10 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void save(CreateCommentDto createCommentDto) {
-        Post post = this.postReposotory.getOne(createCommentDto.getPostId());
-        User user = this.userRepository.getOne(createCommentDto.getUserId());
-        Comment comment = new Comment();
-        comment.setContent(createCommentDto.getContent());
-        comment.setPost(post);
-        comment.setUser(user);
-        this.commentRepository.save(comment);
+    public void save(CreateCommentDto createCommentDto, Long postId, String usernameWhichPostedTheComment) {
+        Comment commentEntity = this.modelMapper.map(createCommentDto, Comment.class);
+        commentEntity.setUser(this.userRepository.findOneByUsername(usernameWhichPostedTheComment));
+        commentEntity.setPost(this.postReposotory.getOne(postId));
+        this.commentRepository.save(commentEntity);
     }
 }

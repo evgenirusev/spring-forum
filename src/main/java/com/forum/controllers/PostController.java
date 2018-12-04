@@ -4,16 +4,18 @@ import com.forum.dtos.comments.CommentDto;
 import com.forum.dtos.comments.CreateCommentDto;
 import com.forum.dtos.posts.CreatePostDto;
 import com.forum.dtos.posts.PostDto;
+import com.forum.entities.Post;
+import com.forum.entities.User;
 import com.forum.services.CommentService;
 import com.forum.services.PostService;
+import com.forum.services.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Set;
 
@@ -25,10 +27,13 @@ public class PostController extends BaseController {
 
     private final CommentService commentService;
 
+    private final UserService userService;
+
     @Autowired
-    public PostController(PostService postService, CommentService commentService) {
+    public PostController(PostService postService, CommentService commentService, UserService userService) {
         this.postService = postService;
         this.commentService = commentService;
+        this.userService = userService;
     }
 
     @GetMapping("/all")
@@ -51,18 +56,20 @@ public class PostController extends BaseController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String findPostById(@PathVariable String id, Model model) {
+    public ModelAndView findPostById(@PathVariable String id, Authentication authentication, ModelAndView modelAndView) {
         PostDto postDto = this.postService.findById(Long.parseLong(id));
         Set<CommentDto> commentSet = this.commentService.findById(postDto);
-        model.addAttribute("post", postDto);
-        model.addAttribute("comments", commentSet);
-        model.addAttribute("viewName", "views/posts/post-by-id");
-        return "layout";
+        modelAndView.addObject("post", postDto);
+        modelAndView.addObject("comments", commentSet);
+        return super.view("views/posts/post-by-id", "Post", modelAndView);
     }
 
     @PostMapping("/{id}")
-    public ModelAndView storeAnswer(@ModelAttribute CreateCommentDto createCommentDto) {
-        this.commentService.save(createCommentDto);
-        return super.view("views/posts/all");
+    public ModelAndView storeAnswer(@ModelAttribute CreateCommentDto createCommentDto,
+                                    Authentication authentication,
+                                    @PathVariable(value = "id", required = true) Long postId) {
+
+        this.commentService.save(createCommentDto, postId, authentication.getName());
+        return super.redirect("/posts/" + postId);
     }
 }
