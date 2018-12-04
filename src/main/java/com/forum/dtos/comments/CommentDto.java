@@ -1,9 +1,13 @@
 package com.forum.dtos.comments;
 
+import com.forum.entities.User;
+
 public class CommentDto {
     private Long id;
 
     private String content;
+
+    private User user;
 
     public CommentDto() {
     }
@@ -27,5 +31,13 @@ public class CommentDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,8 +1,8 @@
 <hr class="hr-2 bg-light-green">
 <div class="post bg-white">
-    <div class="avatar d-flex">
-        <img class="d-inline-block ml-3" src="/img/avatar__181424 (2).png" height="512" width="512"/>
-        <p class="d-inline-block mt-4 ml-3" th:text="${session.username}"></p>
+    <div class="avatar d-flex pt-3">
+        <img class="d-inline-block ml-3 mr-2" src="/img/avatar__181424 (2).png" height="512" width="512"/>
+        <p th:text="${#authentication.getPrincipal().getUsername()}"></p>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 pb-2">
         <hr class="bg-light-green">

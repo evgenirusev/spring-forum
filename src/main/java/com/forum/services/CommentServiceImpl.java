@@ -36,11 +36,6 @@ public class CommentServiceImpl implements CommentService {
         this.modelMapper = modelMapper;
     }
 
-    /*
-     *   Map PostDto parameter to Post for the repository query,
-     *   and then map Set<Comment> to Set<CommentDto> so we don't
-     *   sent @Entity objects to the web layer for correct convention.
-     */
     @Override
     public Set<CommentDto> findById(PostDto postDto) {
         Post post = this.modelMapper.map(postDto, Post.class);

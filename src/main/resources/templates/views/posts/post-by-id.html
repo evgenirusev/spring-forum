@@ -1,8 +1,8 @@
-<div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
+<div class="container" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" >
     <div class="row view">
         <div class="col-sm-12 col-md-12 col-lg-8">
             <div class="post bg-white row">
-                <div class="avatar col-sm-1 col-md-1">
+                <div class="avatar mt-3 col-sm-1 col-md-1">
                     <img src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
                 <div class="col-xs-11 col-sm-11 col-md-11 pt-4">
                     <h4 class="post-title" th:text="${post.title}"></h4>
@@ -12,12 +12,12 @@
             <th:block th:each="comment : ${comments}">
                 <hr>
                 <div class="bg-white post col-md-12 row m-auto">
-                    <div class="avatar col-sm-1 col-md-1"><img class="rounded-circle" src="/img/img_avatar2.png" height="512" width="512"/></div>
+                    <div class="avatar mt-4 col-sm-1 col-md-1"><img class="rounded-circle" src="/img/img_avatar2.png" height="512" width="512"/></div>
                     <div class="text-wrap col-xs-11 col-sm-11 col-md-10 pt-4">
                         <p class="post-title" th:text="${comment.content}"></p>
                     </div>
                     <div class="d-flex flex-row-reverse w-100 hr-2">
-                        <p th:text="|Answered By: Username12|"></p>
+                        <p th:text="|Answered By: ${comment.user.username}|"></p>
                     </div>
                 </div>
             </th:block>
