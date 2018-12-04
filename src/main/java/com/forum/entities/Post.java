@@ -1,6 +1,7 @@
 package com.forum.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -19,6 +20,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(mappedBy = "posts")
+    private Set<Category> categories;
 
     public Post() {
     }
@@ -53,5 +57,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
