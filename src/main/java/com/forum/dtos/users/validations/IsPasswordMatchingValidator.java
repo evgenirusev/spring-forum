@@ -1,4 +1,4 @@
-package com.forum.dtos.validations;
+package com.forum.dtos.users.validations;
 
 import com.forum.dtos.users.UserRegisterDto;
 

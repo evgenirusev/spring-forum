@@ -14,6 +14,9 @@ public class Category {
     @Column(name = "name", nullable = false, length = 16)
     private String name;
 
+    @Column(name = "description", nullable = false, length = 200)
+    private String description;
+
     @ManyToMany
     @JoinTable(
             name = "categories_posts",
@@ -47,5 +50,13 @@ public class Category {
 
     public void setPosts(Set<Post> posts) {
         this.posts = posts;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

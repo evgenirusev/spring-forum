@@ -1,9 +1,9 @@
 package com.forum.dtos.users;
 
 import com.forum.constants.Constants;
-import com.forum.dtos.validations.IsEmailRegistered;
-import com.forum.dtos.validations.IsPasswordMatching;
-import com.forum.dtos.validations.IsUsernameTaken;
+import com.forum.dtos.users.validations.IsEmailRegistered;
+import com.forum.dtos.users.validations.IsPasswordMatching;
+import com.forum.dtos.users.validations.IsUsernameTaken;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
