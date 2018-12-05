@@ -1,0 +1,15 @@
+<div class="container view bg-white create-content" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h1>Create New Category</h1>
+    <form class="p-4" th:method="post" th:action="@{/categories/create}">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Category Title</label>
+            <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" name="content" id="exampleFormControlTextarea1"
+                      placeholder="Category description" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn bg-light-green btn-info ">Create</button>
+    </form>
+</div>

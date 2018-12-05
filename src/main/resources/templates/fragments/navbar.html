@@ -22,7 +22,8 @@
                         <a class="nav-link text-white" th:href="@{/about}">About</a>
                     </li>
                 </ul>
-                <a class="nav-link text-white" th:href="@{/users/{username}(username=${session.username})}"
+                <a class="nav-link text-white" th:href="@{/categories/create}">Create Category</a>
+                <a class="nav-link text-white" href="#"
                    th:text="|Admin ${#authentication.getPrincipal().getUsername()}|"></a>
                 <a class="nav-link text-white" th:href="@{/logout}">Log Out</a>
             </div>
