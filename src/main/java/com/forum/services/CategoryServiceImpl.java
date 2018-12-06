@@ -1,7 +1,7 @@
 package com.forum.services;
 
 import com.forum.dtos.category.CategoryDto;
-import com.forum.dtos.category.CategoryFormDto;
+import com.forum.dtos.category.CategoryNamesDto;
 import com.forum.dtos.category.CreateCategoryDto;
 import com.forum.entities.Category;
 import com.forum.repositories.CategoryRepository;
@@ -49,13 +49,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryFormDto> findAllCategoryFormDtos() {
-        List<CategoryFormDto> categoryFormDtos = new ArrayList<>();
+    public List<CategoryNamesDto> findAllCategoryFormDtos() {
+        List<CategoryNamesDto> categoryNamesDtos = new ArrayList<>();
 
         this.categoryRepository.findAll().forEach(category -> {
-            categoryFormDtos.add(this.modelMapper.map(category, CategoryFormDto.class));
+            categoryNamesDtos.add(this.modelMapper.map(category, CategoryNamesDto.class));
         });
 
-        return categoryFormDtos;
+        return categoryNamesDtos;
     }
 }

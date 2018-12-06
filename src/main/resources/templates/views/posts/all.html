@@ -1,6 +1,12 @@
 <div xmlns:th="http://www.w3.org/1999/xhtml" class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-8">
+
+            <th:block th:if="${postsCategoryName != null}">
+                <h4 th:text="|Posts in Category ${postsCategoryName}:|"></h4>
+                <hr>
+            </th:block>
+
             <th:block th:each="post : ${posts}">
                 <div class="bg-white mb-3 p-3 row">
                     <div class="d-flex align-items-center w-100">

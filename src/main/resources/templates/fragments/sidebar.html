@@ -5,13 +5,10 @@
         <div class="divline"></div>
         <div class="blocktxt">
             <ul class="cats p-0 m-0 list-unstyled">
-                <li><a href="#">Trading for Money <span class="badge pull-right">20</span></a></li>
-                <li><a href="#">Vault Keys Giveway <span class="badge pull-right">10</span></a></li>
-                <li><a href="#">Misc Guns Locations <span class="badge pull-right">50</span></a></li>
-                <li><a href="#">Looking for Players <span class="badge pull-right">36</span></a></li>
-                <li><a href="#">Stupid Bugs &amp; Solves <span class="badge pull-right">41</span></a></li>
-                <li><a href="#">Video &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
-                <li><a href="#">2K Official Forums <span class="badge pull-right">5</span></a></li>
+
+                <th:block th:each="categoryName : ${categoryNames}">
+                    <a th:text="${categoryName}" th:href="@{/posts/category/{name}(name=${categoryName})}" class="list-group-item list-group-item-action"></a>
+                </th:block>
             </ul>
         </div>
     </div>

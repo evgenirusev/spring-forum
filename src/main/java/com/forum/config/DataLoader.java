@@ -1,5 +1,7 @@
 package com.forum.config;
 
+import com.forum.cache.DataCacheSingleton;
+import com.forum.dtos.category.CategoryNamesDto;
 import com.forum.dtos.roles.RoleDto;
 import com.forum.services.CategoryService;
 import com.forum.services.RoleService;
@@ -7,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -36,5 +40,8 @@ public class DataLoader implements ApplicationRunner {
             roleDto.setAuthority("ADMIN");
             this.roleService.addRole(roleDto);
         }
+
+        List<CategoryNamesDto> categoryDtos = this.categoryService.findAllCategoryFormDtos();
+        DataCacheSingleton.getInstance().addCategories(categoryDtos);
     }
 }

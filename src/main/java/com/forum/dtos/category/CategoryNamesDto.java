@@ -1,9 +1,9 @@
 package com.forum.dtos.category;
 
-public class CategoryFormDto {
+public class CategoryNamesDto {
     private String name;
 
-    public CategoryFormDto() {
+    public CategoryNamesDto() {
     }
 
     public String getName() {

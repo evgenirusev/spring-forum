@@ -1,7 +1,6 @@
 package com.forum.controllers;
 
 import com.forum.dtos.category.CategoryDto;
-import com.forum.dtos.category.CategoryFormDto;
 import com.forum.dtos.category.CreateCategoryDto;
 import com.forum.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

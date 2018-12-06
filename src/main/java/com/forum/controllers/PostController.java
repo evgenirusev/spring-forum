@@ -1,7 +1,6 @@
 package com.forum.controllers;
 
-import com.forum.dtos.category.CategoryFormDto;
-import com.forum.dtos.category.CreateCategoryDto;
+import com.forum.dtos.category.CategoryNamesDto;
 import com.forum.dtos.comments.CommentDto;
 import com.forum.dtos.comments.CreateCommentDto;
 import com.forum.dtos.posts.CreatePostDto;
@@ -10,7 +9,6 @@ import com.forum.services.CategoryService;
 import com.forum.services.CommentService;
 import com.forum.services.PostService;
 import com.forum.services.UserService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -49,8 +47,8 @@ public class PostController extends BaseController {
 
     @GetMapping("/create")
     public ModelAndView createPost(@ModelAttribute CreatePostDto createPostDto, ModelAndView modelAndView) {
-        List<CategoryFormDto> categoryFormDtos = this.categoryService.findAllCategoryFormDtos();
-        modelAndView.addObject("categories", categoryFormDtos);
+        List<CategoryNamesDto> categoryNamesDtos = this.categoryService.findAllCategoryFormDtos();
+        modelAndView.addObject("categories", categoryNamesDtos);
         modelAndView.addObject("createPostDto", createPostDto);
         return super.view("views/posts/create", "Create New Post", modelAndView);
     }
@@ -84,6 +82,7 @@ public class PostController extends BaseController {
     public ModelAndView findPostsByCategory(@PathVariable String categoryName, ModelAndView modelAndView) {
         List<PostDto> postDtos = this.postService.findByCategory(categoryName);
         modelAndView.addObject("posts", postDtos);
+        modelAndView.addObject("postsCategoryName", categoryName);
         return super.view("views/posts/all", categoryName, modelAndView);
     }
 }
