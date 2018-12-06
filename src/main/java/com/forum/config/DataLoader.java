@@ -1,6 +1,7 @@
 package com.forum.config;
 
 import com.forum.dtos.roles.RoleDto;
+import com.forum.services.CategoryService;
 import com.forum.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -12,9 +13,12 @@ public class DataLoader implements ApplicationRunner {
 
     private final RoleService roleService;
 
+    private final CategoryService categoryService;
+
     @Autowired
-    public DataLoader(RoleService roleService) {
+    public DataLoader(RoleService roleService, CategoryService categoryService) {
         this.roleService = roleService;
+        this.categoryService = categoryService;
     }
 
     public void run(ApplicationArguments args) {
