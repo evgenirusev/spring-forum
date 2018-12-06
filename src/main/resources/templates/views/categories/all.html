@@ -4,13 +4,13 @@
 
     <th:block th:each="category : ${categories}">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a th:href="@{/posts/category/{name}(name=${category.name})}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 th:text="${category.name}" class="mb-1"></h5>
                 </div>
                 <span th:text="${#sets.size(category.posts)}" class="badge badge-pill bg-light-green text-white float-right"></span>
-                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                <small class="text-muted">Donec id elit non mi porta.</small>
+                <p th:text="${category.description}" class="mb-1"></p>
+                <small class="text-muted">Created: 1 hour ago</small>
             </a>
         </div>
     </th:block>
