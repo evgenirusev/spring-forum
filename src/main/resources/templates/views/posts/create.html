@@ -1,21 +1,21 @@
 <div class="container view bg-white create-content" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1>Create New Post</h1>
-    <form class="p-4" th:method="post" th:action="@{/posts/create}">
+    <form th:object="${createPostDto}" class="p-4" th:method="post" th:action="@{/posts/create}">
         <div class="form-group">
             <label for="exampleFormControlInput1">Post Title</label>
-            <input type="text" class="form-control" name="title" id="exampleFormControlInput1" placeholder="Title">
+            <input type="text" class="form-control" th:field="*{title}" id="exampleFormControlInput1" placeholder="Title">
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Post Content</label>
-            <textarea class="form-control" name="content" id="exampleFormControlTextarea1"
+            <textarea class="form-control" th:field="*{content}" id="exampleFormControlTextarea1"
                       placeholder="Please be specific" rows="5"></textarea>
         </div>
         <div>
             <span>Categories:</span>
-            <select class="custom-select mb-2" size="3" multiple>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="custom-select mb-2" size="3" multiple th:field="*{categories}">
+                <th:block th:each="categoryName : ${categories}">
+                    <option th:value="${categoryName}"  th:text="${categoryName}"></option>
+                </th:block>
             </select>
         </div>
         <button type="submit" class="btn bg-light-green btn-info ">Create</button>

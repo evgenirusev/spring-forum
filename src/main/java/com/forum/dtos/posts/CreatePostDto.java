@@ -7,6 +7,8 @@ public class CreatePostDto {
 
     private String username;
 
+    private String categories;
+
     public CreatePostDto() {
     }
 
@@ -32,5 +34,13 @@ public class CreatePostDto {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String category) {
+        this.categories = category;
     }
 }

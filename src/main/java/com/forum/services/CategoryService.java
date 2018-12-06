@@ -1,6 +1,7 @@
 package com.forum.services;
 
 import com.forum.dtos.category.CategoryDto;
+import com.forum.dtos.category.CategoryFormDto;
 import com.forum.dtos.category.CreateCategoryDto;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface CategoryService {
     CategoryDto getCategoryByName(String name);
 
     List<CategoryDto> findAllCategories();
+
+    List<CategoryFormDto> findAllCategoryFormDtos();
 }

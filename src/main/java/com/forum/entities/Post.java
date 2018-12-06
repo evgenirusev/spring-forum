@@ -1,6 +1,7 @@
 package com.forum.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,8 +22,15 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(mappedBy = "posts")
-    private Set<Category> categories;
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "posts_categories",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories = new HashSet<>();
 
     public Post() {
     }

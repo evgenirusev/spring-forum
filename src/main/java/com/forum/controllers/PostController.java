@@ -1,9 +1,12 @@
 package com.forum.controllers;
 
+import com.forum.dtos.category.CategoryFormDto;
+import com.forum.dtos.category.CreateCategoryDto;
 import com.forum.dtos.comments.CommentDto;
 import com.forum.dtos.comments.CreateCommentDto;
 import com.forum.dtos.posts.CreatePostDto;
 import com.forum.dtos.posts.PostDto;
+import com.forum.services.CategoryService;
 import com.forum.services.CommentService;
 import com.forum.services.PostService;
 import com.forum.services.UserService;
@@ -26,11 +29,14 @@ public class PostController extends BaseController {
 
     private final UserService userService;
 
+    private final CategoryService categoryService;
+
     @Autowired
-    public PostController(PostService postService, CommentService commentService, UserService userService) {
+    public PostController(PostService postService, CommentService commentService, UserService userService, CategoryService categoryService) {
         this.postService = postService;
         this.commentService = commentService;
         this.userService = userService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/all")
@@ -41,8 +47,11 @@ public class PostController extends BaseController {
     }
 
     @GetMapping("/create")
-    public ModelAndView createPost() {
-        return super.view("views/posts/create", "Create New Post");
+    public ModelAndView createPost(@ModelAttribute CreatePostDto createPostDto, ModelAndView modelAndView) {
+        List<CategoryFormDto> categoryFormDtos = this.categoryService.findAllCategoryFormDtos();
+        modelAndView.addObject("categories", categoryFormDtos);
+        modelAndView.addObject("createPostDto", createPostDto);
+        return super.view("views/posts/create", "Create New Post", modelAndView);
     }
 
     @PostMapping("/create")

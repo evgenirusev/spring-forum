@@ -19,7 +19,7 @@
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
             <label class="form-control-label" for="email">Email</label>
-            <input type="email" class="form-control" id="email"  th:field="*{email}" placeholder="Your Email..."/>
+            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Your Email..."/>
             <div class="text-danger" id="emailHelp"  th:each="error : ${#fields.errors('email')}" th:text="${error}">Error Message</div>
         </div>
         <div class="button-holder d-flex justify-content-around pb-2">
