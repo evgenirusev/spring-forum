@@ -10,6 +10,7 @@ import com.forum.services.CategoryService;
 import com.forum.services.CommentService;
 import com.forum.services.PostService;
 import com.forum.services.UserService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -77,5 +78,12 @@ public class PostController extends BaseController {
 
         this.commentService.save(createCommentDto, postId, authentication.getName());
         return super.redirect("/posts/" + postId);
+    }
+
+    @GetMapping("/category/{categoryName}")
+    public ModelAndView findPostsByCategory(@PathVariable String categoryName, ModelAndView modelAndView) {
+        List<PostDto> postDtos = this.postService.findByCategory(categoryName);
+        modelAndView.addObject("posts", postDtos);
+        return super.view("views/posts/all", categoryName, modelAndView);
     }
 }

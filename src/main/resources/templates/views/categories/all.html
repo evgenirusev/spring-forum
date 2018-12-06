@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="container mb-4">
+    <h1>Categories</h1>
+    <hr class="hr-2 bg-light-green">
+
+    <th:block th:each="category : ${categories}">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 th:text="${category.name}" class="mb-1"></h5>
+                </div>
+                <span th:text="${#sets.size(category.posts)}" class="badge badge-pill bg-light-green text-white float-right"></span>
+                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <small class="text-muted">Donec id elit non mi porta.</small>
+            </a>
+        </div>
+    </th:block>
+</div>

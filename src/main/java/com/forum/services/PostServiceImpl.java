@@ -69,4 +69,19 @@ public class PostServiceImpl implements PostService {
         PostDto postDto = this.modelMapper.map(post, PostDto.class);
         return postDto;
     }
+
+    @Override
+    public List<PostDto> findByCategory(String categoryName) {
+        List<PostDto> postDtos = new ArrayList<>();
+
+        Category category = this.categoryRepository.findByName(categoryName);
+
+        List<Post> postList = this.postReposotory.findAllByCategoriesContaining(category);
+
+        postList.forEach(post -> {
+            postDtos.add(this.modelMapper.map(post, PostDto.class));
+        });
+
+        return postDtos;
+    }
 }
