@@ -1,5 +1,6 @@
 package com.forum.areas.post.services;
 
+import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.dtos.posts.CreatePostDto;
 import com.forum.dtos.posts.PostDto;
 
@@ -9,7 +10,7 @@ public interface PostService {
 
     void create(CreatePostDto createPostDto);
 
-    List<PostDto> findAllPosts();
+    List<PostServiceModel> findAllPosts();
 
     PostDto findById(Long id);
 

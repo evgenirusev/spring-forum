@@ -1,5 +1,6 @@
 package com.forum.areas.post.services;
 
+import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.dtos.posts.CreatePostDto;
 import com.forum.dtos.posts.PostDto;
 import com.forum.areas.category.entities.Category;
@@ -53,14 +54,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> findAllPosts() {
-        List<PostDto> postDtos = new ArrayList<>();
-
+    public List<PostServiceModel> findAllPosts() {
+        List<PostServiceModel> postServiceModels = new ArrayList<>();
         this.postReposotory.findAll().forEach(post -> {
-            postDtos.add(this.modelMapper.map(post, PostDto.class));
+            postServiceModels.add(this.modelMapper.map(post, PostServiceModel.class));
         });
-
-        return postDtos;
+        return postServiceModels;
     }
 
     @Override

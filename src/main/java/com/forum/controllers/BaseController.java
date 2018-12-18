@@ -3,36 +3,47 @@ package com.forum.controllers;
 import org.springframework.web.servlet.ModelAndView;
 
 public abstract class BaseController {
-    private static final String LAYOUT_VIEW_NAME = "layout";
-    private static final String DEFAULT_TITLE_NAME = "Spring-Answers";
-    private static final String DEFAULT_THYMELEAF_VIEW_NAME_KEY = "viewName";
-    private static final String DEFAULT_THYMELEAF_TITLE_KEY = "title";
-    private static final String DEFAULT_SPRING_REDIRECT_KW = "redirect:";
 
-    protected ModelAndView view(String view){
-        return this.view(view, null);
-    }
+    private static final String APPLICATION_TITLE = "Car Dealership";
+    private static final String BASE_PAGE_LAYOUT = "layout";
+    private static final String PROPERTY_VIEW_NAME = "viewName";
+    private static final String PROPERTY_VIEW_MODEL = "viewModel";
+    private static final String PROPERTY_TITLE = "title";
+    private static final String REDIRECT_KEYWORD = "redirect:";
 
-    protected ModelAndView view(String view, String title){
-        return this.view(view, title, null);
-    }
+    protected final ModelAndView view(final String viewName, final Object viewModel, String title) {
 
-    protected ModelAndView view(String view, String title, ModelAndView modelAndView) {
+        title = title == null ? APPLICATION_TITLE : title;
 
-        title = title == null ? DEFAULT_TITLE_NAME : title;
-        modelAndView = modelAndView == null ? new ModelAndView() : modelAndView;
-
-        modelAndView.addObject(DEFAULT_THYMELEAF_TITLE_KEY, title);
-
-        modelAndView.addObject(DEFAULT_THYMELEAF_VIEW_NAME_KEY, view);
-        modelAndView.setViewName(LAYOUT_VIEW_NAME);
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(BASE_PAGE_LAYOUT);
+        modelAndView.addObject(PROPERTY_VIEW_NAME, viewName);
+        modelAndView.addObject(PROPERTY_VIEW_MODEL, viewModel);
+        modelAndView.addObject(PROPERTY_TITLE, title);
 
         return modelAndView;
     }
 
-    protected ModelAndView redirect(String route) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(DEFAULT_SPRING_REDIRECT_KW + route);
+    protected final ModelAndView view(final String viewName, final String title) {
+        return this.view(viewName, null, title);
+    }
+
+    protected final ModelAndView view(final String viewName, final Object viewModel) {
+        return this.view(viewName, viewModel, null);
+    }
+
+    protected final ModelAndView view(final String viewName) {
+        return this.view(viewName, null, null);
+    }
+
+    protected final ModelAndView redirect(final String redirectUrl, final Object viewModel) {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject(PROPERTY_VIEW_MODEL, viewModel);
+        modelAndView.setViewName(REDIRECT_KEYWORD + redirectUrl);
         return modelAndView;
+    }
+
+    protected final ModelAndView redirect(final String redirectUrl) {
+        return this.redirect(redirectUrl, null);
     }
 }

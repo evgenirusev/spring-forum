@@ -1,5 +1,7 @@
 package com.forum.areas.post.controllers;
 
+import com.forum.areas.post.models.service.PostServiceModel;
+import com.forum.areas.post.models.view.PostViewModel;
 import com.forum.controllers.BaseController;
 import com.forum.dtos.category.CategoryNamesDto;
 import com.forum.dtos.comments.CommentDto;
@@ -9,13 +11,14 @@ import com.forum.dtos.posts.PostDto;
 import com.forum.areas.category.services.CategoryService;
 import com.forum.areas.comment.services.CommentService;
 import com.forum.areas.post.services.PostService;
-import com.forum.areas.user.services.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,23 +30,26 @@ public class PostController extends BaseController {
 
     private final CommentService commentService;
 
-    private final UserService userService;
-
     private final CategoryService categoryService;
 
+    private final ModelMapper modelMapper;
+
     @Autowired
-    public PostController(PostService postService, CommentService commentService, UserService userService, CategoryService categoryService) {
+    public PostController(PostService postService, CommentService commentService, CategoryService categoryService, ModelMapper modelMapper) {
         this.postService = postService;
         this.commentService = commentService;
-        this.userService = userService;
         this.categoryService = categoryService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/all")
     public ModelAndView allPosts(ModelAndView modelAndView) {
-        List<PostDto> posts = this.postService.findAllPosts();
-        modelAndView.addObject("posts", posts);
-        return super.view("views/posts/all", "Posts", modelAndView);
+        List<PostViewModel> postViewModels = new ArrayList<>();
+        this.postService.findAllPosts().forEach(postServiceModel -> {
+            PostViewModel postViewModel = this.modelMapper.map(postServiceModel, PostViewModel.class);
+            postViewModels.add(postViewModel);
+        });
+        return super.view("views/posts/all", postViewModels);
     }
 
     @GetMapping("/create")
@@ -51,7 +57,7 @@ public class PostController extends BaseController {
         List<CategoryNamesDto> categoryNamesDtos = this.categoryService.findAllCategoryFormDtos();
         modelAndView.addObject("categories", categoryNamesDtos);
         modelAndView.addObject("createPostDto", createPostDto);
-        return super.view("views/posts/create", "Create New Post", modelAndView);
+        return super.view("views/posts/create", "Create New Post");
     }
 
     @PostMapping("/create")
@@ -67,14 +73,13 @@ public class PostController extends BaseController {
         Set<CommentDto> commentSet = this.commentService.findById(postDto);
         modelAndView.addObject("post", postDto);
         modelAndView.addObject("comments", commentSet);
-        return super.view("views/posts/post-by-id", "Post", modelAndView);
+        return super.view("views/posts/post-by-id", "Post");
     }
 
     @PostMapping("/{id}")
     public ModelAndView storeAnswer(@ModelAttribute CreateCommentDto createCommentDto,
                                     Authentication authentication,
                                     @PathVariable(value = "id", required = true) Long postId) {
-
         this.commentService.save(createCommentDto, postId, authentication.getName());
         return super.redirect("/posts/" + postId);
     }
@@ -84,6 +89,6 @@ public class PostController extends BaseController {
         List<PostDto> postDtos = this.postService.findByCategory(categoryName);
         modelAndView.addObject("posts", postDtos);
         modelAndView.addObject("postsCategoryName", categoryName);
-        return super.view("views/posts/all", categoryName, modelAndView);
+        return super.view("views/posts/all", categoryName);
     }
 }
