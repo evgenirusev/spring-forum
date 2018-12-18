@@ -19,6 +19,5 @@ public class DynamicContentLoader extends HandlerInterceptorAdapter {
         }
 
         modelAndView.addObject("categoryNames", DataCacheSingleton.getInstance().getCategories());
-
     }
 }

@@ -1,6 +1,6 @@
 package com.forum.config;
 
-import com.forum.services.UserService;
+import com.forum.areas.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

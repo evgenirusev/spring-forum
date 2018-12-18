@@ -1,6 +1,6 @@
 package com.forum.dtos.category;
 
-import com.forum.entities.Post;
+import com.forum.areas.post.entities.Post;
 
 import java.util.Set;
 

@@ -1,8 +1,5 @@
 package com.forum.dtos.comments;
 
-import com.forum.entities.Post;
-import com.forum.entities.User;
-
 public class CreateCommentDto {
 
     private String content;

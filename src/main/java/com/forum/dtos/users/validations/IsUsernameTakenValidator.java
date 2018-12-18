@@ -1,6 +1,6 @@
 package com.forum.dtos.users.validations;
 
-import com.forum.services.UserService;
+import com.forum.areas.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;

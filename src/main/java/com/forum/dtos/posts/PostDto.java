@@ -1,6 +1,6 @@
 package com.forum.dtos.posts;
 
-import com.forum.entities.User;
+import com.forum.areas.user.entities.User;
 
 public class PostDto {
     private Long id;
