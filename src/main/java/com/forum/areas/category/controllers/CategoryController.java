@@ -24,12 +24,13 @@ public class CategoryController extends BaseControllerDeprecated {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/categories/all")
-    public ModelAndView allCategories(ModelAndView modelAndView) {
-        List<CategoryDto> categoryDtos = this.categoryService.findAllCategories();
-        modelAndView.addObject("categories", categoryDtos);
-        return super.view("views/categories/all", "Categories", modelAndView);
-    }
+//    TODO: refactor
+//    @GetMapping("/categories/all")
+//    public ModelAndView allCategories(ModelAndView modelAndView) {
+//        List<CategoryDto> categoryDtos = this.categoryService.findAllCategories();
+//        modelAndView.addObject("categories", categoryDtos);
+//        return super.view("views/categories/all", "Categories", modelAndView);
+//    }
 
     @GetMapping("/categories/create")
     public ModelAndView createCategory(@ModelAttribute CreateCategoryDto createCategoryDto) {

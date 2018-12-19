@@ -37,20 +37,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void create(CreatePostDto createPostDto) {
-        Post post = new Post();
-        Set<Category> categories = new HashSet<>();
-
-        String[] categoryNames = createPostDto.getCategories().split("\\,");
-
-        for (String categoryName : categoryNames) {
-            categories.add(this.categoryRepository.findByName(categoryName));
-        }
-        post.setCategories(categories);
-        post.setTitle(createPostDto.getTitle());
-        post.setContent(createPostDto.getContent());
-        post.setUser(this.userRepository.findOneByUsername(createPostDto.getUsername()));
-        this.postReposotory.save(post);
+    public void create(PostServiceModel serviceModel) {
+        Post postEntity = this.modelMapper.map(serviceModel, Post.class);
+        this.postReposotory.save(postEntity);
     }
 
     @Override

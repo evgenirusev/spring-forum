@@ -5,11 +5,13 @@ import com.forum.dtos.category.CategoryNamesDto;
 import com.forum.dtos.roles.RoleDto;
 import com.forum.areas.category.services.CategoryService;
 import com.forum.areas.user.services.RoleService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -19,10 +21,13 @@ public class DataLoader implements ApplicationRunner {
 
     private final CategoryService categoryService;
 
+    private final ModelMapper modelMapper;
+
     @Autowired
-    public DataLoader(RoleService roleService, CategoryService categoryService) {
+    public DataLoader(RoleService roleService, CategoryService categoryService, ModelMapper modelMapper) {
         this.roleService = roleService;
         this.categoryService = categoryService;
+        this.modelMapper = modelMapper;
     }
 
     public void run(ApplicationArguments args) {
@@ -41,7 +46,11 @@ public class DataLoader implements ApplicationRunner {
             this.roleService.addRole(roleDto);
         }
 
-        List<CategoryNamesDto> categoryDtos = this.categoryService.findAllCategoryFormDtos();
+        List<CategoryNamesDto> categoryDtos = new ArrayList<>();
+        this.categoryService.findAllCategories().forEach(category -> {
+            CategoryNamesDto categoryNamesDto = new CategoryNamesDto();
+            categoryNamesDto.setName(category.getName());
+        });
         DataCacheSingleton.getInstance().addCategories(categoryDtos);
     }
 }

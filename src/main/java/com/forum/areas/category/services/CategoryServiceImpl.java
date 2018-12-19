@@ -1,5 +1,7 @@
 package com.forum.areas.category.services;
 
+import com.forum.areas.category.models.service.CategoryServiceModel;
+import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.dtos.category.CategoryDto;
 import com.forum.dtos.category.CategoryNamesDto;
 import com.forum.dtos.category.CreateCategoryDto;
@@ -10,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -38,24 +42,20 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryDto> findAllCategories() {
-        List<CategoryDto> categoryDtos = new ArrayList<>();
+    public List<CategoryServiceModel> findAllCategories() {
+        List<CategoryServiceModel> categoryServiceModels = new ArrayList<>();
 
         this.categoryRepository.findAll().forEach(category -> {
-            categoryDtos.add(this.modelMapper.map(category, CategoryDto.class));
+            CategoryServiceModel serviceModel = this.modelMapper.map(category, CategoryServiceModel.class);
+            categoryServiceModels.add(serviceModel);
         });
 
-        return categoryDtos;
+        return categoryServiceModels;
     }
 
     @Override
-    public List<CategoryNamesDto> findAllCategoryFormDtos() {
-        List<CategoryNamesDto> categoryNamesDtos = new ArrayList<>();
-
-        this.categoryRepository.findAll().forEach(category -> {
-            categoryNamesDtos.add(this.modelMapper.map(category, CategoryNamesDto.class));
-        });
-
-        return categoryNamesDtos;
+    public CategoryServiceModel findById(Long id) {
+        Category categoryEntity = this.categoryRepository.findById(id).orElse(null);
+        return this.modelMapper.map(categoryEntity, CategoryServiceModel.class);
     }
 }

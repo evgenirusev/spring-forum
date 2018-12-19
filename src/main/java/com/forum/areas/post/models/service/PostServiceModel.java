@@ -1,6 +1,9 @@
 package com.forum.areas.post.models.service;
 
+import com.forum.areas.category.models.service.CategoryServiceModel;
 import com.forum.areas.user.models.service.UserServiceModel;
+
+import java.util.Set;
 
 public class PostServiceModel {
 
@@ -11,6 +14,8 @@ public class PostServiceModel {
     private String content;
 
     private UserServiceModel user;
+
+    private Set<CategoryServiceModel> categories;
 
     public Long getId() {
         return id;
@@ -42,5 +47,13 @@ public class PostServiceModel {
 
     public void setUser(UserServiceModel user) {
         this.user = user;
+    }
+
+    public Set<CategoryServiceModel> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<CategoryServiceModel> categories) {
+        this.categories = categories;
     }
 }

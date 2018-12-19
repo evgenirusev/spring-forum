@@ -1,5 +1,6 @@
 package com.forum.areas.category.services;
 
+import com.forum.areas.category.models.service.CategoryServiceModel;
 import com.forum.dtos.category.CategoryDto;
 import com.forum.dtos.category.CategoryNamesDto;
 import com.forum.dtos.category.CreateCategoryDto;
@@ -11,7 +12,7 @@ public interface CategoryService {
 
     CategoryDto getCategoryByName(String name);
 
-    List<CategoryDto> findAllCategories();
+    List<CategoryServiceModel> findAllCategories();
 
-    List<CategoryNamesDto> findAllCategoryFormDtos();
+    CategoryServiceModel findById(Long id);
 }

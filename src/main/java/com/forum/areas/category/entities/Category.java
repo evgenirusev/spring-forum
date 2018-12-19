@@ -19,8 +19,8 @@ public class Category {
     @Column(name = "description", nullable = false, length = 200)
     private String description;
 
-    @ManyToMany(mappedBy = "categories")
-    Set<Post> posts = new HashSet<>();
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
+    private Set<Post> posts = new HashSet<>();
 
     public Category() {
     }

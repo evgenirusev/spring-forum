@@ -1,13 +1,20 @@
 package com.forum.areas.post.models.binding;
 
+import com.forum.constants.Constants;
+
+import javax.validation.constraints.Size;
+
 public class CreatePostBindingModel {
+    @Size(min = 4, max = 30, message = Constants.TITLE_LENGTH)
     private String title;
 
+    @Size(min = 8, max = 2000, message = Constants.CONTENT_LENGTH)
     private String content;
 
-    private String username;
+    private Long[] categories;
 
-    private String categories;
+    public CreatePostBindingModel() {
+    }
 
     public String getTitle() {
         return title;
@@ -25,19 +32,11 @@ public class CreatePostBindingModel {
         this.content = content;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getCategories() {
+    public Long[] getCategories() {
         return categories;
     }
 
-    public void setCategories(String categories) {
+    public void setCategories(Long[] categories) {
         this.categories = categories;
     }
 }

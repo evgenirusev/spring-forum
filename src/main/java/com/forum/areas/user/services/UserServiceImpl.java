@@ -1,5 +1,6 @@
 package com.forum.areas.user.services;
 
+import com.forum.areas.user.models.service.UserServiceModel;
 import com.forum.dtos.roles.RoleDto;
 import com.forum.dtos.users.UserRegisterDto;
 import com.forum.areas.user.entities.Role;
@@ -62,5 +63,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isEmailTaken(String email) {
         return this.userRepository.findByEmail(email) != null;
+    }
+
+    @Override
+    public UserServiceModel findById(Long id) {
+        User userEntity = this.userRepository.findById(id).get();
+        return this.modelMapper.map(userEntity, UserServiceModel.class);
+    }
+
+    @Override
+    public UserServiceModel findByUsername(String username) {
+        User userEntity = this.userRepository.findOneByUsername(username);
+        return this.modelMapper.map(userEntity, UserServiceModel.class);
     }
 }

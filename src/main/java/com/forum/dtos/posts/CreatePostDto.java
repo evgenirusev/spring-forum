@@ -1,11 +1,12 @@
 package com.forum.dtos.posts;
 
 public class CreatePostDto {
+
+    private Long userId;
+
     private String title;
 
     private String content;
-
-    private String username;
 
     private String categories;
 
@@ -28,12 +29,12 @@ public class CreatePostDto {
         this.content = content;
     }
 
-    public String getUsername() {
-        return username;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getCategories() {
