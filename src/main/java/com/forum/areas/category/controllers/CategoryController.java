@@ -2,7 +2,9 @@ package com.forum.areas.category.controllers;
 
 import com.forum.areas.category.models.binding.CategoryBindingModel;
 import com.forum.areas.category.models.service.CategoryServiceModel;
+import com.forum.areas.category.models.view.CategoryNamesViewModel;
 import com.forum.areas.category.models.view.CategoryViewModel;
+import com.forum.cache.DataCacheSingleton;
 import com.forum.controllers.BaseController;
 import com.forum.areas.category.services.CategoryService;
 import org.modelmapper.ModelMapper;
@@ -14,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.Comparator;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -46,6 +47,8 @@ public class CategoryController extends BaseController {
 
         CategoryServiceModel categoryServiceModel = this.modelMapper.map(categoryBindingModel, CategoryServiceModel.class);
         this.categoryService.create(categoryServiceModel);
+        DataCacheSingleton.getInstance().addCategory(this.modelMapper.map(categoryServiceModel,
+                CategoryNamesViewModel.class));
 
         return super.redirect("/categories/all");
     }
@@ -59,5 +62,11 @@ public class CategoryController extends BaseController {
             categoryViewModels.add(categoryViewModel);
         });
         return super.view("views/categories/all", categoryViewModels);
+    }
+
+    @GetMapping("/{categoryName}")
+    public ModelAndView findPostsByCategory(@PathVariable String categoryName) {
+        CategoryServiceModel categoryServiceModel = this.categoryService.findByName(categoryName);
+        return super.view("views/categories/posts-by-category", categoryServiceModel);
     }
 }

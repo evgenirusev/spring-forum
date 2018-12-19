@@ -1,6 +1,6 @@
-package com.forum.areas.roles.repositories;
+package com.forum.areas.role.repositories;
 
-import com.forum.areas.roles.entities.Role;
+import com.forum.areas.role.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

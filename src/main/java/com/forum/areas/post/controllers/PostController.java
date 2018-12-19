@@ -112,10 +112,4 @@ public class PostController extends BaseController {
         this.commentService.create(commentServiceModel);
         return super.redirect("/posts/" + postId);
     }
-
-    @GetMapping("/category/{categoryName}")
-    public ModelAndView findPostsByCategory(@PathVariable String categoryName) {
-        CategoryServiceModel categoryServiceModel = this.categoryService.findByName(categoryName);
-        return super.view("views/posts/all", categoryName);
-    }
 }

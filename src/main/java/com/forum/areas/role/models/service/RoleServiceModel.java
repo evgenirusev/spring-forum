@@ -1,4 +1,4 @@
-package com.forum.areas.roles.models.service;
+package com.forum.areas.role.models.service;
 
 public class RoleServiceModel {
     private Long id;

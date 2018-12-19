@@ -1,11 +1,11 @@
-package com.forum.areas.roles.entities;
+package com.forum.areas.role.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "role")
 public class Role implements GrantedAuthority {
     private Long id;
 

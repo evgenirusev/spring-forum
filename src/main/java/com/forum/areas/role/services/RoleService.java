@@ -1,6 +1,6 @@
-package com.forum.areas.roles.services;
+package com.forum.areas.role.services;
 
-import com.forum.areas.roles.models.service.RoleServiceModel;
+import com.forum.areas.role.models.service.RoleServiceModel;
 
 public interface RoleService {
 

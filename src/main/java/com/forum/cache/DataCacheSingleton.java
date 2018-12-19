@@ -21,6 +21,10 @@ public class DataCacheSingleton {
         return this.categories;
     }
 
+    public void addCategory(CategoryNamesViewModel categoryNamesViewModel) {
+        this.categories.add(categoryNamesViewModel);
+    }
+
     public void addCategories(List<CategoryNamesViewModel> categories) {
         this.categories = categories;
     }

@@ -1,8 +1,8 @@
-package com.forum.areas.roles.services;
+package com.forum.areas.role.services;
 
-import com.forum.areas.roles.entities.Role;
-import com.forum.areas.roles.models.service.RoleServiceModel;
-import com.forum.areas.roles.repositories.RoleRepository;
+import com.forum.areas.role.entities.Role;
+import com.forum.areas.role.models.service.RoleServiceModel;
+import com.forum.areas.role.repositories.RoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

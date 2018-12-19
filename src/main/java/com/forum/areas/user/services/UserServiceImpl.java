@@ -1,10 +1,10 @@
 package com.forum.areas.user.services;
 
-import com.forum.areas.roles.entities.Role;
-import com.forum.areas.roles.services.RoleService;
+import com.forum.areas.role.entities.Role;
+import com.forum.areas.role.services.RoleService;
 import com.forum.areas.user.models.binding.UserRegisterBindingModel;
 import com.forum.areas.user.models.service.UserServiceModel;
-import com.forum.areas.roles.models.service.RoleServiceModel;
+import com.forum.areas.role.models.service.RoleServiceModel;
 import com.forum.areas.user.entities.User;
 import com.forum.areas.user.repositories.UserRepository;
 import org.modelmapper.ModelMapper;

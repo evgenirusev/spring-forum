@@ -1,6 +1,6 @@
 package com.forum.areas.user.models.service;
 
-import com.forum.areas.roles.models.service.RoleServiceModel;
+import com.forum.areas.role.models.service.RoleServiceModel;
 
 import java.util.Set;
 

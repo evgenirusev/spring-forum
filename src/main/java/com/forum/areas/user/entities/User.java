@@ -1,6 +1,6 @@
 package com.forum.areas.user.entities;
 
-import com.forum.areas.roles.entities.Role;
+import com.forum.areas.role.entities.Role;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;

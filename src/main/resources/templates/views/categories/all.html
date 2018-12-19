@@ -4,7 +4,7 @@
 
     <th:block th:each="category : ${viewModel}">
         <div class="list-group">
-            <a th:href="@{/posts/category/{name}(name=${category.name})}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a th:href="@{/categories/{name}(name=${category.name})}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 th:text="${category.name}" class="mb-1"></h5>
                 </div>

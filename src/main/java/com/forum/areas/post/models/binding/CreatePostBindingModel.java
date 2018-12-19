@@ -5,7 +5,7 @@ import com.forum.constants.Constants;
 import javax.validation.constraints.Size;
 
 public class CreatePostBindingModel {
-    @Size(min = 4, max = 30, message = Constants.TITLE_LENGTH)
+    @Size(min = 4, max = 50, message = Constants.TITLE_LENGTH)
     private String title;
 
     @Size(min = 8, max = 2000, message = Constants.POST_CONTENT_LENGTH)

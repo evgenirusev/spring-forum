@@ -2,10 +2,9 @@ package com.forum.config;
 
 import com.forum.cache.DataCacheSingleton;
 import com.forum.areas.category.models.view.CategoryNamesViewModel;
-import com.forum.areas.roles.models.service.RoleServiceModel;
+import com.forum.areas.role.models.service.RoleServiceModel;
 import com.forum.areas.category.services.CategoryService;
-import com.forum.areas.roles.services.RoleService;
-import org.modelmapper.ModelMapper;
+import com.forum.areas.role.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -47,6 +46,7 @@ public class DataLoader implements ApplicationRunner {
         this.categoryService.findAllCategories().forEach(category -> {
             CategoryNamesViewModel categoryNamesViewModel = new CategoryNamesViewModel();
             categoryNamesViewModel.setName(category.getName());
+            categoryDtos.add(categoryNamesViewModel);
         });
         DataCacheSingleton.getInstance().addCategories(categoryDtos);
     }
