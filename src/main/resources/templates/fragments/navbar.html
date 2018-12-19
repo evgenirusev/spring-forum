@@ -28,7 +28,7 @@
                 <a class="nav-link text-white" th:href="@{/categories/create}">Create Category</a>
                 <a class="nav-link text-white" href="#"
                    th:text="|Admin ${#authentication.getPrincipal().getUsername()}|"></a>
-                <a class="nav-link text-white" th:href="@{/logout}">Log Out</a>
+                <a class="nav-link text-white" th:href="@{/logout}">Logout</a>
             </div>
         </nav>
         <img src="/img/forest.png" class="w-100">
@@ -64,7 +64,7 @@
                 </ul>
                 <a class="nav-link text-white" th:href="@{/users/{username}(username=${session.username})}"
                    th:text="${session.username}"></a>
-                <a class="nav-link text-white" th:href="@{/logout}">Log Out</a>
+                <a class="nav-link text-white" th:href="@{/logout}">Logout</a>
             </div>
         </nav>
         <img src="/img/forest.png" class="w-100">
@@ -98,7 +98,7 @@
                         <a class="nav-link text-white" th:href="@{/about}">About</a>
                     </li>
                 </ul>
-                <a class="nav-link text-white" th:href="@{/login}">Log In</a>
+                <a class="nav-link text-white" th:href="@{/login}">Login</a>
                 <a class="nav-link text-white" th:href="@{/register}">Register</a>
             </div>
         </nav>

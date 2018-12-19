@@ -1,6 +1,6 @@
 package com.forum.areas.post.models.view;
 
-import com.forum.areas.category.models.binding.CategoryViewModel;
+import com.forum.areas.category.models.view.CategoryViewModel;
 import com.forum.areas.comment.models.view.CommentViewModel;
 import com.forum.areas.user.models.view.UserViewModel;
 

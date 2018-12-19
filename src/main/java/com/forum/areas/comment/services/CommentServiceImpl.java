@@ -1,5 +1,6 @@
 package com.forum.areas.comment.services;
 
+import com.forum.areas.comment.models.service.CommentServiceModel;
 import com.forum.dtos.comments.CommentDto;
 import com.forum.dtos.comments.CreateCommentDto;
 import com.forum.dtos.posts.PostDto;
@@ -21,34 +22,17 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
 
-    private final PostReposotory postReposotory;
-
-    private final UserRepository userRepository;
-
     private final ModelMapper modelMapper;
 
     @Autowired
-    public CommentServiceImpl(CommentRepository commentRepository, PostReposotory postReposotory, UserRepository userRepository, ModelMapper modelMapper) {
+    public CommentServiceImpl(CommentRepository commentRepository, ModelMapper modelMapper) {
         this.commentRepository = commentRepository;
-        this.postReposotory = postReposotory;
-        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
     @Override
-    public Set<CommentDto> findById(PostDto postDto) {
-        Post post = this.modelMapper.map(postDto, Post.class);
-        Set<Comment> comments = this.commentRepository.findByPost(post);
-        Type targetListType = new TypeToken<Set<CommentDto>>() {}.getType();
-        Set<CommentDto> commentDtos = this.modelMapper.map(comments, targetListType);
-        return commentDtos;
-    }
-
-    @Override
-    public void save(CreateCommentDto createCommentDto, Long postId, String usernameWhichPostedTheComment) {
-        Comment commentEntity = this.modelMapper.map(createCommentDto, Comment.class);
-        commentEntity.setUser(this.userRepository.findOneByUsername(usernameWhichPostedTheComment));
-        commentEntity.setPost(this.postReposotory.getOne(postId));
+    public void create(CommentServiceModel commentServiceModel) {
+        Comment commentEntity = this.modelMapper.map(commentServiceModel, Comment.class);
         this.commentRepository.save(commentEntity);
     }
 }

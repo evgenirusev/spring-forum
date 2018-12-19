@@ -1,7 +1,9 @@
 package com.forum.areas.post.controllers;
 
-import com.forum.areas.category.models.binding.CategoryViewModel;
+import com.forum.areas.category.models.view.CategoryViewModel;
 import com.forum.areas.category.models.service.CategoryServiceModel;
+import com.forum.areas.comment.models.binding.CommentBindingModel;
+import com.forum.areas.comment.models.service.CommentServiceModel;
 import com.forum.areas.comment.services.CommentService;
 import com.forum.areas.post.models.binding.CreatePostBindingModel;
 import com.forum.areas.post.models.service.PostServiceModel;
@@ -32,15 +34,18 @@ public class PostController extends BaseController {
 
     private final UserService userService;
 
+    private final CommentService commentService;
+
     private final ModelMapper modelMapper;
 
     private List<CategoryViewModel> cacheCategoryViewModels;
 
     @Autowired
-    public PostController(PostService postService, CategoryService categoryService, UserService userService, ModelMapper modelMapper) {
+    public PostController(PostService postService, CategoryService categoryService, UserService userService, CommentService createCommentDto, ModelMapper modelMapper) {
         this.postService = postService;
         this.categoryService = categoryService;
         this.userService = userService;
+        this.commentService = createCommentDto;
         this.modelMapper = modelMapper;
     }
 
@@ -95,21 +100,18 @@ public class PostController extends BaseController {
         return super.view("views/posts/post-by-id", postViewModel);
     }
 
-//    TODO: refactor obsolete code
-//    @PostMapping("/{id}")
-//    public ModelAndView storeAnswer(@ModelAttribute CreateCommentDto createCommentDto,
-//                                    Authentication authentication,
-//                                    @PathVariable(value = "id", required = true) Long postId) {
-//
-//        this.commentService.save(createCommentDto, postId, authentication.getName());
-//        return super.redirect("/posts/" + postId);
-//    }
-//
-//    @GetMapping("/category/{categoryName}")
-//    public ModelAndView findPostsByCategory(@PathVariable String categoryName, ModelAndView modelAndView) {
-//        List<PostDto> postDtos = this.postService.findByCategory(categoryName);
-//        modelAndView.addObject("posts", postDtos);
-//        modelAndView.addObject("postsCategoryName", categoryName);
-//        return super.view("views/posts/all", categoryName);
-//    }
+    @PostMapping("/{id}")
+    public ModelAndView storeAnswer(@ModelAttribute CommentBindingModel commentBindingModel,
+                                    Authentication authentication,
+                                    @PathVariable(value = "id", required = true) Long postId) {
+
+        CommentServiceModel commentServiceModel = new CommentServiceModel();
+        commentServiceModel.setContent(commentBindingModel.getContent());
+        PostServiceModel postServiceModel = this.postService.findById(postId);
+        commentServiceModel.setPost(postServiceModel);
+        UserServiceModel userServiceModel = this.userService.findByUsername(authentication.getName());
+        commentServiceModel.setUser(userServiceModel);
+        this.commentService.create(commentServiceModel);
+        return super.redirect("/posts/" + postId);
+    }
 }

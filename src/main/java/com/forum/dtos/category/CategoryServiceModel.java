@@ -4,7 +4,7 @@ import com.forum.areas.post.entities.Post;
 
 import java.util.Set;
 
-public class CategoryDto {
+public class CategoryServiceModel {
 
     private Long id;
 
@@ -14,7 +14,7 @@ public class CategoryDto {
 
     private Set<Post> posts;
 
-    public CategoryDto() {
+    public CategoryServiceModel() {
     }
 
     public String getName() {

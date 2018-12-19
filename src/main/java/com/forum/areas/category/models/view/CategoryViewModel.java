@@ -1,4 +1,4 @@
-package com.forum.areas.category.models.binding;
+package com.forum.areas.category.models.view;
 
 public class CategoryViewModel {
 
