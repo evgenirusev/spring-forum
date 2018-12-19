@@ -1,10 +1,10 @@
 package com.forum.config;
 
 import com.forum.cache.DataCacheSingleton;
-import com.forum.dtos.category.CategoryNamesDto;
-import com.forum.dtos.roles.RoleDto;
+import com.forum.areas.category.models.view.CategoryNamesViewModel;
+import com.forum.areas.roles.models.service.RoleServiceModel;
 import com.forum.areas.category.services.CategoryService;
-import com.forum.areas.user.services.RoleService;
+import com.forum.areas.roles.services.RoleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -21,35 +21,32 @@ public class DataLoader implements ApplicationRunner {
 
     private final CategoryService categoryService;
 
-    private final ModelMapper modelMapper;
-
     @Autowired
-    public DataLoader(RoleService roleService, CategoryService categoryService, ModelMapper modelMapper) {
+    public DataLoader(RoleService roleService, CategoryService categoryService) {
         this.roleService = roleService;
         this.categoryService = categoryService;
-        this.modelMapper = modelMapper;
     }
 
     public void run(ApplicationArguments args) {
-        RoleDto userRole = this.roleService.findByAuthority("USER");
-        RoleDto adminRole = this.roleService.findByAuthority("ADMIN");
+        RoleServiceModel userRole = this.roleService.findByAuthority("USER");
+        RoleServiceModel adminRole = this.roleService.findByAuthority("ADMIN");
 
         if (userRole == null) {
-            RoleDto roleDto = new RoleDto();
-            roleDto.setAuthority("USER");
-            this.roleService.addRole(roleDto);
+            RoleServiceModel roleServiceModel = new RoleServiceModel();
+            roleServiceModel.setAuthority("USER");
+            this.roleService.addRole(roleServiceModel);
         }
 
         if (adminRole == null) {
-            RoleDto roleDto = new RoleDto();
-            roleDto.setAuthority("ADMIN");
-            this.roleService.addRole(roleDto);
+            RoleServiceModel roleServiceModel = new RoleServiceModel();
+            roleServiceModel.setAuthority("ADMIN");
+            this.roleService.addRole(roleServiceModel);
         }
 
-        List<CategoryNamesDto> categoryDtos = new ArrayList<>();
+        List<CategoryNamesViewModel> categoryDtos = new ArrayList<>();
         this.categoryService.findAllCategories().forEach(category -> {
-            CategoryNamesDto categoryNamesDto = new CategoryNamesDto();
-            categoryNamesDto.setName(category.getName());
+            CategoryNamesViewModel categoryNamesViewModel = new CategoryNamesViewModel();
+            categoryNamesViewModel.setName(category.getName());
         });
         DataCacheSingleton.getInstance().addCategories(categoryDtos);
     }

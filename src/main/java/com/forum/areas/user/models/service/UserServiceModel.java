@@ -1,5 +1,7 @@
 package com.forum.areas.user.models.service;
 
+import com.forum.areas.roles.models.service.RoleServiceModel;
+
 import java.util.Set;
 
 public class UserServiceModel {

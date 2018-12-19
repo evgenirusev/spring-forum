@@ -1,4 +1,4 @@
-package com.forum.dtos.users.validations;
+package com.forum.areas.user.models.binding.validations;
 
 import com.forum.areas.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class IsEmailRegisteredValidator implements ConstraintValidator<IsEmailRegistered,String> {
+public class IsUsernameTakenValidator implements ConstraintValidator<IsUsernameTaken,String> {
     @Autowired
     private UserService userService;
 
     @Override
-    public void initialize(IsEmailRegistered isEmailRegister) {
+    public void initialize(IsUsernameTaken isUsernameTaken) {
 
     }
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return !this.userService.isEmailTaken(s);
+        return !this.userService.isUsernameTaken(s);
     }
 }

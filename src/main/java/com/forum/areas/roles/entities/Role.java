@@ -1,4 +1,4 @@
-package com.forum.areas.user.entities;
+package com.forum.areas.roles.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 

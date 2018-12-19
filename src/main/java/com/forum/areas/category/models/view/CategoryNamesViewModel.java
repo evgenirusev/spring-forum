@@ -1,9 +1,9 @@
-package com.forum.dtos.category;
+package com.forum.areas.category.models.view;
 
-public class CategoryNamesDto {
+public class CategoryNamesViewModel {
     private String name;
 
-    public CategoryNamesDto() {
+    public CategoryNamesViewModel() {
     }
 
     public String getName() {

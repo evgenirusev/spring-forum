@@ -1,6 +1,6 @@
-package com.forum.dtos.roles;
+package com.forum.areas.roles.models.service;
 
-public class RoleDto {
+public class RoleServiceModel {
     private Long id;
     private String authority;
 

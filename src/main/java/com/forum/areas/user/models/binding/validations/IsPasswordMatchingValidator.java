@@ -1,7 +1,6 @@
-package com.forum.dtos.users.validations;
+package com.forum.areas.user.models.binding.validations;
 
 import com.forum.areas.user.models.binding.UserRegisterBindingModel;
-import com.forum.dtos.users.UserRegisterDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

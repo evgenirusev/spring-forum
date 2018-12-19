@@ -1,6 +1,6 @@
 package com.forum.cache;
 
-import com.forum.dtos.category.CategoryNamesDto;
+import com.forum.areas.category.models.view.CategoryNamesViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ public class DataCacheSingleton {
 
     private static final DataCacheSingleton instance = new DataCacheSingleton();
 
-    private List<CategoryNamesDto> categories = new ArrayList<>();
+    private List<CategoryNamesViewModel> categories = new ArrayList<>();
 
     private DataCacheSingleton(){}
 
@@ -17,15 +17,11 @@ public class DataCacheSingleton {
         return instance;
     }
 
-    public List<CategoryNamesDto> getCategories() {
+    public List<CategoryNamesViewModel> getCategories() {
         return this.categories;
     }
 
-    public void addCategory(CategoryNamesDto categoryNamesDto) {
-        this.categories.add(categoryNamesDto);
-    }
-
-    public void addCategories(List<CategoryNamesDto> categories) {
+    public void addCategories(List<CategoryNamesViewModel> categories) {
         this.categories = categories;
     }
 }

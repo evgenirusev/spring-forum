@@ -1,10 +1,10 @@
 package com.forum.areas.user.services;
 
+import com.forum.areas.roles.entities.Role;
+import com.forum.areas.roles.services.RoleService;
 import com.forum.areas.user.models.binding.UserRegisterBindingModel;
 import com.forum.areas.user.models.service.UserServiceModel;
-import com.forum.dtos.roles.RoleDto;
-import com.forum.dtos.users.UserRegisterDto;
-import com.forum.areas.user.entities.Role;
+import com.forum.areas.roles.models.service.RoleServiceModel;
 import com.forum.areas.user.entities.User;
 import com.forum.areas.user.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -48,8 +48,8 @@ public class UserServiceImpl implements UserService {
         userEntity.setCredentialsNonExpired(true);
         userEntity.setEnabled(true);
 
-        RoleDto roleDto = this.roleService.findByAuthority("USER");
-        Role role  = this.modelMapper.map(roleDto, Role.class);
+        RoleServiceModel roleServiceModel = this.roleService.findByAuthority("USER");
+        Role role  = this.modelMapper.map(roleServiceModel, Role.class);
 
         userEntity.addRole(role);
 
@@ -64,12 +64,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isEmailTaken(String email) {
         return this.userRepository.findByEmail(email) != null;
-    }
-
-    @Override
-    public UserServiceModel findById(Long id) {
-        User userEntity = this.userRepository.findById(id).get();
-        return this.modelMapper.map(userEntity, UserServiceModel.class);
     }
 
     @Override

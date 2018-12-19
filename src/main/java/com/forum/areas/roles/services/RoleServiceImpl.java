@@ -1,8 +1,8 @@
-package com.forum.areas.user.services;
+package com.forum.areas.roles.services;
 
-import com.forum.dtos.roles.RoleDto;
-import com.forum.areas.user.entities.Role;
-import com.forum.areas.user.repositories.RoleRepository;
+import com.forum.areas.roles.entities.Role;
+import com.forum.areas.roles.models.service.RoleServiceModel;
+import com.forum.areas.roles.repositories.RoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,18 +20,18 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleDto findByAuthority(String authority) {
+    public RoleServiceModel findByAuthority(String authority) {
         Role role = this.roleRepository.findByAuthority(authority);
-        RoleDto roleModel = null;
+        RoleServiceModel roleModel = null;
         if (role != null){
-            roleModel = this.modelMapper.map(role, RoleDto.class);
+            roleModel = this.modelMapper.map(role, RoleServiceModel.class);
         }
         return roleModel;
     }
 
     @Override
-    public void addRole(RoleDto roleDto) {
-        Role role = this.modelMapper.map(roleDto, Role.class);
+    public void addRole(RoleServiceModel roleServiceModel) {
+        Role role = this.modelMapper.map(roleServiceModel, Role.class);
         this.roleRepository.save(role);
     }
 }

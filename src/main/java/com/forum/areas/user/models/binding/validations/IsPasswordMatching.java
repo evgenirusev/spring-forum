@@ -1,4 +1,4 @@
-package com.forum.dtos.users.validations;
+package com.forum.areas.user.models.binding.validations;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -8,10 +8,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-@Constraint(validatedBy = IsUsernameTakenValidator.class)
-public @interface IsUsernameTaken {
-    String message() default "Username already exist";
+@Target(ElementType.TYPE)
+@Constraint(validatedBy = IsPasswordMatchingValidator.class)
+public @interface IsPasswordMatching {
+    String message() default "Passwords Not Matching";
 
     Class<?>[] groups() default {};
 

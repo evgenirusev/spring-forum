@@ -2,8 +2,6 @@ package com.forum.areas.user.controllers;
 
 import com.forum.areas.user.models.binding.UserRegisterBindingModel;
 import com.forum.controllers.BaseController;
-import com.forum.controllers.BaseControllerDeprecated;
-import com.forum.dtos.users.UserRegisterDto;
 import com.forum.areas.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,19 +39,13 @@ public class UserController extends BaseController {
         return super.redirect("/login");
     }
 
-//    TODO: refactor obsolete code
-//    @GetMapping("/login")
-//    public ModelAndView login(String error, ModelAndView modelAndView) {
-//        if (error != null) {
-//            modelAndView.addObject("error", "Wrong username or password");
-//        }
-//
-//        return super.view("views/users/login", "Login", modelAndView);
-//    }
-//
-//    @RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
-//    public ModelAndView user(@PathVariable("username") String username, ModelAndView modelAndView) {
-//        modelAndView.addObject("username", username);
-//        return super.view("views/users/profile", "User " + username, modelAndView);
-//    }
+    @GetMapping("/login")
+    public ModelAndView login(String error, ModelAndView mav) {
+        mav.addObject("viewName", "/views/users/login");
+        mav.setViewName("layout");
+        if (error != null) {
+            mav.addObject("error", "Wrong username or password");
+        }
+        return mav;
+    }
 }

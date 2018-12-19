@@ -1,4 +1,4 @@
-package com.forum.dtos.users.validations;
+package com.forum.areas.user.models.binding.validations;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
