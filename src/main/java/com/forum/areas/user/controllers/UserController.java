@@ -1,5 +1,7 @@
 package com.forum.areas.user.controllers;
 
+import com.forum.areas.user.models.binding.UserRegisterBindingModel;
+import com.forum.controllers.BaseController;
 import com.forum.controllers.BaseControllerDeprecated;
 import com.forum.dtos.users.UserRegisterDto;
 import com.forum.areas.user.services.UserService;
@@ -12,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-public class UserController extends BaseControllerDeprecated {
+public class UserController extends BaseController {
 
     private final UserService userService;
 
@@ -21,34 +23,37 @@ public class UserController extends BaseControllerDeprecated {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
-    public ModelAndView user(@PathVariable("username") String username, ModelAndView modelAndView) {
-        modelAndView.addObject("username", username);
-        return super.view("views/users/profile", "User " + username, modelAndView);
-    }
-
     @GetMapping("/register")
-    public ModelAndView register(@ModelAttribute UserRegisterDto userRegisterDto) {
+    public ModelAndView register(@ModelAttribute UserRegisterBindingModel userRegisterBindingModel) {
         return super.view("views/users/register", "Register");
     }
 
+
     @PostMapping("/register")
-    public ModelAndView registerConfirm(@Valid @ModelAttribute UserRegisterDto userRegisterDto, BindingResult bindingResult) {
+    public ModelAndView registerConfirm(@Valid @ModelAttribute UserRegisterBindingModel userRegisterBindingModel,
+                                        BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return super.view("views/users/register", "Register");
         }
 
-        this.userService.createUser(userRegisterDto);
+        this.userService.createUser(userRegisterBindingModel);
         return super.redirect("/login");
     }
 
-    @GetMapping("/login")
-    public ModelAndView login(String error, ModelAndView modelAndView) {
-        if (error != null) {
-            modelAndView.addObject("error", "Wrong username or password");
-        }
-
-        return super.view("views/users/login", "Login", modelAndView);
-    }
+//    TODO: refactor obsolete code
+//    @GetMapping("/login")
+//    public ModelAndView login(String error, ModelAndView modelAndView) {
+//        if (error != null) {
+//            modelAndView.addObject("error", "Wrong username or password");
+//        }
+//
+//        return super.view("views/users/login", "Login", modelAndView);
+//    }
+//
+//    @RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
+//    public ModelAndView user(@PathVariable("username") String username, ModelAndView modelAndView) {
+//        modelAndView.addObject("username", username);
+//        return super.view("views/users/profile", "User " + username, modelAndView);
+//    }
 }

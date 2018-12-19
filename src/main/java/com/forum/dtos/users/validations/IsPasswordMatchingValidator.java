@@ -1,5 +1,6 @@
 package com.forum.dtos.users.validations;
 
+import com.forum.areas.user.models.binding.UserRegisterBindingModel;
 import com.forum.dtos.users.UserRegisterDto;
 
 import javax.validation.ConstraintValidator;
@@ -13,8 +14,8 @@ public class IsPasswordMatchingValidator implements ConstraintValidator<IsPasswo
 
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext constraintValidatorContext) {
-        if (object instanceof UserRegisterDto){
-            UserRegisterDto userModel = (UserRegisterDto) object;
+        if (object instanceof UserRegisterBindingModel){
+            UserRegisterBindingModel userModel = (UserRegisterBindingModel) object;
             return userModel.getPassword().equals(userModel.getConfirmPassword());
         }
         return false;

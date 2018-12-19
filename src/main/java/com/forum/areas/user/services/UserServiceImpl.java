@@ -1,5 +1,6 @@
 package com.forum.areas.user.services;
 
+import com.forum.areas.user.models.binding.UserRegisterBindingModel;
 import com.forum.areas.user.models.service.UserServiceModel;
 import com.forum.dtos.roles.RoleDto;
 import com.forum.dtos.users.UserRegisterDto;
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(UserRegisterDto bindingModel) {
+    public void createUser(UserRegisterBindingModel bindingModel) {
         User userEntity = this.modelMapper.map(bindingModel, User.class);
         userEntity.setPassword(this.bCryptPasswordEncoder.encode(userEntity.getPassword()));
         userEntity.setAccountNonExpired(true);
