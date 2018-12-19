@@ -1,9 +1,8 @@
-package com.forum.controllers;
+package com.forum.abstractions.controller;
 
 import org.springframework.web.servlet.ModelAndView;
 
 public abstract class BaseController {
-
     private static final String APPLICATION_TITLE = "Spring Answers";
     private static final String BASE_PAGE_LAYOUT = "layout";
     private static final String PROPERTY_VIEW_NAME = "viewName";

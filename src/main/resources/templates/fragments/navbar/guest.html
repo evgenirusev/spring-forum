@@ -1,0 +1,33 @@
+<div sec:authorize="isAnonymous()">
+    <div class="container-fluid m-0 p-0" xmlns:th="http://www.w3.org/1999/html">
+        <nav class="navbar bg-light-green navbar-expand-lg navbar-light">
+            <a class="navbar-brand text-white" th:href="@{/}">Spring Answers</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a class="nav-link text-white" th:href="@{/categories/all}">Categories</a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a class="nav-link text-white" th:href="@{/posts/all}">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" th:href="@{/contact}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" th:href="@{/about}">About</a>
+                    </li>
+                </ul>
+                <a class="nav-link text-white" th:href="@{/login}">Login</a>
+                <a class="nav-link text-white" th:href="@{/register}">Register</a>
+            </div>
+        </nav>
+        <img src="/img/forest.png" class="w-100">
+    </div>
+</div>

@@ -1,7 +1,8 @@
 package com.forum.areas.user.controllers;
 
 import com.forum.areas.user.models.binding.UserRegisterBindingModel;
-import com.forum.controllers.BaseController;
+import com.forum.areas.user.models.service.UserServiceModel;
+import com.forum.abstractions.controller.BaseController;
 import com.forum.areas.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,12 @@ public class UserController extends BaseController {
 
         this.userService.createUser(userRegisterBindingModel);
         return super.redirect("/login");
+    }
+
+    @GetMapping("/users/{username}")
+    public ModelAndView userProfile(@PathVariable String username) {
+        UserServiceModel userServiceModel = this.userService.findByUsername(username);
+        return super.view("/views/users/profile");
     }
 
     @GetMapping("/login")

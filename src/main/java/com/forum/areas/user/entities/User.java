@@ -1,5 +1,7 @@
 package com.forum.areas.user.entities;
 
+import com.forum.areas.comment.entities.Comment;
+import com.forum.areas.post.entities.Post;
 import com.forum.areas.role.entities.Role;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,7 +13,6 @@ import java.util.Set;
 @Table(name = "users")
 public class User implements UserDetails {
     private Long id;
-    private Set<Role> authorities;
     private String password;
     private String username;
     private String email;
@@ -19,6 +20,10 @@ public class User implements UserDetails {
     private boolean isAccountNonLocked;
     private boolean isEnabled;
     private boolean isCredentialsNonExpired;
+    private Set<Role> authorities;
+    private Set<Comment> comments;
+    private Set<Post> posts;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,5 +116,31 @@ public class User implements UserDetails {
             this.authorities = new HashSet<>();
         }
         this.authorities.add(role);
+    }
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public Set<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
     }
 }

@@ -1,5 +1,6 @@
-package com.forum.controllers;
+package com.forum.areas.pages.controllers;
 
+import com.forum.abstractions.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;

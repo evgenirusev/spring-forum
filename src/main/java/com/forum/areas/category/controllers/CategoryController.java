@@ -5,7 +5,7 @@ import com.forum.areas.category.models.service.CategoryServiceModel;
 import com.forum.areas.category.models.view.CategoryNamesViewModel;
 import com.forum.areas.category.models.view.CategoryViewModel;
 import com.forum.cache.DataCacheSingleton;
-import com.forum.controllers.BaseController;
+import com.forum.abstractions.controller.BaseController;
 import com.forum.areas.category.services.CategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

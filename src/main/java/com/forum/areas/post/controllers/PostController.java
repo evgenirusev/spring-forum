@@ -10,7 +10,7 @@ import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.areas.post.models.view.PostViewModel;
 import com.forum.areas.user.models.service.UserServiceModel;
 import com.forum.areas.user.services.UserService;
-import com.forum.controllers.BaseController;
+import com.forum.abstractions.controller.BaseController;
 import com.forum.areas.category.services.CategoryService;
 import com.forum.areas.post.services.PostService;
 import org.modelmapper.ModelMapper;

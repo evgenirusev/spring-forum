@@ -1,10 +1,13 @@
 package com.forum.areas.user.models.service;
 
+import com.forum.areas.comment.models.service.CommentServiceModel;
+import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.areas.role.models.service.RoleServiceModel;
 
 import java.util.Set;
 
 public class UserServiceModel {
+
     private Long id;
 
     private String password;
@@ -14,6 +17,10 @@ public class UserServiceModel {
     private String email;
 
     private Set<RoleServiceModel> roles;
+
+    private Set<PostServiceModel> posts;
+
+    private Set<CommentServiceModel> comments;
 
     public Long getId() {
         return id;
@@ -53,5 +60,21 @@ public class UserServiceModel {
 
     public void setRoles(Set<RoleServiceModel> roles) {
         this.roles = roles;
+    }
+
+    public Set<PostServiceModel> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<PostServiceModel> posts) {
+        this.posts = posts;
+    }
+
+    public Set<CommentServiceModel> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<CommentServiceModel> comments) {
+        this.comments = comments;
     }
 }
