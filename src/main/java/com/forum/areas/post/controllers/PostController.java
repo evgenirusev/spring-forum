@@ -101,10 +101,8 @@ public class PostController extends BaseController {
     }
 
     @PostMapping("/{id}")
-    public ModelAndView storeAnswer(@ModelAttribute CommentBindingModel commentBindingModel,
-                                    Authentication authentication,
+    public ModelAndView storeAnswer(@ModelAttribute CommentBindingModel commentBindingModel, Authentication authentication,
                                     @PathVariable(value = "id", required = true) Long postId) {
-
         CommentServiceModel commentServiceModel = new CommentServiceModel();
         commentServiceModel.setContent(commentBindingModel.getContent());
         PostServiceModel postServiceModel = this.postService.findById(postId);
@@ -113,5 +111,11 @@ public class PostController extends BaseController {
         commentServiceModel.setUser(userServiceModel);
         this.commentService.create(commentServiceModel);
         return super.redirect("/posts/" + postId);
+    }
+
+    @GetMapping("/category/{categoryName}")
+    public ModelAndView findPostsByCategory(@PathVariable String categoryName) {
+        CategoryServiceModel categoryServiceModel = this.categoryService.findByName(categoryName);
+        return super.view("views/posts/all", categoryName);
     }
 }

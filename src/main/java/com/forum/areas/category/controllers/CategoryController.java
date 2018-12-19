@@ -9,17 +9,17 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Controller
+@RequestMapping("/categories")
 public class CategoryController extends BaseController {
 
     private final CategoryService categoryService;
@@ -32,12 +32,12 @@ public class CategoryController extends BaseController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/categories/create")
+    @GetMapping("/create")
     public ModelAndView createCategory(@ModelAttribute CategoryBindingModel categoryBindingModel) {
         return super.view("/views/categories/create", "Create Category");
     }
 
-    @PostMapping("/categories/create")
+    @PostMapping("/create")
     public ModelAndView persistCategory(@Valid @ModelAttribute CategoryBindingModel categoryBindingModel, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -50,20 +50,14 @@ public class CategoryController extends BaseController {
         return super.redirect("/categories/all");
     }
 
-    @GetMapping("/categories/all")
+    @GetMapping("/all")
     public ModelAndView allCategories() {
-        Set<CategoryViewModel> categoryViewModels = new LinkedHashSet<>();
+        Set<CategoryViewModel> categoryViewModels
+                = new TreeSet<CategoryViewModel>(Comparator.comparing(CategoryViewModel::getId));
         this.categoryService.findAllCategories().forEach(categoryServiceModel -> {
             CategoryViewModel categoryViewModel = this.modelMapper.map(categoryServiceModel, CategoryViewModel.class);
             categoryViewModels.add(categoryViewModel);
         });
         return super.view("views/categories/all", categoryViewModels);
     }
-
-//    TODO: refactor
-//    @GetMapping("/category/{categoryName}")
-//    public ModelAndView findPostsByCategory(@PathVariable String categoryName) {
-//        CategoryServiceModel categoryServiceModel = this.categoryService.findByName(categoryName);
-//        return super.view("views/posts/all", categoryName);
-//    }
 }
