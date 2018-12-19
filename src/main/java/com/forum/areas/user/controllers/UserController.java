@@ -1,6 +1,6 @@
 package com.forum.areas.user.controllers;
 
-import com.forum.controllers.BaseController;
+import com.forum.controllers.BaseControllerDeprecated;
 import com.forum.dtos.users.UserRegisterDto;
 import com.forum.areas.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-public class UserController extends BaseController {
+public class UserController extends BaseControllerDeprecated {
 
     private final UserService userService;
 

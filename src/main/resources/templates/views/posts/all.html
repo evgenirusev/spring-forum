@@ -7,7 +7,7 @@
                 <hr>
             </th:block>
 
-            <th:block th:each="post : ${posts}">
+            <th:block th:each="post : ${viewModel}">
                 <div class="bg-white mb-3 p-3 row">
                     <div class="d-flex align-items-center w-100">
                         <div class="col-lg-11">
@@ -16,7 +16,7 @@
                             <p class="text-wrap" th:text="${post.content}"></p>
                         </div>
                         <div class="col-lg-1">
-                            <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-floating pulse  pr-4">
+                            <a th:href="@{/posts/{id}(id=${post.content})}" class="btn btn-floating pulse  pr-4">
                                 <i class="material-icons">arrow_forward</i>
                             </a>
                         </div>
