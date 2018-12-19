@@ -11,7 +11,7 @@ public interface PostService {
 
     List<PostServiceModel> findAllPosts();
 
-    PostDto findById(Long id);
+    PostServiceModel findById(Long id);
 
     List<PostDto> findByCategory(String categoryName);
 }

@@ -1,6 +1,7 @@
 package com.forum.areas.post.entities;
 
 import com.forum.areas.category.entities.Category;
+import com.forum.areas.comment.entities.Comment;
 import com.forum.areas.user.entities.User;
 
 import javax.persistence.*;
@@ -29,7 +30,16 @@ public class Post {
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private Set<Category> categories = new HashSet<>();
+    private Set<Category> categories;
+
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    private Set<Comment> comments;
+
 
     public Post() {
     }
@@ -72,5 +82,13 @@ public class Post {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

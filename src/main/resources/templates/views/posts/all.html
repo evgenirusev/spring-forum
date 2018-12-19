@@ -16,7 +16,7 @@
                             <p class="text-wrap" th:text="${post.content}"></p>
                         </div>
                         <div class="col-lg-1">
-                            <a th:href="@{/posts/{id}(id=${post.content})}" class="btn btn-floating pulse  pr-4">
+                            <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-floating pulse  pr-4">
                                 <i class="material-icons">arrow_forward</i>
                             </a>
                         </div>

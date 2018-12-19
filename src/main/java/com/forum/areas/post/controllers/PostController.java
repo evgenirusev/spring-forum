@@ -1,7 +1,8 @@
 package com.forum.areas.post.controllers;
 
-import com.forum.areas.category.models.binding.CategoryCreatePostViewModel;
+import com.forum.areas.category.models.binding.CategoryViewModel;
 import com.forum.areas.category.models.service.CategoryServiceModel;
+import com.forum.areas.comment.services.CommentService;
 import com.forum.areas.post.models.binding.CreatePostBindingModel;
 import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.areas.post.models.view.PostViewModel;
@@ -33,7 +34,7 @@ public class PostController extends BaseController {
 
     private final ModelMapper modelMapper;
 
-    private List<CategoryCreatePostViewModel> cacheCategoryViewModels;
+    private List<CategoryViewModel> cacheCategoryViewModels;
 
     @Autowired
     public PostController(PostService postService, CategoryService categoryService, UserService userService, ModelMapper modelMapper) {
@@ -55,10 +56,10 @@ public class PostController extends BaseController {
 
     @GetMapping("/create")
     public ModelAndView createPost(@ModelAttribute CreatePostBindingModel createPostBindingModel) {
-        List<CategoryCreatePostViewModel> categoryViewModels = new ArrayList<>();
+        List<CategoryViewModel> categoryViewModels = new ArrayList<>();
         this.categoryService.findAllCategories().forEach(categoryServiceModel -> {
-            CategoryCreatePostViewModel categoryViewModel =
-                    this.modelMapper.map(categoryServiceModel, CategoryCreatePostViewModel.class);
+            CategoryViewModel categoryViewModel =
+                    this.modelMapper.map(categoryServiceModel, CategoryViewModel.class);
             categoryViewModels.add(categoryViewModel);
         });
         this.cacheCategoryViewModels = categoryViewModels;
@@ -83,19 +84,18 @@ public class PostController extends BaseController {
         UserServiceModel userServiceModel = this.userService.findByUsername(authentication.getName());
         postServiceModel.setUser(userServiceModel);
         this.postService.create(postServiceModel);
-        return null;
+        // TODO: Implement Success Page
+        return super.redirect("/");
     }
 
-//     TODO: Refactor
-//    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-//    public ModelAndView findPostById(@PathVariable String id, Authentication authentication, ModelAndView modelAndView) {
-//        PostDto postDto = this.postService.findById(Long.parseLong(id));
-//        Set<CommentDto> commentSet = this.commentService.findById(postDto);
-//        modelAndView.addObject("post", postDto);
-//        modelAndView.addObject("comments", commentSet);
-//        return super.view("views/posts/post-by-id", "Post");
-//    }
-//
+    @GetMapping("/{id}")
+    public ModelAndView findPostById(@PathVariable Long id) {
+        PostServiceModel postServiceModel = this.postService.findById(id);
+        PostViewModel postViewModel = this.modelMapper.map(postServiceModel, PostViewModel.class);
+        return super.view("views/posts/post-by-id", postViewModel);
+    }
+
+//    TODO: refactor obsolete code
 //    @PostMapping("/{id}")
 //    public ModelAndView storeAnswer(@ModelAttribute CreateCommentDto createCommentDto,
 //                                    Authentication authentication,

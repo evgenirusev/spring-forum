@@ -1,6 +1,10 @@
 package com.forum.areas.post.models.view;
 
+import com.forum.areas.category.models.binding.CategoryViewModel;
+import com.forum.areas.comment.models.view.CommentViewModel;
 import com.forum.areas.user.models.view.UserViewModel;
+
+import java.util.Set;
 
 public class PostViewModel {
     private Long id;
@@ -10,6 +14,10 @@ public class PostViewModel {
     private String content;
 
     private UserViewModel user;
+
+    private Set<CategoryViewModel> categories;
+
+    private Set<CommentViewModel> comments;
 
     public Long getId() {
         return id;
@@ -41,5 +49,21 @@ public class PostViewModel {
 
     public void setUser(UserViewModel user) {
         this.user = user;
+    }
+
+    public Set<CategoryViewModel> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<CategoryViewModel> categories) {
+        this.categories = categories;
+    }
+
+    public Set<CommentViewModel> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<CommentViewModel> comments) {
+        this.comments = comments;
     }
 }

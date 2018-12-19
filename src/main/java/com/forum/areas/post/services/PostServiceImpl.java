@@ -52,10 +52,10 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto findById(Long id) {
-        Post post = this.postReposotory.getOne(id);
-        PostDto postDto = this.modelMapper.map(post, PostDto.class);
-        return postDto;
+    public PostServiceModel findById(Long id) {
+        Post post = this.postReposotory.findById(id).get();
+        PostServiceModel postServiceModel = this.modelMapper.map(post, PostServiceModel.class);
+        return postServiceModel;
     }
 
     @Override
