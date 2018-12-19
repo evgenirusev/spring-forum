@@ -8,7 +8,7 @@ public class CreatePostBindingModel {
     @Size(min = 4, max = 30, message = Constants.TITLE_LENGTH)
     private String title;
 
-    @Size(min = 8, max = 2000, message = Constants.CONTENT_LENGTH)
+    @Size(min = 8, max = 2000, message = Constants.POST_CONTENT_LENGTH)
     private String content;
 
     private Long[] categories;

@@ -24,6 +24,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public void create(CategoryServiceModel categoryServiceModel) {
+        Category category = this.modelMapper.map(categoryServiceModel, Category.class);
+        this.categoryRepository.save(category);
+    }
+
+    @Override
     public CategoryServiceModel findByName(String name) {
         Category category = this.categoryRepository.findByName(name);
         CategoryServiceModel categoryServiceModel = this.modelMapper.map(category, CategoryServiceModel.class);

@@ -1,9 +1,10 @@
 <div class="container view bg-white create-content" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1>Create New Category</h1>
     <form class="p-4" th:method="post" th:action="@{/categories/create}" th:object="${categoryBindingModel}">
-        <div class="form-group">
+        <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
             <label for="exampleFormControlInput1">Category Title</label>
             <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Title" th:field="*{name}">
+            <div class="text-danger" th:each="error : ${#fields.errors('name')}" th:text="${error}">Error Message</div>
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Description</label>

@@ -5,8 +5,7 @@ import com.forum.areas.category.models.service.CategoryServiceModel;
 import java.util.List;
 
 public interface CategoryService {
-//    TODO: refactor obsolete code
-//    void save(CreateCategoryDto createCategoryDto);
+    void create(CategoryServiceModel categoryServiceModel);
 
     CategoryServiceModel findByName(String name);
 

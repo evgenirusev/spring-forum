@@ -1,7 +1,11 @@
 package com.forum.areas.category.models.binding;
 
-public class CategoryBindingModel {
+import com.forum.constants.Constants;
 
+import javax.validation.constraints.Size;
+
+public class CategoryBindingModel {
+    @Size(min = 3, max = 20, message = Constants.CATEGORY_NAME_LENGTH)
     private String name;
 
     private String description;
