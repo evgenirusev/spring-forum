@@ -2,7 +2,7 @@
     <h1>Categories</h1>
     <hr class="hr-2 bg-light-green">
 
-    <th:block th:each="category : ${categories}">
+    <th:block th:each="category : ${viewModel}">
         <div class="list-group">
             <a th:href="@{/posts/category/{name}(name=${category.name})}" class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">

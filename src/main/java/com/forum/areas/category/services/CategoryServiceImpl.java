@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -37,8 +39,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryServiceModel> findAllCategories() {
-        List<CategoryServiceModel> categoryServiceModels = new ArrayList<>();
+    public Set<CategoryServiceModel> findAllCategories() {
+        Set<CategoryServiceModel> categoryServiceModels = new HashSet<>();
         this.categoryRepository.findAll().forEach(category -> {
             CategoryServiceModel serviceModel = this.modelMapper.map(category, CategoryServiceModel.class);
             categoryServiceModels.add(serviceModel);

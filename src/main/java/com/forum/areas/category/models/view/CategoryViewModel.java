@@ -1,5 +1,9 @@
 package com.forum.areas.category.models.view;
 
+import com.forum.areas.post.models.view.PostViewModel;
+
+import java.util.Set;
+
 public class CategoryViewModel {
 
     private Long id;
@@ -7,6 +11,8 @@ public class CategoryViewModel {
     private String name;
 
     private String description;
+
+    private Set<PostViewModel> posts;
 
     public Long getId() {
         return id;
@@ -30,5 +36,13 @@ public class CategoryViewModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<PostViewModel> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<PostViewModel> posts) {
+        this.posts = posts;
     }
 }
