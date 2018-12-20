@@ -1,0 +1,25 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+    <link rel="stylesheet" type="text/css" href="/css/exception-page.css"/>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="span12">
+            <div class="hero-unit center">
+                <h1>Page Not Found</h1>
+                <br/>
+                <p>There was an error with your request, please, try again. Use your
+                    browsers <b>Back</b> button to navigate to the page you have prevously come from</p>
+                <p><b>Or you could just press this neat little button:</b></p>
+                <a th:href="@{/}" class="btn btn-large btn-info bg-light-green"><i class="icon-home icon-white"></i> Take Me Home</a>
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+</body>
+</html>

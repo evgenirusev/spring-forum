@@ -115,3 +115,10 @@ ul.cats .badge {
 textarea.form-control {
     height: 100%;
 }
+
+.page-not-found {
+    display: block;
+    margin: auto;
+    width: 800px;
+    border-radius: 40px;
+}
