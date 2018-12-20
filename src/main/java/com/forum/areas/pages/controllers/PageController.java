@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class PagesController extends BaseController {
+public class PageController extends BaseController {
 
     @GetMapping("/")
     public ModelAndView index() {
