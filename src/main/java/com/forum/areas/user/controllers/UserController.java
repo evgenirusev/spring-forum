@@ -41,7 +41,8 @@ public class UserController extends BaseController {
             return super.view("views/users/register", "Register");
         }
 
-        this.userService.createUser(userRegisterBindingModel);
+        UserServiceModel userServiceModel = this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
+        this.userService.createUser(userServiceModel);
         return super.redirect("/login");
     }
 
@@ -56,11 +57,9 @@ public class UserController extends BaseController {
     public ModelAndView login(String error, ModelAndView mav) {
         mav.addObject("viewName", "/views/users/login");
         mav.setViewName("layout");
-
         if (error != null) {
             mav.addObject("error", "Wrong username or password");
         }
-
         return mav;
     }
 }

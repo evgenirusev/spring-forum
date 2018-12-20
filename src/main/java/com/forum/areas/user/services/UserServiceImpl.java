@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(UserRegisterBindingModel bindingModel) {
+    public void createUser(UserServiceModel bindingModel) {
         User userEntity = this.modelMapper.map(bindingModel, User.class);
         userEntity.setPassword(this.bCryptPasswordEncoder.encode(userEntity.getPassword()));
         userEntity.setAccountNonExpired(true);
