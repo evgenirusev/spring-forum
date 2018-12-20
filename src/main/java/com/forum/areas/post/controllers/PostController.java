@@ -15,6 +15,10 @@ import com.forum.areas.category.services.CategoryService;
 import com.forum.areas.post.services.PostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -50,13 +54,15 @@ public class PostController extends BaseController {
     }
 
     @GetMapping("/all")
-    public ModelAndView allPosts() {
-        List<PostViewModel> postViewModels = new ArrayList<>();
-        this.postService.findAllPosts().forEach(postServiceModel -> {
+    public ModelAndView allPosts(@PageableDefault(size = 10) Pageable pageable) {
+        Page<PostServiceModel> postServiceModels = this.postService.findAll(pageable);
+        List<PostViewModel> postViewModelList = new ArrayList<>();
+        postServiceModels.forEach(postServiceModel -> {
             PostViewModel postViewModel = this.modelMapper.map(postServiceModel, PostViewModel.class);
-            postViewModels.add(postViewModel);
+            postViewModelList.add(postViewModel);
         });
-        return super.view("views/posts/all", postViewModels);
+        Page<PostViewModel> postViewModelPages = new PageImpl<PostViewModel>(postViewModelList, pageable, postServiceModels .getTotalElements());
+        return super.view("views/posts/all", postViewModelPages);
     }
 
     @GetMapping("/create")

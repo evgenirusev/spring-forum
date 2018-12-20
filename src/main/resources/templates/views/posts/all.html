@@ -1,4 +1,4 @@
-<div xmlns:th="http://www.w3.org/1999/xhtml" class="container">
+<div class="container" xmlns:th="http://www.thymeleaf.org">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-8">
             <th:block th:each="post : ${viewModel}">
@@ -21,6 +21,25 @@
                     </div>
                 </div>
             </th:block>
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="!${viewModel.hasPrevious()} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="${viewModel.hasPrevious()} ? '/posts/all?page=' + ${viewModel.previousPageable().getPageNumber()}">
+                            Previous</a>
+                    </li>
+                    <li th:each="i : ${#numbers.sequence(0, viewModel.getTotalPages() - 1)}" class="page-item">
+                        <a class="page-link" th:href="|/posts/all?page=${i}|" th:text="${i + 1}"></a>
+                    </li>
+                    <li class="page-item"
+                        th:classappend="!${viewModel.hasNext()} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="${viewModel.hasNext()} ? '/posts/all?page=' + ${viewModel.nextPageable().getPageNumber()}">
+                            Next
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <th:block th:include="~{fragments/sidebar}"/>
     </div>

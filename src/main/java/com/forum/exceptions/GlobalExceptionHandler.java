@@ -15,6 +15,6 @@ public class GlobalExceptionHandler extends BaseController {
         String errorMessage = e.getClass().isAnnotationPresent(ResponseStatus.class)
                 ? e.getClass().getAnnotation(ResponseStatus.class).reason()
                 : DEFAULT_ERROR_MESSAGE;
-        return super.view("/views/exceptions/global", errorMessage, "Something Went Wrong");
+        return super.view("/errors/default", errorMessage, "Something Went Wrong");
     }
 }

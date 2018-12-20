@@ -6,6 +6,9 @@ import com.forum.areas.category.repositories.CategoryRepository;
 import com.forum.areas.post.repositories.PostReposotory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,11 +37,23 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostServiceModel> findAllPosts() {
+    public List<PostServiceModel> findAll() {
         List<PostServiceModel> postServiceModels = new ArrayList<>();
         this.postReposotory.findAll().forEach(post -> {
             postServiceModels.add(this.modelMapper.map(post, PostServiceModel.class));
         });
+        return postServiceModels;
+    }
+
+    @Override
+    public Page<PostServiceModel> findAll(Pageable pageable) {
+        Page<Post> posts = this.postReposotory.findAll(pageable);
+        List<PostServiceModel> postServiceModelList = new ArrayList<>();
+        posts.forEach(post -> {
+            PostServiceModel postServiceModel = this.modelMapper.map(post, PostServiceModel.class);
+            postServiceModelList.add(postServiceModel);
+        });
+        Page<PostServiceModel> postServiceModels = new PageImpl<PostServiceModel>(postServiceModelList, pageable, posts.getTotalElements());
         return postServiceModels;
     }
 
