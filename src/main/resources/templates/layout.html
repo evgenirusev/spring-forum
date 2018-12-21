@@ -5,15 +5,7 @@
 </head>
 <body>
 <header>
-    <div sec:authorize="hasAuthority('ADMIN')">
-        <th:block th:include="~{fragments/navbar/admin}"/>
-    </div>
-    <div sec:authorize="hasAuthority('USER') and !hasAuthority('ADMIN')">
-        <th:block th:include="~{fragments/navbar/user}"/>
-    </div>
-    <div sec:authorize="isAnonymous()">
-        <th:block th:include="~{fragments/navbar/guest}"/>
-    </div>
+        <th:block th:include="~{fragments/navbar/navbar}"/>
 </header>
 <main>
     <th:block th:include="~{fragments/header-main}"/>

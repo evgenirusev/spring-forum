@@ -1,0 +1,4 @@
+<a class="nav-link text-white d-inline-block" th:href="@{/categories/create}">Create Category</a>
+<a class="nav-link text-white d-inline-block" th:href="@{/users/{username}(username=${#authentication.getPrincipal().getUsername()})}"
+   th:text="|Admin ${#authentication.getPrincipal().getUsername()}|"></a>
+<a class="nav-link text-white d-inline-block" th:href="@{/logout}">Logout</a>
