@@ -22,6 +22,9 @@
             <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Your Email..."/>
             <div class="text-danger" id="emailHelp"  th:each="error : ${#fields.errors('email')}" th:text="${error}">Error Message</div>
         </div>
+        <div class="d-flex justify-content-around m-2">
+            <div class="g-recaptcha" data-sitekey="6Ld-boQUAAAAACY3mdTKCwEI3pABtLYWuIQqpYVs"></div>
+        </div>
         <div class="button-holder d-flex justify-content-around pb-2">
             <button type="submit" class="btn bg-light-green btn-info" th:text="#{nav.register}"></button>
         </div>
