@@ -53,7 +53,7 @@ public class CategoryController extends BaseController {
         return super.redirect("/categories/all");
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public ModelAndView allCategories() {
         Set<CategoryViewModel> categoryViewModels
                 = new TreeSet<CategoryViewModel>(Comparator.comparing(CategoryViewModel::getId));

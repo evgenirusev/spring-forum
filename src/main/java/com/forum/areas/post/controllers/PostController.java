@@ -53,7 +53,7 @@ public class PostController extends BaseController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public ModelAndView allPosts(@PageableDefault(size = 10) Pageable pageable) {
         Page<PostServiceModel> postServiceModels = this.postService.findAll(pageable);
         List<PostViewModel> postViewModelList = new ArrayList<>();

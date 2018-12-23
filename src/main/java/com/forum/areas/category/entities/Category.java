@@ -20,7 +20,7 @@ public class Category {
     private String description;
 
     @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
-    private Set<Post> posts = new HashSet<>();
+    private Set<Post> posts;
 
     public Category() {
     }

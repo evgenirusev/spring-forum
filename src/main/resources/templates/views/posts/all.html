@@ -25,16 +25,16 @@
                 <ul class="pagination">
                     <li class="page-item" th:classappend="!${viewModel.hasPrevious()} ? 'disabled'">
                         <a class="page-link"
-                           th:href="${viewModel.hasPrevious()} ? '/posts/all?page=' + ${viewModel.previousPageable().getPageNumber()}">
+                           th:href="${viewModel.hasPrevious()} ? '/posts/?page=' + ${viewModel.previousPageable().getPageNumber()}">
                             Previous</a>
                     </li>
                     <li th:each="i : ${#numbers.sequence(0, viewModel.getTotalPages() - 1)}" class="page-item">
-                        <a class="page-link" th:href="|/posts/all?page=${i}|" th:text="${i + 1}"></a>
+                        <a class="page-link" th:href="|/posts?page=${i}|" th:text="${i + 1}"></a>
                     </li>
                     <li class="page-item"
                         th:classappend="!${viewModel.hasNext()} ? 'disabled'">
                         <a class="page-link"
-                           th:href="${viewModel.hasNext()} ? '/posts/all?page=' + ${viewModel.nextPageable().getPageNumber()}">
+                           th:href="${viewModel.hasNext()} ? '/posts?page=' + ${viewModel.nextPageable().getPageNumber()}">
                             Next
                         </a>
                     </li>

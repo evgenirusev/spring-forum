@@ -5,7 +5,6 @@
         <div class="divline"></div>
         <div class="blocktxt">
             <ul class="cats p-0 m-0 list-unstyled">
-
                 <th:block th:each="categoryName : ${categoryNames}">
                     <a th:text="${categoryName}" th:href="@{/categories/{name}(name=${categoryName})}" class="list-group-item list-group-item-action"></a>
                 </th:block>

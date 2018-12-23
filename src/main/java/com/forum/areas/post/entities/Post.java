@@ -18,7 +18,7 @@ public class Post {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "content", nullable = false, length = 1000)
+    @Column(name = "content", nullable = false, length = 2000)
     private String content;
 
     @ManyToOne
@@ -39,7 +39,6 @@ public class Post {
             fetch = FetchType.EAGER
     )
     private Set<Comment> comments;
-
 
     public Post() {
     }

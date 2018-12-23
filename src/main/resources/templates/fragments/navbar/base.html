@@ -7,14 +7,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item text-white">
+                    <a class="nav-link text-white" th:href="@{/posts}">Posts</a>
                 </li>
                 <li class="nav-item text-white">
-                    <a class="nav-link text-white" th:href="@{/categories/all}">Categories</a>
-                </li>
-                <li class="nav-item text-white">
-                    <a class="nav-link text-white" th:href="@{/posts/all}">Posts</a>
+                    <a class="nav-link text-white" th:href="@{/categories}">Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" th:href="@{/contact}">Contact</a>
@@ -23,6 +20,16 @@
                     <a class="nav-link text-white" th:href="@{/about}">About</a>
                 </li>
             </ul>
+            <div class="dropdown show">
+                <a class="btn bg-white text-dark btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    EN
+                </a>
+                <div id="languageSelect" class="dropdown-menu bg-white" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item">EN</a>
+                    <a class="dropdown-item">BG</a>
+                    <a class="dropdown-item">DE</a>
+                </div>
+            </div>
             <div sec:authorize="isAnonymous()">
                 <th:block th:include="~{fragments/navbar/roles/guest}"/>
             </div>

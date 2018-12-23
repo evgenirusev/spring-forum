@@ -10,7 +10,7 @@ public class PageController extends BaseController {
 
     @GetMapping("/")
     public ModelAndView index() {
-        return super.view("views/index", "SpringAnswers");
+        return super.redirect("/posts");
     }
 
     @GetMapping("/contact")
@@ -21,10 +21,5 @@ public class PageController extends BaseController {
     @GetMapping("/about")
     public ModelAndView aboutPage() {
         return super.view("views/about", "About");
-    }
-
-    @GetMapping("/home")
-    public ModelAndView home() {
-        return super.view("views/index", "Home");
     }
 }
