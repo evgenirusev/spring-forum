@@ -1,62 +1,61 @@
-<div class="container bg-white" xmlns:th="http://www.w3.org/1999/xhtml">
+<div class="container bg-white mt-2 mb-4 p-4 rounded" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="row">
         <div class="col-sm-12 col-lg-12">
-            <h1 class="h1">
-                Contact
-            </h1>
-            <p>Feel free to contact us</p>
+            <h1 class="h1" th:text="#{contact}"></h1>
+            <p th:text="#{contact.description}"></p>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-8">
             <div class="well well-sm">
                 <form method="POST" action="http://localhost/laravel-forum/public/contact">
-                    <input type="hidden" name="_token" value="LFulLppUPi4e1arvRIR37crcafzyJ0ne6OyOV2FD">					<div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="name">
-                                Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required="required" />
-                        </div>
-                        <div class="form-group">
-                            <label for="email">
-                                Email Address</label>
-                            <div class="input-group">
-											<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                    <input type="hidden" name="_token" value="LFulLppUPi4e1arvRIR37crcafzyJ0ne6OyOV2FD">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name" tb:text="#{contact.name}"></label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"
+                                       required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" th:text="#{email}"></label>
+                                <div class="input-group">
+											<span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-envelope"></span>
 										</span>
-                                <input id="email" type="email" class="form-control" name="email" placeholder="Enter email" required="required" /></div>
+                                    <input id="email" type="email" class="form-control" name="email"
+                                           placeholder="Enter email" required="required"/></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" th:text="#{contact.select.choose.one}"></label>
+                                <select id="subject" name="subject" class="form-control" required="required">
+                                    <option value="na" selected="" th:text="#{contact.select.choose.one}"></option>
+                                    <option value="suggestions" th:text="#{contact.select.suggestions}"></option>
+                                    <option value="product" th:text="#{contact.select.product.support}"></option>
+                                    <option value="other" th:text="#{contact.select.other}"></option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="subject">
-                                Subject</label>
-                            <select id="subject" name="subject" class="form-control" required="required">
-                                <option value="na" selected="">Choose One:</option>
-                                <option value="suggestions">Suggestions</option>
-                                <option value="product">Product Support</option>
-                                <option value="other">Other</option>
-                            </select>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name" th:text="#{contact.message}"></label>
+                                <textarea name="message" id="message" class="form-control" rows="9" cols="25"
+                                          required="required"
+                                          th:placeholder="#{contact.message}"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn bg-light-green btn-info pull-right">
+                                Send Message
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="name">
-                                Message</label>
-                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                                      placeholder="Message"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <button type="submit" class="btn bg-light-green btn-info pull-right">
-                            Send Message</button>
-                    </div>
-                </div>
                 </form>
             </div>
         </div>
         <div class="col-md-4">
             <form>
-                <legend><span class="glyphicon glyphicon-globe"></span>Our Details</legend>
+                <legend th:text="#{contact.our.details}"><span class="glyphicon glyphicon-globe"></span></legend>
                 <address>
                     <strong>Rusev Web Services</strong><br>
                     Plovdiv, Bulgaria<br>
@@ -66,11 +65,10 @@
                     +359 123 4566
                 </address>
                 <address>
-                    <strong>Email</strong><br>
+                    <strong th:text="#{email}"></strong><br>
                     <a href="mailto:#">evg.rusev@gmail.com</a>
                 </address>
             </form>
         </div>
     </div>
-
 </div>

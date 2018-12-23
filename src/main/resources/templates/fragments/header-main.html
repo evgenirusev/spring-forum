@@ -1,8 +1,7 @@
 <div class="header-nav" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="container">
-        <a class="nav-link text-white" th:href="@{/posts/create}">
-            <button class="btn btn-info bg-light-green header-button " type="button">
-                Create A Question
+    <div class="container-fluid d-flex justify-content-around">
+        <a class="nav-link  text-white" th:href="@{/posts/create}">
+            <button class="btn btn-info bg-light-green header-button " type="button" th:text="#{header.create.post}">
             </button>
         </a>
     </div>
