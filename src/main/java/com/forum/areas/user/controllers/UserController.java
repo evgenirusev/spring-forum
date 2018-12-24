@@ -1,5 +1,6 @@
 package com.forum.areas.user.controllers;
 
+import com.forum.areas.recaptcha.service.RecaptchaService;
 import com.forum.areas.user.models.binding.UserRegisterBindingModel;
 import com.forum.areas.user.models.service.UserServiceModel;
 import com.forum.abstractions.controller.BaseController;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -19,11 +21,14 @@ public class UserController extends BaseController {
 
     private final UserService userService;
 
+    private final RecaptchaService recaptchaService;
+
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService, RecaptchaService recaptchaService, ModelMapper modelMapper) {
         this.userService = userService;
+        this.recaptchaService = recaptchaService;
         this.modelMapper = modelMapper;
     }
 
@@ -32,12 +37,14 @@ public class UserController extends BaseController {
         return super.view("views/users/register", "Register");
     }
 
-
     @PostMapping("/register")
     public ModelAndView registerConfirm(@Valid @ModelAttribute UserRegisterBindingModel userRegisterBindingModel,
+                                        @RequestParam(name = "g-recaptcha-response") String gRecaptchaResponse,
+                                        HttpServletRequest request,
                                         BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() ||
+                !this.recaptchaService.verifyRecaptcha(request.getRemoteAddr(), gRecaptchaResponse).equals("success")) {
             return super.view("views/users/register", "Register");
         }
 

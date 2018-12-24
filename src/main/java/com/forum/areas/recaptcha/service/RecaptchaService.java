@@ -1,4 +1,5 @@
 package com.forum.areas.recaptcha.service;
 
-public class RecaptchaService {
+public interface RecaptchaService {
+    String verifyRecaptcha(String userIpAddress, String gRecaptchaResponse);
 }

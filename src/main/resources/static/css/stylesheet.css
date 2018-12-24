@@ -1,6 +1,7 @@
 body {
-    background-color: #E4E2DD;
+    background-color: #E4E2DD!important;
     overflow-x: hidden;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .bg-green {
@@ -23,7 +24,7 @@ body {
     width: 40%;
 }
 
-.view {
+.container {
     min-height: 400px;
     margin-bottom: 30px;
     border-radius: 15px;
@@ -54,6 +55,7 @@ body {
     box-shadow: 0 1px 2px #c9cccd;
     margin-bottom: 20px;
 }
+
 .sidebarblock h3 {
     color: #363838;
     font-size: 14px;
@@ -121,4 +123,8 @@ textarea.form-control {
     margin: auto;
     width: 800px;
     border-radius: 40px;
+}
+
+i {
+    font-size: 24px;
 }
