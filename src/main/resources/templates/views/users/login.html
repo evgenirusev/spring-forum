@@ -21,5 +21,13 @@
         <div class="button-holder d-flex justify-content-around">
             <button type="submit" class="btn btn-info bg-light-green" th:text="#{nav.login}"></button>
         </div>
+        <div class="social-holder d-flex justify-content-around mt-3">
+            <form action="/signin/facebook" method="POST">
+                <input type="hidden" name="scope" value="public_profile" />
+                <button type="submit" class="btn btn-facebook">
+                    <i class="fa fa-facebook"></i>
+                </button>
+            </form>
+        </div>
     </form>
 </div>
