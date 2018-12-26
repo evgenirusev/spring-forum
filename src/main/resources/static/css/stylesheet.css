@@ -4,18 +4,6 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.bg-green {
-    background-color: #009688;
-}
-
-.bg-light-green {
-    background-color: #1abc9c;
-}
-
-.bg-dark-green {
-    background-color: #00786D;;
-}
-
 .hr-2 {
     height: 2px;
 }
@@ -100,17 +88,6 @@ ul.cats .badge {
     margin: 20px 5px 0px 0;
 }
 
-
-.btn-info {
-    box-shadow: none;
-    border-radius: 2px;
-    padding: 10px 15px;
-    color: #ffffff;
-    font-size: 14px;
-    font-family: 'Open Sans Bold', sans-serif;
-    border: none;
-}
-
 textarea.form-control {
     height: 100%;
 }
@@ -122,6 +99,26 @@ textarea.form-control {
     border-radius: 40px;
 }
 
-i {
-    font-size: 24px;
+.bg-green {
+    background-color: #009688;
+}
+
+.bg-light-green {
+    background-color: #1abc9c!important;
+}
+
+.text-light-green {
+    color: #1abc9c!important;
+}
+
+.bg-dark-green {
+    background-color: #00786D;;
+}
+
+.fa {
+    font-size: 30px;
+}
+
+a {
+    text-decoration: none !important;
 }

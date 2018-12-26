@@ -4,6 +4,7 @@ import com.forum.areas.recaptcha.service.RecaptchaService;
 import com.forum.areas.user.models.binding.UserRegisterBindingModel;
 import com.forum.areas.user.models.service.UserServiceModel;
 import com.forum.abstractions.controller.BaseController;
+import com.forum.areas.user.models.view.UserProfileViewModel;
 import com.forum.areas.user.models.view.UserViewModel;
 import com.forum.areas.user.services.UserService;
 import org.modelmapper.ModelMapper;
@@ -56,8 +57,9 @@ public class UserController extends BaseController {
     @GetMapping("/users/{username}")
     public ModelAndView userProfile(@PathVariable String username) {
         UserServiceModel userServiceModel = this.userService.findByUsername(username);
-        UserViewModel userViewModel = this.modelMapper.map(userServiceModel, UserViewModel.class);
-        return super.view("/views/users/profile", userViewModel);
+        UserProfileViewModel userProfileViewModel = this.modelMapper.map(userServiceModel, UserProfileViewModel.class);
+
+        return super.view("/views/users/profile", userProfileViewModel);
     }
 
     @GetMapping("/login")

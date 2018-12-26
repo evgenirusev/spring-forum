@@ -9,6 +9,7 @@ import com.forum.areas.post.models.binding.CreatePostBindingModel;
 import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.areas.post.models.view.PostViewModel;
 import com.forum.areas.user.models.service.UserServiceModel;
+import com.forum.areas.user.models.view.UserViewModel;
 import com.forum.areas.user.services.UserService;
 import com.forum.abstractions.controller.BaseController;
 import com.forum.areas.category.services.CategoryService;
@@ -56,7 +57,6 @@ public class PostController extends BaseController {
     @GetMapping("")
     public ModelAndView allPosts(@PageableDefault(size = 10) Pageable pageable, @RequestParam(value = "search", required = false) String searchGetParameter) {
         Page<PostServiceModel> postServiceModels;
-
         if (searchGetParameter != null) {
             postServiceModels = this.postService.findAllByName(searchGetParameter, pageable);
         } else {
@@ -68,6 +68,7 @@ public class PostController extends BaseController {
             PostViewModel postViewModel = this.modelMapper.map(postServiceModel, PostViewModel.class);
             postViewModelList.add(postViewModel);
         });
+
         Page<PostViewModel> postViewModelPages = new PageImpl<PostViewModel>(postViewModelList, pageable, postServiceModels .getTotalElements());
         return super.view("views/posts/all", postViewModelPages);
     }

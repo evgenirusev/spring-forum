@@ -11,8 +11,8 @@
             </div>
             <th:block th:each="comment : *{comments}">
                 <hr>
-                <div class="bg-white post col-md-12 row m-auto">
-                    <div class="avatar mt-4 col-sm-1 col-md-1"><img class="rounded-circle" src="/img/img_avatar2.png" height="512" width="512"/></div>
+                <div class="bg-white post col-md-12 row m-auto pb-5">
+                    <div class="avatar mt-4 col-sm-1 col-md-1"><img class="rounded-circle" src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
                     <div class="text-wrap col-xs-11 col-sm-11 col-md-10 pt-4">
                         <p class="post-title" th:text="${comment.content}"></p>
                     </div>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </th:block>
-            <div sec:authorize="hasAuthority('USER')">
+            <div sec:authorize="${isAuthenticated()}">
                 <th:block th:include="~{fragments/comment-form}"></th:block>
             </div>
         </div>

@@ -11,13 +11,15 @@
                         </div>
                         <div class="col-lg-1">
                             <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-floating pulse  pr-4">
-                                <i class="fa far fa-arrow-circle-right text-info"></i>
+                                <i class="fa fal fa-arrow-circle-right text-light-green"></i>
                             </a>
                         </div>
                     </div>
                     <div class="d-flex flex-row-reverse w-100 avatar pr-3">
-                        <p th:text="${post.user.username}"></p>
-                        <img src="/img/avatar__181424 (2).png" height="512" width="512"/>
+                        <a th:href="|/users/${post.user.username}|">
+                            <p th:text="${post.user.username}" class="text-dark d-inline-block"></p>
+                            <img src="/img/avatar__181424 (2).png" heght="512" width="512" class="d-inline-block"/>
+                        </a>
                     </div>
                 </div>
             </th:block>

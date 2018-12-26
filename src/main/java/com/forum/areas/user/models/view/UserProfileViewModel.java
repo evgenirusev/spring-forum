@@ -1,16 +1,19 @@
 package com.forum.areas.user.models.view;
 
-import com.forum.areas.comment.models.service.CommentServiceModel;
+import com.forum.areas.comment.models.view.CommentViewModel;
 import com.forum.areas.post.models.view.PostViewModel;
 
 import java.util.Set;
 
-public class UserViewModel {
+public class UserProfileViewModel {
+
     private String username;
 
     private String email;
 
     private Set<PostViewModel> posts;
+
+    private Set<CommentViewModel> comments;
 
     public String getUsername() {
         return username;
@@ -34,5 +37,13 @@ public class UserViewModel {
 
     public void setPosts(Set<PostViewModel> posts) {
         this.posts = posts;
+    }
+
+    public Set<CommentViewModel> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<CommentViewModel> comments) {
+        this.comments = comments;
     }
 }
