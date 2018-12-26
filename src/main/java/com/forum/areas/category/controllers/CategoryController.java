@@ -50,7 +50,7 @@ public class CategoryController extends BaseController {
         DataCacheSingleton.getInstance().addCategory(this.modelMapper.map(categoryServiceModel,
                 CategoryNamesViewModel.class));
 
-        return super.redirect("/categories/all");
+        return super.redirect("/categories");
     }
 
     @GetMapping("")

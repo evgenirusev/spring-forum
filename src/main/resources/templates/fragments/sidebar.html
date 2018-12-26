@@ -1,14 +1,18 @@
 <div class="col-sm-12 col-md-12 col-lg-4">
-    <!-- -->
     <div class="sidebarblock">
         <h3 th:text="#{categories}"></h3>
-        <div class="divline"></div>
-        <div class="blocktxt">
-            <ul class="cats p-0 m-0 list-unstyled">
-                <th:block th:each="categoryName : ${categoryNames}">
-                    <a th:text="${categoryName}" th:href="@{/categories/{name}(name=${categoryName})}" class="list-group-item list-group-item-action"></a>
-                </th:block>
-            </ul>
+        <div th:if="${#sets.size(categoryNames) > 0}">
+            <div class="divline"></div>
+            <div class="blocktxt">
+                <ul class="cats p-0 m-0 list-unstyled">
+                    <th:block th:each="categoryName : ${categoryNames}">
+                        <a th:text="${categoryName}" th:href="@{/categories/{name}(name=${categoryName})}" class="list-group-item list-group-item-action"></a>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+        <div th:unless="${#sets.size(categoryNames) > 0}">
+            <p class="text-secondary p-3">There are no categories yet. Consider creating one yourself by logging in as administrator.</p>
         </div>
     </div>
     <div class="sidebarblock">

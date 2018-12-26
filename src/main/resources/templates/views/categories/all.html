@@ -2,16 +2,21 @@
     <h1 th:text="#{categories}"></h1>
     <hr class="hr-2 bg-light-green">
 
-    <th:block th:each="category : ${viewModel}">
-        <div class="list-group">
-            <a th:href="@{/categories/{name}(name=${category.name})}" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 th:text="${category.name}" class="mb-1"></h5>
-                </div>
-                <span th:text="${#sets.size(category.posts)}" class="badge badge-pill bg-light-green text-white float-right"></span>
-                <p th:text="${category.description}" class="mb-1"></p>
-                <small class="text-muted">Created: 1 hour ago</small>
-            </a>
-        </div>
-    </th:block>
+    <div th:if="${#sets.size(viewModel) > 0}">
+        <th:block th:each="category : ${viewModel}">
+            <div class="list-group">
+                <a th:href="@{/categories/{name}(name=${category.name})}" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 th:text="${category.name}" class="mb-1"></h5>
+                    </div>
+                    <span th:text="${#sets.size(category.posts)}" class="badge badge-pill bg-light-green text-white float-right"></span>
+                    <p th:text="${category.description}" class="mb-1"></p>
+                    <small class="text-muted">Created: 1 hour ago</small>
+                </a>
+            </div>
+        </th:block>
+    </div>
+    <div th:unless="${#sets.size(viewModel) > 0}">
+        <h4 class="text-secondary">There are no categories yet. Consider creating one yourself by logging in as administrator.</h4>
+    </div>
 </div>
