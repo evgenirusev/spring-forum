@@ -122,3 +122,14 @@ textarea.form-control {
 a {
     text-decoration: none !important;
 }
+
+/*Refactor*/
+.authentication {
+    width: 40%!important;
+}
+
+@media only screen and (max-width: 950px) {
+    .authentication {
+        width: 100%!important;
+    }
+}
