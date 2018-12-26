@@ -10,11 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class GlobalExceptionHandler extends BaseController {
     private static final String DEFAULT_ERROR_MESSAGE = "There was an error with your request.";
 
-    @ExceptionHandler(RuntimeException.class)
-    public ModelAndView getException(RuntimeException e) {
+    @ExceptionHandler(value = {Exception.class, RuntimeException.class})
+    public ModelAndView getException(Exception e) {
         String errorMessage = e.getClass().isAnnotationPresent(ResponseStatus.class)
                 ? e.getClass().getAnnotation(ResponseStatus.class).reason()
                 : DEFAULT_ERROR_MESSAGE;
-        return super.view("/errors/default", errorMessage, "Something Went Wrong");
+        return super.view("/error/default", errorMessage, "Something Went Wrong");
     }
 }

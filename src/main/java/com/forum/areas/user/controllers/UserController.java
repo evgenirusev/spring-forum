@@ -44,9 +44,12 @@ public class UserController extends BaseController {
                                         @RequestParam(name = "g-recaptcha-response") String gRecaptchaResponse,
                                         HttpServletRequest request) {
 
-        if (bindingResult.hasErrors() ||
-                !this.recaptchaService.verifyRecaptcha(request.getRemoteAddr(), gRecaptchaResponse).equals("success")) {
+        if (bindingResult.hasErrors()) {
             return super.view("views/users/register", "Register");
+        }
+
+        if (!this.recaptchaService.verifyRecaptcha(request.getRemoteAddr(), gRecaptchaResponse).equals("success")) {
+            return super.redirect("/register");
         }
 
         UserServiceModel userServiceModel = this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
@@ -58,7 +61,6 @@ public class UserController extends BaseController {
     public ModelAndView userProfile(@PathVariable String username) {
         UserServiceModel userServiceModel = this.userService.findByUsername(username);
         UserProfileViewModel userProfileViewModel = this.modelMapper.map(userServiceModel, UserProfileViewModel.class);
-
         return super.view("/views/users/profile", userProfileViewModel);
     }
 

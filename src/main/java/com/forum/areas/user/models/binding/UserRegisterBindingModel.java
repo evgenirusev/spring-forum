@@ -11,11 +11,11 @@ import javax.validation.constraints.Size;
 
 @IsPasswordMatching
 public class UserRegisterBindingModel {
-    @Size(min = 4,max = 20,message = Constants.USERNAME_LENGTH)
+    @Size(min = 4, max = 20, message = Constants.USERNAME_LENGTH)
     @IsUsernameTaken
     private String username;
 
-    @Size(min = 4,max = 30,message = Constants.PASSWORD_LENGTH)
+    @Size(min = 4, max = 30, message = Constants.PASSWORD_LENGTH)
     private String password;
 
     private String confirmPassword;
