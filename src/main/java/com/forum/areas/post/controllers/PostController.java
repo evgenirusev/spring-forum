@@ -9,7 +9,6 @@ import com.forum.areas.post.models.binding.CreatePostBindingModel;
 import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.areas.post.models.view.PostViewModel;
 import com.forum.areas.user.models.service.UserServiceModel;
-import com.forum.areas.user.models.view.UserViewModel;
 import com.forum.areas.user.services.UserService;
 import com.forum.abstractions.controller.BaseController;
 import com.forum.areas.category.services.CategoryService;
@@ -76,7 +75,7 @@ public class PostController extends BaseController {
     @GetMapping("/create")
     public ModelAndView createPost(@ModelAttribute CreatePostBindingModel createPostBindingModel) {
         List<CategoryViewModel> categoryViewModels = new ArrayList<>();
-        this.categoryService.findAllCategories().forEach(categoryServiceModel -> {
+        this.categoryService.findAll().forEach(categoryServiceModel -> {
             CategoryViewModel categoryViewModel =
                     this.modelMapper.map(categoryServiceModel, CategoryViewModel.class);
             categoryViewModels.add(categoryViewModel);

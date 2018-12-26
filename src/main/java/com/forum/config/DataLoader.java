@@ -42,12 +42,12 @@ public class DataLoader implements ApplicationRunner {
             this.roleService.addRole(roleServiceModel);
         }
 
-        List<CategoryNamesViewModel> categoryDtos = new ArrayList<>();
-        this.categoryService.findAllCategories().forEach(category -> {
+        List<CategoryNamesViewModel> categoryNames = new ArrayList<>();
+        this.categoryService.findAllNames().forEach(categoryName -> {
             CategoryNamesViewModel categoryNamesViewModel = new CategoryNamesViewModel();
-            categoryNamesViewModel.setName(category.getName());
-            categoryDtos.add(categoryNamesViewModel);
+            categoryNamesViewModel.setName(categoryName);
+            categoryNames.add(categoryNamesViewModel);
         });
-        DataCacheSingleton.getInstance().addCategories(categoryDtos);
+        DataCacheSingleton.getInstance().addCategories(categoryNames);
     }
 }

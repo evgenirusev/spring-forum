@@ -57,7 +57,7 @@ public class CategoryController extends BaseController {
     public ModelAndView allCategories() {
         Set<CategoryViewModel> categoryViewModels
                 = new TreeSet<CategoryViewModel>(Comparator.comparing(CategoryViewModel::getId));
-        this.categoryService.findAllCategories().forEach(categoryServiceModel -> {
+        this.categoryService.findAll().forEach(categoryServiceModel -> {
             CategoryViewModel categoryViewModel = this.modelMapper.map(categoryServiceModel, CategoryViewModel.class);
             categoryViewModels.add(categoryViewModel);
         });

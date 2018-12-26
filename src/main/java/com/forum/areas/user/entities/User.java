@@ -24,7 +24,6 @@ public class User implements UserDetails {
     private Set<Comment> comments;
     private Set<Post> posts;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
