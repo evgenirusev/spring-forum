@@ -6,36 +6,15 @@
             <div class="blocktxt">
                 <ul class="cats p-0 m-0 list-unstyled">
                     <th:block th:each="categoryName : ${categoryNames}">
-                        <a th:text="${categoryName}" th:href="@{/categories/{name}(name=${categoryName})}" class="list-group-item list-group-item-action"></a>
+                        <a th:text="${categoryName}" th:href="@{/categories/{name}(name=${categoryName})}"
+                           class="list-group-item list-group-item-action"></a>
                     </th:block>
                 </ul>
             </div>
         </div>
         <div th:unless="${#sets.size(categoryNames) > 0}">
-            <p class="text-secondary p-3">There are no categories yet. Consider creating one yourself by logging in as administrator.</p>
-        </div>
-    </div>
-    <div class="sidebarblock">
-        <h3>My Active Threads</h3>
-        <div class="divline"></div>
-        <div class="blocktxt">
-            <a href="#">This Dock Turns Your iPhone Into a Bedside Lamp</a>
-        </div>
-        <div class="divline"></div>
-        <div class="blocktxt">
-            <a href="#">Who Wins in the Battle for Power on the Internet?</a>
-        </div>
-        <div class="divline"></div>
-        <div class="blocktxt">
-            <a href="#">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
-        </div>
-        <div class="divline"></div>
-        <div class="blocktxt">
-            <a href="#">FedEx Simplifies Shipping for Small Businesses</a>
-        </div>
-        <div class="divline"></div>
-        <div class="blocktxt">
-            <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
+            <p class="text-secondary p-3">There are no categories yet. Consider creating one yourself by logging in as
+                administrator.</p>
         </div>
     </div>
 </div>
