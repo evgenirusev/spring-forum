@@ -58,6 +58,19 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Page<PostServiceModel> findAllByName(String name, Pageable pageable) {
+        Page<Post> posts = this.postReposotory.findAllByTitleContaining(name, pageable);
+
+        List<PostServiceModel> postServiceModelList = new ArrayList<>();
+        posts.forEach(post -> {
+            PostServiceModel postServiceModel = this.modelMapper.map(post, PostServiceModel.class);
+            postServiceModelList.add(postServiceModel);
+        });
+        Page<PostServiceModel> postServiceModels = new PageImpl<PostServiceModel>(postServiceModelList, pageable, posts.getTotalElements());
+        return postServiceModels;
+    }
+
+    @Override
     public PostServiceModel findById(Long id) {
         Post post = this.postReposotory.findById(id).get();
         PostServiceModel postServiceModel = this.modelMapper.map(post, PostServiceModel.class);

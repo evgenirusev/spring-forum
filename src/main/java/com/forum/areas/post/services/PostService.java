@@ -14,5 +14,7 @@ public interface PostService {
 
     Page<PostServiceModel> findAll(Pageable pageable);
 
+    Page<PostServiceModel> findAllByName(String name, Pageable pageable);
+
     PostServiceModel findById(Long id);
 }

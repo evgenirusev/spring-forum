@@ -54,8 +54,15 @@ public class PostController extends BaseController {
     }
 
     @GetMapping("")
-    public ModelAndView allPosts(@PageableDefault(size = 10) Pageable pageable) {
-        Page<PostServiceModel> postServiceModels = this.postService.findAll(pageable);
+    public ModelAndView allPosts(@PageableDefault(size = 10) Pageable pageable, @RequestParam(value = "search", required = false) String searchGetParameter) {
+        Page<PostServiceModel> postServiceModels;
+
+        if (searchGetParameter != null) {
+            postServiceModels = this.postService.findAllByName(searchGetParameter, pageable);
+        } else {
+            postServiceModels = this.postService.findAll(pageable);
+        }
+
         List<PostViewModel> postViewModelList = new ArrayList<>();
         postServiceModels.forEach(postServiceModel -> {
             PostViewModel postViewModel = this.modelMapper.map(postServiceModel, PostViewModel.class);

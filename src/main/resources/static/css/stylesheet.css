@@ -32,12 +32,9 @@ body {
 }
 
 .header-nav {
-    width: 100%;
     background-color: #FFFFFF;
-    padding: 10px;
-    min-height: 70px;
+    min-height: 60px;
     border-bottom: 1px solid #b9bbbe;
-    margin-bottom: 20px;
 }
 
 .post {

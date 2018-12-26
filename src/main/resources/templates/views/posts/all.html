@@ -43,9 +43,13 @@
                     </ul>
                 </nav>
             </div>
-            <div th:unless="${viewModel.getTotalElements()} > 0">
-                <hr>
-                <h4 class="text-secondary">There are no posts yet. Consider creating one yourself!</h3>
+           <div th:if="${param.search != null} and !(${viewModel.getTotalElements()} > 0)">
+               <h4 class="text-secondary">There are no posts matching your criteria: "<b><span th:text="${param.search}"></span></b>"</h4>
+               <hr class="bg-light-green hr-2">
+           </div>
+            <div th:if="${param.search == null} and !(${viewModel.getTotalElements()} > 0)">
+                <h4 class="text-secondary">There are no posts yet. Consider creating one yourself!</h4>
+                <hr class="bg-light-green hr-2">
             </div>
         </div>
         <th:block th:include="~{fragments/sidebar}"/>
