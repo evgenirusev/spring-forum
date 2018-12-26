@@ -22,6 +22,8 @@ public class UserServiceModel {
 
     private Set<CommentServiceModel> comments;
 
+    private boolean admin;
+
     public Long getId() {
         return id;
     }
@@ -76,5 +78,13 @@ public class UserServiceModel {
 
     public void setComments(Set<CommentServiceModel> comments) {
         this.comments = comments;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

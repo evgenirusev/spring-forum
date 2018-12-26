@@ -21,25 +21,32 @@
                     </div>
                 </div>
             </th:block>
-            <nav aria-label="Pagination">
-                <ul class="pagination">
-                    <li class="page-item" th:classappend="!${viewModel.hasPrevious()} ? 'disabled'">
-                        <a class="page-link"
-                           th:href="${viewModel.hasPrevious()} ? '/posts/?page=' + ${viewModel.previousPageable().getPageNumber()}">
-                            Previous</a>
-                    </li>
-                    <li th:each="i : ${#numbers.sequence(0, viewModel.getTotalPages() - 1)}" class="page-item">
-                        <a class="page-link" th:href="|/posts?page=${i}|" th:text="${i + 1}"></a>
-                    </li>
-                    <li class="page-item"
-                        th:classappend="!${viewModel.hasNext()} ? 'disabled'">
-                        <a class="page-link"
-                           th:href="${viewModel.hasNext()} ? '/posts?page=' + ${viewModel.nextPageable().getPageNumber()}">
-                            Next
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+
+            <div th:if="${viewModel.getTotalElements()} > 0">
+                <nav aria-label="Pagination">
+                    <ul class="pagination">
+                        <li class="page-item" th:classappend="!${viewModel.hasPrevious()} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="${viewModel.hasPrevious()} ? '/posts/?page=' + ${viewModel.previousPageable().getPageNumber()}">
+                                Previous</a>
+                        </li>
+                        <li th:each="i : ${#numbers.sequence(0, viewModel.getTotalPages() - 1)}" class="page-item">
+                            <a class="page-link" th:href="|/posts?page=${i}|" th:text="${i + 1}"></a>
+                        </li>
+                        <li class="page-item"
+                            th:classappend="!${viewModel.hasNext()} ? 'disabled'">
+                            <a class="page-link"
+                               th:href="${viewModel.hasNext()} ? '/posts?page=' + ${viewModel.nextPageable().getPageNumber()}">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div th:unless="${viewModel.getTotalElements()} > 0">
+                <hr>
+                <h4 class="text-secondary">There are no posts yet. Consider creating one yourself!</h3>
+            </div>
         </div>
         <th:block th:include="~{fragments/sidebar}"/>
     </div>

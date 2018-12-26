@@ -20,6 +20,8 @@ public class UserRegisterBindingModel {
 
     private String confirmPassword;
 
+    private boolean admin;
+
     @NotEmpty(message = Constants.ENTER_VALID_EMAIL)
     @Email(message = Constants.ENTER_VALID_EMAIL)
     @IsEmailRegistered
@@ -58,5 +60,13 @@ public class UserRegisterBindingModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

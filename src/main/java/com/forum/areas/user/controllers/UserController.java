@@ -39,9 +39,9 @@ public class UserController extends BaseController {
 
     @PostMapping("/register")
     public ModelAndView registerConfirm(@Valid @ModelAttribute UserRegisterBindingModel userRegisterBindingModel,
+                                        BindingResult bindingResult,
                                         @RequestParam(name = "g-recaptcha-response") String gRecaptchaResponse,
-                                        HttpServletRequest request,
-                                        BindingResult bindingResult) {
+                                        HttpServletRequest request) {
 
         if (bindingResult.hasErrors() ||
                 !this.recaptchaService.verifyRecaptcha(request.getRemoteAddr(), gRecaptchaResponse).equals("success")) {

@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -40,15 +43,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(UserServiceModel bindingModel) {
-        User userEntity = this.modelMapper.map(bindingModel, User.class);
+    public void createUser(UserServiceModel userServiceModel) {
+        User userEntity = this.modelMapper.map(userServiceModel, User.class);
         userEntity.setPassword(this.bCryptPasswordEncoder.encode(userEntity.getPassword()));
         userEntity.setAccountNonExpired(true);
         userEntity.setAccountNonLocked(true);
         userEntity.setCredentialsNonExpired(true);
         userEntity.setEnabled(true);
 
-        RoleServiceModel roleServiceModel = this.roleService.findByAuthority("USER");
+        RoleServiceModel roleServiceModel = this.roleService.findByAuthority(userServiceModel.isAdmin() ? "ADMIN" : "USER");
         Role role  = this.modelMapper.map(roleServiceModel, Role.class);
 
         userEntity.addRole(role);
