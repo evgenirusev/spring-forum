@@ -1,4 +1,4 @@
-<div class="container" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" >
+<div class="container" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="row view">
         <div class="col-sm-12 col-md-12 col-lg-8" th:object="${viewModel}">
             <div class="post bg-white row">
@@ -8,16 +8,35 @@
                     <h4 class="post-title" th:text="*{title}"></h4>
                     <p class="text-wrap" th:text="*{content}"></p>
                 </div>
+                <div class="row w-100">
+                    <th:block th:if="${#authentication.name} == *{user.username}">
+                        <a class="col-sm-4 text-center" th:href="@{/posts/{id}/edit(id=*{id})}">
+                            <span class="text-white p-1 rounded bg-light-green">Edit</span>
+                        </a>
+                        <a class="col-sm-4 text-center" th:href="@{/posts/{id}/delete(id=*{id})}">
+                            <span class="text-white p-1 text-center rounded bg-danger">Delete</span>
+                        </a>
+                    </th:block>
+                    <th:block th:unless="${#authentication.name} == *{user.username}">
+                        <div class="offset-sm-8"></div>
+                    </th:block>
+                    <a class="col-sm-4 text-center" th:href="@{/users/{username}(username=*{user.username})}">
+                        <i th:text="|Author: *{user.username}|"></i>
+                    </a>
+                </div>
             </div>
             <th:block th:each="comment : *{comments}">
                 <hr>
                 <div class="bg-white post col-md-12 row m-auto pb-5">
-                    <div class="avatar mt-4 col-sm-1 col-md-1"><img class="rounded-circle" src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
+                    <div class="avatar mt-4 col-sm-1 col-md-1"><img class="rounded-circle"
+                                                                    src="/img/avatar__181424 (2).png" height="512"
+                                                                    width="512"/></div>
                     <div class="text-wrap col-xs-11 col-sm-11 col-md-10 pt-4">
                         <p class="post-title" th:text="${comment.content}"></p>
                     </div>
                     <div class="d-flex flex-row-reverse w-100 hr-2">
-                        <p th:text="|Answered By: ${comment.user.username}|"></p>
+                        <a th:href="@{/users/{username}(username=${comment.user.username})}"><i
+                                th:text="|Answered By: ${comment.user.username}|"></i></a>
                     </div>
                 </div>
             </th:block>
