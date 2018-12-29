@@ -4,7 +4,6 @@ import com.forum.areas.category.models.view.CategoryViewModel;
 import com.forum.areas.category.models.service.CategoryServiceModel;
 import com.forum.areas.comment.models.binding.CommentBindingModel;
 import com.forum.areas.comment.models.service.CommentServiceModel;
-import com.forum.areas.comment.models.view.CommentViewModel;
 import com.forum.areas.comment.services.CommentService;
 import com.forum.areas.post.models.binding.CreatePostBindingModel;
 import com.forum.areas.post.models.service.PostServiceModel;
@@ -44,6 +43,8 @@ public class PostController extends BaseController {
     private final ModelMapper modelMapper;
 
     private List<CategoryViewModel> cacheCategoryViewModels;
+
+    private PostViewModel postViewModelCache;
 
     @Autowired
     public PostController(PostService postService, CategoryService categoryService, UserService userService, CommentService createCommentDto, ModelMapper modelMapper) {
@@ -108,22 +109,29 @@ public class PostController extends BaseController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView findPostById(@PathVariable Long id) {
+    public ModelAndView findPostById(@PathVariable Long id, @ModelAttribute CommentBindingModel commentBindingModel) {
         PostServiceModel postServiceModel = this.postService.findById(id);
         PostViewModel postViewModel = this.modelMapper.map(postServiceModel, PostViewModel.class);
+        this.postViewModelCache =  postViewModel;
         return super.view("views/posts/post-by-id", postViewModel);
     }
 
     @PostMapping("/{id}")
-    public ModelAndView storeAnswer(@ModelAttribute CommentBindingModel commentBindingModel, Authentication authentication,
+    public ModelAndView storeAnswer(@Valid @ModelAttribute CommentBindingModel commentBindingModel, BindingResult bindingResult, Authentication authentication,
                                     @PathVariable(value = "id", required = true) Long postId) {
+
+        if (bindingResult.hasErrors()) {
+            return super.view("views/posts/post-by-id", this.postViewModelCache);
+        }
+
         CommentServiceModel commentServiceModel = new CommentServiceModel();
-        commentServiceModel.setContent(commentBindingModel.getContent());
+        commentServiceModel.setContent(commentBindingModel.getCommentContent());
         PostServiceModel postServiceModel = this.postService.findById(postId);
         commentServiceModel.setPost(postServiceModel);
         UserServiceModel userServiceModel = this.userService.findByUsername(authentication.getName());
         commentServiceModel.setUser(userServiceModel);
         this.commentService.create(commentServiceModel);
+        this.postViewModelCache = null;
         return super.redirect("/posts/" + postId);
     }
 

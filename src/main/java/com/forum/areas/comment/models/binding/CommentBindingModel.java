@@ -1,16 +1,22 @@
 package com.forum.areas.comment.models.binding;
 
+import com.forum.constants.Constants;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class CommentBindingModel {
-    private String content;
+    @Size(min = 3, max = 1000, message = Constants.COMMENT_LENGTH)
+    private String commentContent;
 
     public CommentBindingModel() {
     }
 
-    public String getContent() {
-        return content;
+    public String getCommentContent() {
+        return commentContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
     }
 }
