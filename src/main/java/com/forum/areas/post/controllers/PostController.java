@@ -125,4 +125,14 @@ public class PostController extends BaseController {
         this.commentService.create(commentServiceModel);
         return super.redirect("/posts/" + postId);
     }
+
+    @PostMapping("/{id}/edit")
+    public ModelAndView editConfirm(@Valid @ModelAttribute CreatePostBindingModel createPostBindingModel, BindingResult bindingResult, @PathVariable Long id) {
+
+        if (bindingResult.hasErrors()) {
+            return super.redirect("/posts/" + id);
+        }
+
+        return null;
+    }
 }

@@ -1,36 +1,58 @@
 <div class="container" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <div class="row view">
+    <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-8" th:object="${viewModel}">
-            <div class="post bg-white row">
-                <div class="avatar mt-3 col-sm-1 col-md-1">
-                    <img src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
-                <div class="col-xs-11 col-sm-11 col-md-11 pt-4">
-                    <h4 class="post-title" th:text="*{title}"></h4>
-                    <p class="text-wrap" th:text="*{content}"></p>
+            <div class="post bg-white p-3">
+                <div class="row">
+                    <div class="avatar col-sm-1 col-md-1">
+                        <img src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
+                    <div class="col-xs-11 col-sm-11 col-md-11">
+                        <h4 class="post-title" th:text="*{title}"></h4>
+                        <p class="text-wrap" th:text="*{content}"></p>
+                    </div>
                 </div>
-                <div class="row w-100">
-                    <th:block th:if="${#authentication.name} == *{user.username}">
-                        <a class="col-sm-4 text-center" th:href="@{/posts/{id}/edit(id=*{id})}">
-                            <span class="text-white p-1 rounded bg-light-green">Edit</span>
-                        </a>
-                        <a class="col-sm-4 text-center" th:href="@{/posts/{id}/delete(id=*{id})}">
-                            <span class="text-white p-1 text-center rounded bg-danger">Delete</span>
-                        </a>
-                    </th:block>
-                    <th:block th:unless="${#authentication.name} == *{user.username}">
-                        <div class="offset-sm-8"></div>
-                    </th:block>
-                    <a class="col-sm-4 text-center" th:href="@{/users/{username}(username=*{user.username})}">
-                        <i th:text="|Author: *{user.username}|"></i>
-                    </a>
+                <div class="row">
+                    <div class="col-md-6 d-flex justify-content-center">
+                        <th:block th:if="*{#sets.isEmpty(categories)}">
+                            <i class="text-secondary">This post isn't listed in any categories.</i>
+                        </th:block>
+                        <th:block class="d-flex justify-content-center" th:unless="*{#sets.isEmpty(categories)}">
+                            <th:block th:each="category : *{categories}">
+                                <a class="p-1 m-2 bg-light-green text-white rounded" th:href="|/categories/${category.name}|">
+                                    <th:block th:text="${category.name}"></th:block>
+                                </a>
+                            </th:block>
+                        </th:block>
+                    </div>
+                    <div class="col-md-6 text-center row">
+                        <th:block th:if="${#authentication.name} == *{user.username}">
+                            <div class="col-md-8 d-flex justify-content-center">
+                                    <button data-toggle="modal" data-target="#editModal"
+                                            class="btn m-1 text-white bg-light-green text-center"
+                                            th:href="@{/posts/{id}/edit(id=*{id})}">
+                                        Edit
+                                    </button>
+                                    <button class="btn m-1 btn-danger text-center" th:href="@{/posts/{id}/edit(id=*{id})}">
+                                        Delete
+                                    </button>
+                            </div>
+                        </th:block>
+                        <th:block th:unless="${#authentication.name} == *{user.username}">
+                            <div class="offset-md-8"></div>
+                        </th:block>
+                        <div class="text-center col-md-4 text-center">
+                            <i>
+                                Author: <a th:href="@{/users/{username}(username=*{user.username})}" th:text="*{user.username}"></a>
+                            </i>
+                        </div>
+                    </div>
                 </div>
             </div>
             <th:block th:each="comment : *{comments}">
                 <hr>
                 <div class="bg-white post col-md-12 row m-auto pb-5">
-                    <div class="avatar mt-4 col-sm-1 col-md-1"><img class="rounded-circle"
-                                                                    src="/img/avatar__181424 (2).png" height="512"
-                                                                    width="512"/></div>
+                    <div class="avatar mt-4 col-sm-1 col-md-1">
+                        <img class="rounded-circle" src="/img/avatar__181424 (2).png" height="512" width="512"/>
+                    </div>
                     <div class="text-wrap col-xs-11 col-sm-11 col-md-10 pt-4">
                         <p class="post-title" th:text="${comment.content}"></p>
                     </div>
@@ -45,5 +67,37 @@
             </div>
         </div>
         <th:block th:include="~{fragments/sidebar}"/>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" th:action="@{/posts/{id}/edit(id=${viewModel.id})}">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="edit-title">Edit title:</label>
+                            <input name="title" type="text" class="form-control" id="edit-title"
+                                   th:value="${viewModel.title}">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-content">Edit content:</label>
+                            <textarea name="content" class="form-control" rows="12" id="edit-content"
+                                      th:field="${viewModel.content}">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn text-white bg-light-green">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
