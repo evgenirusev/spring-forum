@@ -4,6 +4,7 @@ import com.forum.areas.category.models.view.CategoryViewModel;
 import com.forum.areas.category.models.service.CategoryServiceModel;
 import com.forum.areas.comment.models.binding.CommentBindingModel;
 import com.forum.areas.comment.models.service.CommentServiceModel;
+import com.forum.areas.comment.models.view.CommentViewModel;
 import com.forum.areas.comment.services.CommentService;
 import com.forum.areas.post.models.binding.CreatePostBindingModel;
 import com.forum.areas.post.models.service.PostServiceModel;
@@ -94,7 +95,7 @@ public class PostController extends BaseController {
         PostServiceModel postServiceModel = new PostServiceModel();
         postServiceModel.setTitle(postBindingModel.getTitle());
         postServiceModel.setContent(postBindingModel.getContent());
-        Set<CategoryServiceModel> categories = new HashSet<>();
+        Set<CategoryServiceModel> categories = new TreeSet<CategoryServiceModel>(Comparator.comparing(CategoryServiceModel::getId));
         for (Long categoryId : postBindingModel.getCategories()) {
             categories.add(this.categoryService.findById(categoryId));
         }
