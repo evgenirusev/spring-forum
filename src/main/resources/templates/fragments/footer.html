@@ -1,24 +1,29 @@
-<footer class="page-footer font-small teal pt-4 bg-info">
-    <div class="container-fluid text-center text-md-left">
-        <div class="footer-row">
-            <div class="row">
-                <div class="col-md-6 mt-md-0 mt-3">
-                    <h5 class="text-uppercase text-white font-weight-bold">Footer text 1</h5>
-                    <p class="text-dark">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-                        repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam
-                        recusandae harum esse fugiat. Itaque, culpa?</p>
-                </div>
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <div class="col-md-6 mb-md-0 mb-3">
-                    <h5 class="text-uppercase text-white font-weight-bold">Footer text 2</h5>
-                    <p class="text-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi
-                        earum commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam,
-                        aspernatur id excepturi hic.</p>
-                </div>
+<footer class="page-footer font-small text-white border-top bg-info" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container-fluid text-center text-md-left pt-3">
+        <div class="row">
+            <div class="col-md-6 mt-md-0 mt-3">
+                <h5 class="text-uppercase">Learn, Share, Build</h5>
+                <p>Spring forum is an open source Spring Framework based online forum application focused on allowing
+                    developers to ask questions in regard to Spring Framework and at the same time provide valuable
+                    answers to other people.</p>
+            </div>
+            <hr class="clearfix w-100 d-md-none pb-3">
+            <div class="col-md-3 mb-md-0 mb-3"></div>
+            <div class="col-md-3 mb-md-0 mb-3">
+                <h5 class="text-uppercase">Reach out</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <p>Email: evg.rusev@gmail.com</p>
+                    </li>
+                    <li>
+                        <a href="https://github.com/rusev9/spring-forum" class="text-white"><i
+                                class="fab fa fa-github"></i> Source code</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="text-center py-3 text-white">© 2019 Copyright:
-        <a href="#" class="text-white"> RUSEV </a>
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a class="text-white" th:href="@{/}">Spring Answers</a>
     </div>
 </footer>
