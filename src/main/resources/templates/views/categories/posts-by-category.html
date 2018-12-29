@@ -7,7 +7,7 @@
                 <div class="bg-white mb-3 p-3 row">
                     <div class="col-lg-11">
                         <h4 class="mt-0" th:text="${post.title}"></h4>
-                        <hr class="bg-light-green w-100">
+                        <hr class="bg-blue w-100">
                         <div th:if="${#strings.length(post.content) > 300}">
                             <p class="text-wrap" th:text="|${#strings.substring(post.content,0,300)}...|"></p>
                         </div>
@@ -28,7 +28,7 @@
                             <div th:unless="${#sets.isEmpty(post.categories)}">
                                 <th:block th:each="category : ${post.categories}">
                                     <a th:href="|/categories/${category.name}|">
-                                        <i class="p-1 rounded bg-light-green text-white" th:text="${category.name}"></i>
+                                        <i class="p-1 rounded bg-blue text-white" th:text="${category.name}"></i>
                                     </a>
                                 </th:block>
                             </div>

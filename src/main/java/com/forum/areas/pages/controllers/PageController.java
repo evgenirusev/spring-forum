@@ -9,8 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class PageController extends BaseController {
 
     @GetMapping("/")
-    public ModelAndView index() {
-        return super.redirect("/posts");
+    public String index() {
+        return "/views/home";
     }
 
     @GetMapping("/contact")

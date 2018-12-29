@@ -10,7 +10,7 @@
                                 <i class="fa fal fa-arrow-circle-right text-light-green"></i>
                             </a>
                         </div>
-                        <hr class="bg-light-green w-100">
+                        <hr class="bg-blue w-100">
                         <div th:if="${#strings.length(post.content) > 300}">
                             <p class="text-wrap" th:text="|${#strings.substring(post.content,0,300)}...|"></p>
                         </div>
@@ -26,7 +26,7 @@
                             <div th:unless="${#sets.isEmpty(post.categories)}">
                                 <th:block th:each="category : ${post.categories}">
                                     <a th:href="|/categories/${category.name}|">
-                                        <i class="p-1 rounded bg-light-green text-white" th:text="${category.name}"></i>
+                                        <i class="p-1 rounded bg-blue text-white" th:text="${category.name}"></i>
                                     </a>
                                 </th:block>
                             </div>
@@ -64,11 +64,11 @@
             <div th:if="${param.search != null} and !(${viewModel.getTotalElements()} > 0)">
                 <h4 class="text-secondary">There are no posts matching your criteria: "<b><span
                         th:text="${param.search}"></span></b>"</h4>
-                <hr class="bg-light-green hr-2">
+                <hr class="bg-info hr-2">
             </div>
             <div th:if="${param.search == null} and !(${viewModel.getTotalElements()} > 0)">
                 <h4 class="text-secondary">There are no posts yet. Consider creating one yourself!</h4>
-                <hr class="bg-light-green hr-2">
+                <hr class="bg-info hr-2">
             </div>
         </div>
         <th:block th:include="~{fragments/sidebar}"/>

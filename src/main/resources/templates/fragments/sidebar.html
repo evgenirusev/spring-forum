@@ -1,9 +1,9 @@
 <div class="col-sm-12 col-md-12 col-lg-4">
-    <div class="sidebarblock">
+    <div class="p-2 bg-white">
         <h3 th:text="#{categories}"></h3>
         <div th:if="${#sets.size(categoryNames) > 0}">
             <div class="divline"></div>
-            <div class="blocktxt">
+            <div class="p-2">
                 <ul class="cats p-0 m-0 list-unstyled">
                     <th:block th:each="categoryName : ${categoryNames}">
                         <a th:text="${categoryName}" th:href="@{/categories/{name}(name=${categoryName})}"

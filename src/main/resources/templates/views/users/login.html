@@ -1,6 +1,6 @@
 <div class="container authentication bg-white" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1 class="text-center">Login</h1>
-    <hr class="bg-light-green hr-2"/>
+    <hr class="bg-info hr-2"/>
     <form class="mx-auto" th:method="post" th:action="@{/login}">
         <th:block th:if="${error != null}">
             <div class="alert alert-dismissible alert-danger">
@@ -19,7 +19,7 @@
                    required>
         </div>
         <div class="button-holder d-flex justify-content-around">
-            <button type="submit" class="btn btn-info bg-light-green" th:text="#{nav.login}"></button>
+            <button type="submit" class="btn btn-info bg-blue" th:text="#{nav.login}"></button>
         </div>
         <!--<div class="social-holder d-flex justify-content-around mt-3">-->
             <!--<form action="/signin/facebook" method="POST">-->

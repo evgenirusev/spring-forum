@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body>
+<header>
+    <th:block th:include="~{fragments/navbar/base}"/>
+</header>
+<main>
+    <div class="container-fluid p-0 home-page">
+        <h1 class="text-white text-center p-5">Welcome to Spring Answers!</h1>
+        <h3 class="text-white text-center p-5">Spring Answers is an open source Spring Framework based online forum application.</h3>
+        <h5 class="text-white text-center p-5">Consider <i><a class="text-white" th:href="@{/register}">signing up</a></i> and composing a post yourself.</h5>
+    </div>
+</main>
+</body>
+<footer>
+    <th:block th:include="~{fragments/footer}"/>
+</footer>
+</html>

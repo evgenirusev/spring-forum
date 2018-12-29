@@ -17,7 +17,7 @@
                         </th:block>
                         <th:block class="d-flex justify-content-center" th:unless="*{#sets.isEmpty(categories)}">
                             <th:block th:each="category : *{categories}">
-                                <a class="p-1 m-2 bg-light-green text-white rounded" th:href="|/categories/${category.name}|">
+                                <a class="p-1 m-2 bg-primary text-white rounded" th:href="|/categories/${category.name}|">
                                     <th:block th:text="${category.name}"></th:block>
                                 </a>
                             </th:block>
@@ -27,7 +27,7 @@
                         <th:block th:if="${#authentication.name} == *{user.username}">
                             <div class="col-md-8 d-flex justify-content-center">
                                     <button data-toggle="modal" data-target="#editModal"
-                                            class="btn m-1 text-white bg-light-green text-center"
+                                            class="btn m-1 text-white bg-primary text-center"
                                             th:href="@{/posts/{id}/edit(id=*{id})}">
                                         Edit
                                     </button>
@@ -47,20 +47,29 @@
                     </div>
                 </div>
             </div>
-            <th:block th:each="comment : *{comments}">
-                <hr>
-                <div class="bg-white post col-md-12 row m-auto pb-5">
-                    <div class="avatar mt-4 col-sm-1 col-md-1">
-                        <img class="rounded-circle" src="/img/avatar__181424 (2).png" height="512" width="512"/>
-                    </div>
-                    <div class="text-wrap col-xs-11 col-sm-11 col-md-10 pt-4">
-                        <p class="post-title" th:text="${comment.content}"></p>
-                    </div>
-                    <div class="d-flex flex-row-reverse w-100 hr-2">
-                        <a th:href="@{/users/{username}(username=${comment.user.username})}"><i
-                                th:text="|Answered By: ${comment.user.username}|"></i></a>
-                    </div>
+            <hr>
+            <th:block th:if="*{#sets.isEmpty(comments)}">
+                <div sec:authorize="${isAuthenticated()}">
+                    <h5 class="text-secondary">There are no comments yet. Consider creating one yourself!</h5>
                 </div>
+                <div sec:authorize="${!isAuthenticated()}">
+                    <h5 class="text-secondary">There are no comments yet. Consider logging in and creating one yourself!</h5>
+                </div>
+
+            </th:block>
+            <th:block th:unless="*{#sets.isEmpty(comments)}">
+                <th:block th:each="comment : *{comments}">
+                    <div class="bg-white col-12 mb-2 p-3">
+                        <div class="avatar col-12 mb-1">
+                            <img class="rounded-circle" src="/img/avatar__181424 (2).png" height="512" width="512"/>
+                            <a th:text="${comment.user.username}" th:href="@{/users/{username}(username=${comment.user.username})}"></a>
+                        </div>
+                        <hr>
+                        <div class="text-wrap col-12">
+                            <p class="post-title" th:text="${comment.content}"></p>
+                        </div>
+                    </div>
+                </th:block>
             </th:block>
             <div sec:authorize="${isAuthenticated()}">
                 <th:block th:include="~{fragments/comment-form}"></th:block>
@@ -94,7 +103,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn text-white bg-light-green">Save changes</button>
+                        <button type="submit" class="btn text-white bg-primary">Save changes</button>
                     </div>
                 </form>
             </div>

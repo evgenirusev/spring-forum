@@ -20,13 +20,9 @@ body {
 }
 
 .header-nav {
-    background-color: #FFFFFF;
-    min-height: 60px;
-    border-bottom: 1px solid #b9bbbe;
-}
-
-.post {
-    min-height: 120px;
+    background-image: url("https://i.ibb.co/Bnp9NCt/bg-technology.png");
+    min-height: 150px;
+    border-bottom: 1px solid #FFFFFF;
 }
 
 .avatar img {
@@ -53,10 +49,6 @@ body {
     height: 1px;
     line-height: 1px;
     border-bottom: solid 1px #f1f1f1;
-}
-
-.sidebarblock .blocktxt {
-    padding:20px;
 }
 
 ul.cats li a {
@@ -99,22 +91,6 @@ textarea.form-control {
     border-radius: 40px;
 }
 
-.bg-green {
-    background-color: #009688;
-}
-
-.bg-light-green {
-    background-color: #1abc9c!important;
-}
-
-.text-light-green {
-    color: #1abc9c!important;
-}
-
-.bg-dark-green {
-    background-color: #00786D;;
-}
-
 .fa {
     font-size: 30px;
 }
@@ -132,4 +108,16 @@ a {
     .authentication {
         width: 100%!important;
     }
+}
+
+.home-page {
+    min-height: 800px;
+    height: 100%;
+    background-image: url("https://i.ibb.co/Bnp9NCt/bg-technology.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.home-page  {
+    text-shadow: 2px 2px 2px grey, 2px 2px 2px grey, 2px 2px 2px grey;
 }
