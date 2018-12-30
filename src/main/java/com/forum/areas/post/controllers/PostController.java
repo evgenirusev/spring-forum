@@ -6,6 +6,7 @@ import com.forum.areas.comment.models.binding.CommentBindingModel;
 import com.forum.areas.comment.models.service.CommentServiceModel;
 import com.forum.areas.comment.services.CommentService;
 import com.forum.areas.post.models.binding.CreatePostBindingModel;
+import com.forum.areas.post.models.binding.EditPostBindingModel;
 import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.areas.post.models.view.PostViewModel;
 import com.forum.areas.user.models.service.UserServiceModel;
@@ -87,25 +88,24 @@ public class PostController extends BaseController {
     }
 
     @PostMapping("/create")
-    public ModelAndView storePost(@Valid @ModelAttribute CreatePostBindingModel postBindingModel, BindingResult bindingResult, Authentication authentication) {
+    public ModelAndView storePost(@Valid @ModelAttribute CreatePostBindingModel createPostBindingModel, BindingResult bindingResult, Authentication authentication) {
 
         if (bindingResult.hasErrors()) {
             return super.view("views/posts/create", this.cacheCategoryViewModels, "Create New Post");
         }
         
-        PostServiceModel postServiceModel = new PostServiceModel();
-        postServiceModel.setTitle(postBindingModel.getTitle());
-        postServiceModel.setContent(postBindingModel.getContent());
+        PostServiceModel postServiceModel = this.modelMapper.map(createPostBindingModel, PostServiceModel.class);
         Set<CategoryServiceModel> categories = new TreeSet<CategoryServiceModel>(Comparator.comparing(CategoryServiceModel::getId));
-        for (Long categoryId : postBindingModel.getCategories()) {
+
+        for (Long categoryId : createPostBindingModel.getCategories()) {
             categories.add(this.categoryService.findById(categoryId));
         }
+
         postServiceModel.setCategories(categories);
         UserServiceModel userServiceModel = this.userService.findByUsername(authentication.getName());
         postServiceModel.setUser(userServiceModel);
         this.postService.create(postServiceModel);
-        // TODO: Implement Success Page
-        return super.redirect("/");
+        return super.redirect("/posts");
     }
 
     @GetMapping("/{id}")
@@ -136,12 +136,12 @@ public class PostController extends BaseController {
     }
 
     @PostMapping("/{id}/edit")
-    public ModelAndView editConfirm(@Valid @ModelAttribute CreatePostBindingModel createPostBindingModel, BindingResult bindingResult, @PathVariable Long id) {
-
+    public ModelAndView editConfirm(@Valid @ModelAttribute EditPostBindingModel editPostBindingModel, BindingResult bindingResult, @PathVariable Long id) {
         if (bindingResult.hasErrors()) {
             return super.redirect("/posts/" + id);
         }
-
-        return null;
+        PostServiceModel postServiceModel = this.modelMapper.map(editPostBindingModel, PostServiceModel.class);
+        this.postService.edit(postServiceModel);
+        return redirect("/posts/" + id);
     }
 }

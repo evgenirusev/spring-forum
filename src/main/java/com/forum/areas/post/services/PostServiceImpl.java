@@ -76,4 +76,12 @@ public class PostServiceImpl implements PostService {
         PostServiceModel postServiceModel = this.modelMapper.map(post, PostServiceModel.class);
         return postServiceModel;
     }
+
+    @Override
+    public void edit(PostServiceModel postServiceModel) {
+        Post post = this.postReposotory.findById(postServiceModel.getId()).orElse(null);
+        post.setTitle(postServiceModel.getTitle());
+        post.setContent(postServiceModel.getContent());
+        this.postReposotory.save(post);
+    }
 }

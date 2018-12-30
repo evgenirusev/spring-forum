@@ -2,6 +2,7 @@ body {
     background-color: #E4E2DD!important;
     overflow-x: hidden;
     font-family: 'Open Sans', sans-serif;
+    word-wrap: break-word;
 }
 
 .hr-2 {

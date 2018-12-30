@@ -17,4 +17,6 @@ public interface PostService {
     Page<PostServiceModel> findAllByName(String name, Pageable pageable);
 
     PostServiceModel findById(Long id);
+
+    void edit(PostServiceModel postServiceModel);
 }
