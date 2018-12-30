@@ -110,20 +110,22 @@
                 <form method="post" th:action="@{/posts/{id}/edit(id=${viewModel.id})}">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="edit-title">Edit title:</label>
-                            <input name="title" type="text" class="form-control" id="edit-title"
+                            <label for="editPostTitleInput">Edit title:</label>
+                            <input name="title" type="text" class="form-control" id="editPostTitleInput"
                                    th:value="${viewModel.title}">
+                            <div class="text-danger" id="editPostTitleHint"></div>
                         </div>
                         <div class="form-group">
-                            <label for="edit-content">Edit content:</label>
-                            <textarea name="commentContent" class="form-control" rows="12" id="edit-content"
+                            <label for="editPostContentInput">Edit content:</label>
+                            <textarea name="commentContent" class="form-control" rows="12" id="editPostContentInput"
                                       th:field="${viewModel.content}">
                             </textarea>
+                            <div class="text-danger" id="editPostContentHint"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn text-white bg-primary">Save changes</button>
+                        <button type="submit" id="editContentButton" class="btn text-white bg-primary">Save changes</button>
                     </div>
                 </form>
             </div>
