@@ -9,9 +9,9 @@
 </header>
 <main>
     <div class="container-fluid p-0 home-page">
-        <h1 class="text-white text-center p-5">Welcome to Spring Answers!</h1>
-        <h3 class="text-white text-center p-5">Spring Answers is an open source Spring Framework based online forum application.</h3>
-        <h5 class="text-white text-center p-5">Consider <i><a class="text-white" th:href="@{/register}">signing up</a></i> and composing a post yourself.</h5>
+        <h1 class="text-white text-center p-5" th:text="#{home.header.title}"></h1>
+        <h3 class="text-white text-center p-5" th:text="#{home.header.subtitle}"></h3>
+        <h5 class="text-white text-center p-5"><i><a class="text-white" th:href="@{/register}" th:text="#{home.header.description}"></a></i></h5>
     </div>
 </main>
 </body>

@@ -10,7 +10,7 @@
                                 <i class="fa fal fa-arrow-circle-right text-light-green"></i>
                             </a>
                         </div>
-                        <hr class="bg-blue w-100">
+                        <hr class="bg-info w-100">
                         <div th:if="${#strings.length(post.content) > 300}">
                             <p class="text-wrap" th:text="|${#strings.substring(post.content,0,300)}...|"></p>
                         </div>
@@ -26,7 +26,7 @@
                             <div th:unless="${#sets.isEmpty(post.categories)}">
                                 <th:block th:each="category : ${post.categories}">
                                     <a th:href="|/categories/${category.name}|">
-                                        <i class="p-1 rounded bg-blue text-white" th:text="${category.name}"></i>
+                                        <i class="p-1 rounded bg-primary text-white" th:text="${category.name}"></i>
                                     </a>
                                 </th:block>
                             </div>
@@ -44,16 +44,16 @@
                 <nav aria-label="Pagination">
                     <ul class="pagination">
                         <li class="page-item" th:classappend="!${viewModel.hasPrevious()} ? 'disabled'">
-                            <a class="page-link"
+                            <a th:text="#{pagination.previous}" class="page-link"
                                th:href="${viewModel.hasPrevious()} ? '/posts/?page=' + ${viewModel.previousPageable().getPageNumber()}">
-                                Previous</a>
+                            </a>
                         </li>
                         <li th:each="i : ${#numbers.sequence(0, viewModel.getTotalPages() - 1)}" class="page-item">
                             <a class="page-link" th:href="|/posts?page=${i}|" th:text="${i + 1}"></a>
                         </li>
                         <li class="page-item"
                             th:classappend="!${viewModel.hasNext()} ? 'disabled'">
-                            <a class="page-link"
+                            <a th:text="#{pagination.next}" class="page-link"
                                th:href="${viewModel.hasNext()} ? '/posts?page=' + ${viewModel.nextPageable().getPageNumber()}">
                                 Next
                             </a>
