@@ -84,4 +84,9 @@ public class PostServiceImpl implements PostService {
         post.setContent(postServiceModel.getContent());
         this.postReposotory.save(post);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        this.postReposotory.deleteById(id);
+    }
 }

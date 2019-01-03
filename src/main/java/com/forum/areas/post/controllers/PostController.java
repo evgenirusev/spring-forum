@@ -144,4 +144,10 @@ public class PostController extends BaseController {
         this.postService.edit(postServiceModel);
         return redirect("/posts/" + id);
     }
+
+    @PostMapping("/{id}/delete")
+    public ModelAndView deleteConfirm(@PathVariable Long id) {
+        this.postService.deleteById(id);
+        return redirect("/posts");
+    }
 }

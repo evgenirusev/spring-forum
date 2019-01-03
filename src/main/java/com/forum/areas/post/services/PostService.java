@@ -19,4 +19,6 @@ public interface PostService {
     PostServiceModel findById(Long id);
 
     void edit(PostServiceModel postServiceModel);
+
+    void deleteById(Long id);
 }
