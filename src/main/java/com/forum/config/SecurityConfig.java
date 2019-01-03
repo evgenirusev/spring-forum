@@ -35,19 +35,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/posts/create").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/categories/create").hasAnyAuthority("ADMIN")
-                .antMatchers("/login", "/register").anonymous()
-                .antMatchers("/", "/css/**", "/img/**", "/contact", "/about", "/product/**").permitAll()
+                    .antMatchers("/posts/create").hasAnyAuthority("USER", "ADMIN")
+                    .antMatchers("/categories/create").hasAnyAuthority("ADMIN")
+                    .antMatchers("/login", "/register").anonymous()
+                    .antMatchers("/", "/css/**", "/img/**", "/contact", "/about", "/product/**").permitAll()
                 .and()
-                .formLogin().loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
+                    .formLogin().loginPage("/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
                 .and()
-                .logout().logoutSuccessUrl("/login?logout").logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+                    .logout().logoutSuccessUrl("/login?logout").logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
                 .and()
-                .csrf()
-                .csrfTokenRepository(getCsrfTokenRepository());
+                    .csrf()
+                    .csrfTokenRepository(getCsrfTokenRepository())
+                .and()
+                    .rememberMe()
+                    .rememberMeParameter("remember-me-new")
+                    .key("b3b8ac11-ed4f-4f2e-89cf-79aa4369d0fc")
+                    .userDetailsService(this.userService)
+                    .rememberMeCookieName("SPRING_SECURITY_REMEMBER_ME_COOKIE")
+                    .tokenValiditySeconds(2400);
     }
 
     private CsrfTokenRepository getCsrfTokenRepository() {

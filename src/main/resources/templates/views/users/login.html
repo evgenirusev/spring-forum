@@ -18,9 +18,16 @@
             <input type="password" class="form-control" id="password" placeholder="Password..." name="password"
                    required>
         </div>
+        <div class="form-check text-center mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">
+                Remember Me
+            </label>
+        </div>
         <div class="button-holder d-flex justify-content-around">
             <button type="submit" class="btn btn-info bg-blue" th:text="#{nav.login}"></button>
         </div>
+        <!--TODO SPRING SOCIAL-->
         <!--<div class="social-holder d-flex justify-content-around mt-3">-->
             <!--<form action="/signin/facebook" method="POST">-->
                 <!--<input type="hidden" name="scope" value="public_profile" />-->
