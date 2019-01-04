@@ -8,7 +8,8 @@
                     <div class="col-xs-11 col-sm-11 col-md-11 text-">
                         <div class="row">
                             <h4 class="col-12 post-title" th:text="*{title}"></h4>
-                            <p class="text-left col-12 text-secondary" th:text="|Published on *{#temporals.format(publishDate, 'dd-MM-yyyy')} at  *{#temporals.format(publishDate, 'HH:mm')}|"></p>
+                            <i class="text-left col-12 text-secondary mb-4"
+                               th:text="|Published on *{#temporals.format(publishDate, 'dd-MM-yyyy')} at  *{#temporals.format(publishDate, 'HH:mm')}|"></i>
                         </div>
                         <p class="text-wrap" th:text="*{content}"></p>
                     </div>
@@ -61,7 +62,6 @@
                     <h5 class="text-secondary">There are no comments yet. Consider logging in and creating one
                         yourself!</h5>
                 </div>
-
             </th:block>
             <th:block th:unless="*{#sets.isEmpty(comments)}">
                 <th:block th:each="comment : *{comments}">
@@ -74,6 +74,9 @@
                         <hr>
                         <div class="text-wrap col-12">
                             <p th:text="${comment.content}"></p>
+                        </div>
+                        <div class="col-12 text-right">
+                            <i th:text="|Published on *{#temporals.format(publishDate, 'dd-MM-yyyy')} at  *{#temporals.format(publishDate, 'HH:mm')}|"></i>
                         </div>
                     </div>
                 </th:block>

@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -23,6 +25,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void create(CommentServiceModel commentServiceModel) {
         Comment commentEntity = this.modelMapper.map(commentServiceModel, Comment.class);
+        commentEntity.setPublishDate(LocalDateTime.now());
         this.commentRepository.save(commentEntity);
     }
 }

@@ -3,10 +3,14 @@ package com.forum.areas.comment.models.service;
 import com.forum.areas.post.models.service.PostServiceModel;
 import com.forum.areas.user.models.service.UserServiceModel;
 
+import java.time.LocalDateTime;
+
 public class CommentServiceModel {
     private Long id;
 
     private String content;
+
+    private LocalDateTime publishDate;
 
     private PostServiceModel post;
 
@@ -26,6 +30,14 @@ public class CommentServiceModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDateTime publishDate) {
+        this.publishDate = publishDate;
     }
 
     public PostServiceModel getPost() {
