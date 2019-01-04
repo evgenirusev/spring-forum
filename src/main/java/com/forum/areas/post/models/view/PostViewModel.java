@@ -4,6 +4,7 @@ import com.forum.areas.category.models.view.CategoryViewModel;
 import com.forum.areas.comment.models.view.CommentViewModel;
 import com.forum.areas.user.models.view.UserViewModel;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 public class PostViewModel {
@@ -12,6 +13,8 @@ public class PostViewModel {
     private String title;
 
     private String content;
+
+    private LocalDateTime publishDate;
 
     private UserViewModel user;
 
@@ -41,6 +44,14 @@ public class PostViewModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDateTime publishDate) {
+        this.publishDate = publishDate;
     }
 
     public UserViewModel getUser() {

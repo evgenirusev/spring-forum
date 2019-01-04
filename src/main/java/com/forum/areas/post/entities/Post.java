@@ -5,7 +5,7 @@ import com.forum.areas.comment.entities.Comment;
 import com.forum.areas.user.entities.User;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -20,6 +20,9 @@ public class Post {
 
     @Column(name = "content", nullable = false, length = 2000)
     private String content;
+
+    @Column(name = "publish_date")
+    private LocalDateTime publishDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -65,6 +68,14 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDateTime publishDate) {
+        this.publishDate = publishDate;
     }
 
     public User getUser() {

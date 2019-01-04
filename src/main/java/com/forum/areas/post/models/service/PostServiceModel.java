@@ -4,6 +4,7 @@ import com.forum.areas.category.models.service.CategoryServiceModel;
 import com.forum.areas.comment.models.service.CommentServiceModel;
 import com.forum.areas.user.models.service.UserServiceModel;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 public class PostServiceModel {
@@ -13,6 +14,8 @@ public class PostServiceModel {
     private String title;
 
     private String content;
+
+    private LocalDateTime publishDate;
 
     private UserServiceModel user;
 
@@ -42,6 +45,14 @@ public class PostServiceModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDateTime publishDate) {
+        this.publishDate = publishDate;
     }
 
     public UserServiceModel getUser() {

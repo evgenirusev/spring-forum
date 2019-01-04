@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public void create(PostServiceModel serviceModel) {
         Post postEntity = this.modelMapper.map(serviceModel, Post.class);
+        postEntity.setPublishDate(LocalDateTime.now());
+
         this.postReposotory.save(postEntity);
     }
 

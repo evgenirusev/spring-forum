@@ -4,6 +4,7 @@ import com.forum.areas.post.entities.Post;
 import com.forum.areas.user.entities.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comments")
@@ -15,6 +16,9 @@ public class Comment {
 
     @Column(name = "content", nullable = false, length = 500)
     private String content;
+
+    @Column(name = "publish_date")
+    private LocalDateTime publishDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "post_id")
@@ -45,6 +49,14 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDateTime publishDate) {
+        this.publishDate = publishDate;
     }
 
     public Post getPost() {
