@@ -22,6 +22,11 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" th:href="@{/about}" th:text="#{about}"></a>
                 </li>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" th:href="@{/logs/all}" th:text="|Logs|"></a>
+                    </li>
+                </div>
             </ul>
             <div>
                 <select class="form-control" id="languageSelect">

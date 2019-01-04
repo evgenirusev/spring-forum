@@ -1,0 +1,36 @@
+<div class="container p-3 bg-white" xmlns:th="http://www.thymeleaf.org">
+    <h6 class="mb-1">Search By Username:</h6>
+    <div class="logs-header row">
+        <form class="form-inline row col-lg-6" th:method="post" th:action="@{/logs/search}">
+            <div class="mb-2 form-group col-lg-6">
+                <input type="text" class="form-control col-xs-12 col-sm-6 col-md-6" name="user" placeholder="Username...">
+            </div>
+            <div class="mb-2 form-group col-lg-6">
+                <button type="submit" class="btn btn-info col-xs-12 col-sm-6 col-md-6">Search Logs</button>
+            </div>
+        </form>
+        <form class="form-inline mb-2 col-lg-6" th:method="post" th:action="@{/logs/clear}">
+            <button type="submit" class="btn btn-danger clear-button">Clear All Logs</button>
+        </form>
+    </div>
+    <table class="table" style="text-align: center">
+        <thead>
+        <tr>
+            <th scope="col">User</th>
+            <th scope="col">Operation</th>
+            <th scope="col">Operation For</th>
+            <th scope="col">Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="log : *{viewModel}" th:object="${log}">
+            <tr>
+                <td th:text="*{user}"></td>
+                <td th:text="*{operation}"></td>
+                <td th:text="*{tableName}"></td>
+                <td th:text="*{#temporals.format(modifyingDate, 'dd-MMM-yyyy HH:mm:ss')}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
