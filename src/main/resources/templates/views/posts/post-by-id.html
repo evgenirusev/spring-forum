@@ -1,174 +1,39 @@
-<div class="container" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<div class="container" xmlns:th="http://www.thymeleaf.org">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-8" th:object="${viewModel}">
-            <div class="post bg-white p-3">
-                <div class="row">
-                    <div class="avatar col-sm-1 col-md-1">
-                        <img src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
-                    <div class="col-xs-11 col-sm-11 col-md-11 text-">
-                        <div class="row">
-                            <h4 class="col-12 post-title" th:text="*{title}"></h4>
-                            <i class="text-left col-12 text-secondary mb-4"
-                               th:text="|Published on *{#temporals.format(publishDate, 'dd-MM-yyyy')} at  *{#temporals.format(publishDate, 'HH:mm')}|"></i>
-                        </div>
-                        <p class="text-wrap" th:text="*{content}"></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 d-flex justify-content-center">
-                        <th:block th:if="*{#sets.isEmpty(categories)}">
-                            <i class="text-secondary">This post isn't listed in any categories.</i>
-                        </th:block>
-                        <th:block class="d-flex justify-content-center" th:unless="*{#sets.isEmpty(categories)}">
-                            <th:block th:each="category : *{categories}">
-                                <a class="p-1 m-2 bg-primary text-white rounded"
-                                   th:href="|/categories/${category.name}|">
-                                    <th:block th:text="${category.name}"></th:block>
-                                </a>
-                            </th:block>
-                        </th:block>
-                    </div>
-                    <div class="col-md-6 text-center row">
-                        <th:block th:if="${#authentication.name} == *{user.username}">
-                            <div class="col-md-8 d-flex justify-content-center">
-                                <button data-toggle="modal" data-target="#editModal"
-                                        class="btn m-1 text-white bg-primary text-center">
-                                    Edit
-                                </button>
-                                <button class="btn m-1 btn-danger text-center"
-                                        data-toggle="modal" data-target="#deleteModal">
-                                    Delete
-                                </button>
-                            </div>
-                        </th:block>
-                        <th:block th:unless="${#authentication.name} == *{user.username}">
-                            <div class="offset-md-8"></div>
-                        </th:block>
-                        <div class="text-center col-md-4 text-center">
-                            <i>
-                                Author: <a th:href="@{/users/{username}(username=*{user.username})}"
-                                           th:text="*{user.username}"></a>
-                            </i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <!-- POST -->
+            <th:block th:include="~{fragments/posts/by-id/post}"/>
+
             <hr>
+
+            <!-- COMMENTS MISSING MESSAGE -->
             <th:block th:if="*{#sets.isEmpty(comments)}">
-                <div sec:authorize="${isAuthenticated()}">
-                    <h5 class="text-secondary">There are no comments yet. Consider creating one yourself!</h5>
-                </div>
-                <div sec:authorize="${!isAuthenticated()}">
-                    <h5 class="text-secondary">There are no comments yet. Consider logging in and creating one
-                        yourself!</h5>
-                </div>
+                <th:block th:include="~{fragments/posts/by-id/missing-comments-message}"/>
             </th:block>
+
             <th:block th:unless="*{#sets.isEmpty(comments)}">
                 <th:block th:each="comment : *{comments}">
-                    <div class="bg-white col-12 mb-2 p-3">
-                        <div class="avatar col-12 mb-1">
-                            <img class="rounded-circle" src="/img/avatar__181424 (2).png" height="512" width="512"/>
-                            <a th:text="${comment.user.username}"
-                               th:href="@{/users/{username}(username=${comment.user.username})}"></a>
-                        </div>
-                        <hr>
-                        <div class="text-wrap col-12">
-                            <p th:text="${comment.content}"></p>
-                        </div>
-                        <div class="col-12 text-right">
-                            <i th:text="|Published on *{#temporals.format(publishDate, 'dd-MM-yyyy')} at  *{#temporals.format(publishDate, 'HH:mm')}|"></i>
-                        </div>
-                    </div>
+                    <th:block th:include="~{fragments/posts/by-id/comment}"/>
                 </th:block>
             </th:block>
+
+            <!-- COMMENT FORM -->
             <div sec:authorize="${isAuthenticated()}">
-                <hr class="hr-2 bg-blue">
-                <div class="post bg-white mb-2">
-                    <div class="avatar d-flex pt-3">
-                        <img class="d-inline-block ml-3 mr-2" src="/img/avatar__181424 (2).png" height="512"
-                             width="512"/>
-                        <p th:text="${#authentication.getPrincipal().getUsername()}"></p>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 pb-2">
-                        <hr class="bg-blue">
-                        <form th:method="post" th:object="${commentBindingModel}" th:action="@{/posts/} + ${id}">
-                            <div class="textwraper"
-                                 th:classappend="${#fields.hasErrors('commentContent')} ? 'has-error'">
-                                <div class="postreply">Post a Reply</div>
-                                <textarea name="commentContent" id="reply"
-                                          placeholder="Type your message here"></textarea>
-                                <div class="text-danger" th:each="error : ${#fields.errors('commentContent')}"
-                                     th:text="${error}">Error Message
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row-reverse pt-2">
-                                <button type="submit" id="post-reply-btn" class="btn bg-blue btn-info">Post Reply
-                                </button>
-                            </div>
-                            <input type="hidden" name="postId" th:value="${viewModel.id}"/>
-                        </form>
-                    </div>
-                </div>
+                <th:block th:include="~{fragments/posts/by-id/comment-form}"/>
             </div>
+
         </div>
+
+        <!-- SIDEBAR -->
         <th:block th:include="~{fragments/sidebar}"/>
+
     </div>
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit post</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="post" th:action="@{/posts/{id}/edit(id=${viewModel.id})}">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="editPostTitleInput">Edit title:</label>
-                            <input name="title" type="text" class="form-control" id="editPostTitleInput"
-                                   th:value="${viewModel.title}">
-                            <div class="text-danger" id="editPostTitleHint"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="editPostContentInput">Edit content:</label>
-                            <textarea name="commentContent" class="form-control" rows="12" id="editPostContentInput"
-                                      th:field="${viewModel.content}">
-                            </textarea>
-                            <div class="text-danger" id="editPostContentHint"></div>
-                        </div>
-                    </div>
-                    <input type="hidden" name="postId" th:value="${viewModel.id}"/>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" id="editContentButton" class="btn text-white bg-primary">Save changes
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Delte</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you wish to delete this post?</p>
-                </div>
-                <div class="modal-footer">
-                    <form method="post" th:action="@{/posts/{id}/delete(id=${viewModel.id})}">
-                        <input type="hidden" name="postId" th:value="${viewModel.id}"/>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <!-- EDIT MODAL -->
+    <th:block th:include="~{fragments/posts/by-id/edit-modal}"/>
+
+    <!-- DELETE MODAL -->
+    <th:block th:include="~{fragments/posts/by-id/delete-modal}"/>
+
 </div>

@@ -1,0 +1,7 @@
+<div sec:authorize="${isAuthenticated()}">
+    <h5 class="text-secondary">There are no comments yet. Consider creating one yourself!</h5>
+</div>
+<div sec:authorize="${!isAuthenticated()}">
+    <h5 class="text-secondary">There are no comments yet. Consider logging in and creating one
+        yourself!</h5>
+</div>

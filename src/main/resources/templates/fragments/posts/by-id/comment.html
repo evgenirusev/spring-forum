@@ -1,0 +1,14 @@
+<div class="bg-white col-12 mb-2 p-3">
+    <div class="avatar col-12 mb-1">
+        <img class="rounded-circle" src="/img/avatar__181424 (2).png" height="512" width="512"/>
+        <a th:text="${comment.user.username}"
+           th:href="@{/users/{username}(username=${comment.user.username})}"></a>
+    </div>
+    <hr>
+    <div class="text-wrap col-12">
+        <p th:text="${comment.content}"></p>
+    </div>
+    <div class="col-12 text-right">
+        <i th:text="|Published on *{#temporals.format(publishDate, 'dd-MM-yyyy')} at  *{#temporals.format(publishDate, 'HH:mm')}|"></i>
+    </div>
+</div>

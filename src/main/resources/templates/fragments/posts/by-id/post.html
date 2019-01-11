@@ -1,0 +1,52 @@
+<div class="bg-white p-3">
+    <div class="row">
+        <div class="avatar col-sm-1 col-md-1">
+            <img src="/img/avatar__181424 (2).png" height="512" width="512"/></div>
+        <div class="col-xs-11 col-sm-11 col-md-11 text-">
+            <div class="row">
+                <h4 class="col-12 post-title" th:text="*{title}"></h4>
+                <i class="text-left col-12 text-secondary mb-4"
+                   th:text="|Published on *{#temporals.format(publishDate, 'dd-MM-yyyy')} at  *{#temporals.format(publishDate, 'HH:mm')}|"></i>
+            </div>
+            <p class="text-wrap" th:text="*{content}"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 d-flex justify-content-center">
+            <th:block th:if="*{#sets.isEmpty(categories)}">
+                <i class="text-secondary">This post isn't listed in any categories.</i>
+            </th:block>
+            <th:block class="d-flex justify-content-center" th:unless="*{#sets.isEmpty(categories)}">
+                <th:block th:each="category : *{categories}">
+                    <a class="p-1 m-2 bg-primary text-white rounded"
+                       th:href="|/categories/${category.name}|">
+                        <th:block th:text="${category.name}"></th:block>
+                    </a>
+                </th:block>
+            </th:block>
+        </div>
+        <div class="col-md-6 text-center row">
+            <th:block th:if="${#authentication.name} == *{user.username}">
+                <div class="col-md-8 d-flex justify-content-center">
+                    <button data-toggle="modal" data-target="#editModal"
+                            class="btn m-1 text-white bg-primary text-center">
+                        Edit
+                    </button>
+                    <button class="btn m-1 btn-danger text-center"
+                            data-toggle="modal" data-target="#deleteModal">
+                        Delete
+                    </button>
+                </div>
+            </th:block>
+            <th:block th:unless="${#authentication.name} == *{user.username}">
+                <div class="offset-md-8"></div>
+            </th:block>
+            <div class="text-center col-md-4 text-center">
+                <i>
+                    Author: <a th:href="@{/users/{username}(username=*{user.username})}"
+                               th:text="*{user.username}"></a>
+                </i>
+            </div>
+        </div>
+    </div>
+</div>
