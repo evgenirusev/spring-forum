@@ -1,0 +1,9 @@
+<div th:if="${param.search != null} and !(${viewModel.getTotalElements()} > 0)">
+    <h4 class="text-secondary">There are no posts matching your criteria: "<b><span
+            th:text="${param.search}"></span></b>"</h4>
+    <hr class="bg-info hr-2">
+</div>
+<div th:if="${param.search == null} and !(${viewModel.getTotalElements()} > 0)">
+    <h4 class="text-secondary">There are no posts yet. Consider creating one yourself!</h4>
+    <hr class="bg-info hr-2">
+</div>

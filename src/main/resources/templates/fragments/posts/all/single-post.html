@@ -1,0 +1,37 @@
+<div class="bg-white rounded mb-3 p-3 row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <h4 class="mt-0" th:text="${post.title}"></h4>
+            <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-floating pulse  pr-4">
+                <i class="fa fal fa-arrow-circle-right text-light-green"></i>
+            </a>
+        </div>
+        <hr class="bg-info w-100">
+        <div th:if="${#strings.length(post.content) > 300}">
+            <p class="text-wrap" th:text="|${#strings.substring(post.content,0,300)}...|"></p>
+        </div>
+        <div th:unless="${#strings.length(post.content) > 300}">
+            <p class="text-wrap" th:text="${post.content}"></p>
+        </div>
+    </div>
+    <div class="row w-100">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <div th:if="${#sets.isEmpty(post.categories)}">
+                <i class="p-4 text-secondary">This post isn't listed in any categories.</i>
+            </div>
+            <div th:unless="${#sets.isEmpty(post.categories)}">
+                <th:block th:each="category : ${post.categories}">
+                    <a th:href="|/categories/${category.name}|">
+                        <i class="p-1 rounded bg-primary text-white" th:text="${category.name}"></i>
+                    </a>
+                </th:block>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 avatar">
+            <a class="pull-right" th:href="|/users/${post.user.username}|">
+                <h6 th:text="${post.user.username}" class="text-dark d-inline-block"></h6>
+                <img src="/img/avatar__181424 (2).png" heght="512" width="512" class="d-inline-block"/>
+            </a>
+        </div>
+    </div>
+</div>

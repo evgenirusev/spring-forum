@@ -1,0 +1,19 @@
+<nav aria-label="Pagination">
+    <ul class="pagination">
+        <li class="page-item" th:classappend="!${viewModel.hasPrevious()} ? 'disabled'">
+            <a th:text="#{pagination.previous}" class="page-link"
+               th:href="${viewModel.hasPrevious()} ? '/posts/?page=' + ${viewModel.previousPageable().getPageNumber()}">
+            </a>
+        </li>
+        <li th:each="i : ${#numbers.sequence(0, viewModel.getTotalPages() - 1)}" class="page-item">
+            <a class="page-link" th:href="|/posts?page=${i}|" th:text="${i + 1}"></a>
+        </li>
+        <li class="page-item"
+            th:classappend="!${viewModel.hasNext()} ? 'disabled'">
+            <a th:text="#{pagination.next}" class="page-link"
+               th:href="${viewModel.hasNext()} ? '/posts?page=' + ${viewModel.nextPageable().getPageNumber()}">
+                Next
+            </a>
+        </li>
+    </ul>
+</nav>
