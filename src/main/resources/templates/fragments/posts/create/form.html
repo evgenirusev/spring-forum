@@ -1,0 +1,22 @@
+<form th:object="${createPostBindingModel}" class="p-4" th:method="post" th:action="@{/posts/create}" >
+    <div class="form-group" th:classappend="${#fields.hasErrors('title')} ? 'has-error'">
+        <label for="exampleFormControlInput1">Post Title</label>
+        <input type="text" class="form-control" th:field="*{title}" id="exampleFormControlInput1" placeholder="Title">
+        <div class="text-danger" th:each="error : ${#fields.errors('title')}" th:text="${error}">Error Message</div>
+    </div>
+    <div class="form-group" th:classappend="${#fields.hasErrors('content')} ? 'has-error'">
+        <label for="exampleFormControlTextarea1">Post Content</label>
+        <textarea class="form-control" th:field="*{content}" id="exampleFormControlTextarea1"
+                  placeholder="Please be specific" rows="5"></textarea>
+        <div class="text-danger" th:each="error : ${#fields.errors('content')}" th:text="${error}">Error Message</div>
+    </div>
+    <div>
+        <span>Categories:</span>
+        <select class="custom-select mb-2" size="3" multiple th:field="*{categories}">
+            <th:block th:each="category : ${viewModel}">
+                <option th:value="${category.id}"  th:text="${category.name}"></option>
+            </th:block>
+        </select>
+    </div>
+    <button type="submit" class="btn bg-blue btn-info ">Create</button>
+</form>
