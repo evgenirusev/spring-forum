@@ -1,10 +1,10 @@
 <div class="header-nav p-5" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="container-fluid d-flex justify-content-around">
-        <form class="form-inline my-2 p-3" method="get" action="/posts">
+    <div class="container-fluid row">
+        <form class="form-inline offset-sm-2 col-sm-6" method="get" action="/posts">
             <input name="search" class="form-control mr-sm-2" type="search" th:placeholder="#{header.search}" aria-label="Search">
-            <button class=" btn btn-outline-info my-2 my-sm-0" type="submit" th:text="#{header.search.button}"></button>
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit" th:text="#{header.search.button}"></button>
         </form>
-        <a class="nav-link p-3 text-white" th:href="@{/posts/create}">
+        <a class="nav-link text-white col-sm-4" th:href="@{/posts/create}">
             <button class="btn btn-info header-button" type="button" th:text="#{header.create.post}">
             </button>
         </a>
