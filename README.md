@@ -4,7 +4,7 @@
 Internet forum, powered by Spring Framework and MySQL.
 
 ## Database Schema:
-![Sorry, error loading image of diagram](http://evgeni-rusev.com/forum-db.png)
+![Sorry, error loading image of diagram](DBDiagram.png)
 
 ## Technologies
 - Java:
